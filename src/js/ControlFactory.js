@@ -23,6 +23,7 @@ class ControlFactory {
 
   static select({
     labelText,
+    name,
     appendTo,
     br = true,
     disabled = false,
@@ -33,7 +34,7 @@ class ControlFactory {
   }) {
 
     let select = jQuery("<select>");
-
+    select.attr('id', name);
     Object.keys(attrs).forEach((name) => {
       select.attr(name, attrs[name]);
     });
@@ -104,7 +105,11 @@ class ControlFactory {
     input.attr("type", type);
     input.attr("id", name);
     if(type == "checkbox"){
-      console.log(window.settings.settings[name]);
+      if(window.settings.settings[name] != null){
+        input.prop('checked',window.settings.settings[name]);
+      }else{
+        console.log(name);
+      }
     }
 
     Object.keys(attrs).forEach((attname) => {

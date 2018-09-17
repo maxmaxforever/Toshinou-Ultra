@@ -45,6 +45,11 @@ class ControlFactory {
       localOption.text(options[key]);
       localOption.appendTo(select);
     });
+    if(window.settings.settings[name] != null){
+      select.val(window.settings.settings[name]);
+    }else{
+      console.log(name);
+    }
 
     let label = jQuery("<label>");
     label.html(labelText);
@@ -104,13 +109,17 @@ class ControlFactory {
     let input = jQuery("<input>");
     input.attr("type", type);
     input.attr("id", name);
+
     if(type == "checkbox"){
       if(window.settings.settings[name] != null){
         input.prop('checked',window.settings.settings[name]);
       }else{
         console.log(name);
       }
+    }else if(type == "range"){
+      input.val(window.settings.settings[name]);
     }
+
 
     Object.keys(attrs).forEach((attname) => {
       input.attr(attname, attrs[attname]);

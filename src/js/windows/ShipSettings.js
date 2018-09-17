@@ -11,7 +11,7 @@ class ShipSettings{
             labelText: 'Change Config',
             appendTo: this.shipSettingsWindow,
             event: function () {
-                $(".configs").prop("disabled", !this.checked);
+                $(".configs").prop("disabled", !this.checked );
                 window.settings.settings.autoChangeConfig = this.checked;
             }
         },
@@ -37,7 +37,7 @@ class ShipSettings{
             name: 'attackConfig',
             labelText: 'Attack config slot: ',
             type: "select",
-            disabled: true,
+            disabled: true && !window.settings.settings.autoChangeConfig,
             appendTo: this.shipSettingsWindow,
             options: {"1":1, "2":2},
             attrs:{
@@ -51,7 +51,7 @@ class ShipSettings{
             name: 'flyingConfig',
             labelText: 'Flying Config Slot: ',
             type: "select",
-            disabled: true,
+            disabled: true && !window.settings.settings.autoChangeConfig,
             appendTo: this.shipSettingsWindow,
             options: {"1":1, "2":2},
             attrs:{
@@ -65,7 +65,7 @@ class ShipSettings{
             name: 'attackFormation',
             labelText: 'Attack formation slot: ',
             type: "select",
-            disabled: true,
+            disabled: true && !window.settings.settings.changeFormation,
             appendTo: this.shipSettingsWindow,
             options: {"0":0, "1":1, "2":2, "3":3, "4":4, "5":5, "6":6, "7":7, "8":8, "9":9},
             attrs:{
@@ -79,7 +79,7 @@ class ShipSettings{
             name: 'flyingFormation',
             labelText: 'Flying formation slot: ',
             type: "select",
-            disabled: true,
+            disabled: true && !window.settings.settings.changeFormation,
             appendTo: this.shipSettingsWindow,
             options: {"0":0, "1":1, "2":2, "3":3, "4":4, "5":5, "6":6, "7":7, "8":8, "9":9},
             attrs:{
@@ -93,7 +93,7 @@ class ShipSettings{
             name: 'abilitySlot',
             labelText: 'Ship Ability Slot: ',
             type: "select",
-            disabled: true,
+            disabled: true && !window.settings.settings.useAbility,
             appendTo: this.shipSettingsWindow,
             options: {"0":0, "1":1, "2":2, "3":3, "4":4, "5":5, "6":6, "7":7, "8":8, "9":9},
             attrs:{

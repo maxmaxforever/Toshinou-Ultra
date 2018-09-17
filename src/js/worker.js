@@ -121,7 +121,6 @@ function init() {
   window.setInterval(logic, window.tickTime);
   Injector.injectScriptFromResource("res/injectables/HeroPositionUpdater.js");
 
-  settings.loadSettingsToInterface();
   // set refreshcount to 3 if page loaded until here
   api.changeRefreshCount(3);
 
@@ -573,7 +572,6 @@ if (window.settings.settings.fleeFromEnemy) {
         }
       }
       if(window.settings.settings.useAbility && window.hero.skillName){
-        if((window.hero.skillname == "cyborg" && api.targetShip.hp > 100000)||// make this a user option
         // Make hp and shield heren a user option.
         if((window.hero.skillname == "cyborg" && api.targetShip.hp > 100000)||
           (window.hero.skillName == "venom" && api.targetShip.hp > 60000))

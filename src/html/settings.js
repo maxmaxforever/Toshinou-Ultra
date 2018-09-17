@@ -16,8 +16,6 @@ function saveOptions(e) {
     speedFormat:        $('input[name="speedFormat"]:checked').val(),
     windowsToTabs:      $("#windowsToTabs").prop('checked'),
     abilitySlot:       $("#abilitySlot").val(),
-    reviveType:         $("#reviveType").val(),
-    reviveLimit:        $("#reviveLimit").val(),
     collectBoxWhenCircle: $("#collectBoxWhenCircle").prop('checked'),
     workmap: $("#workmap").val(),
   };
@@ -35,7 +33,7 @@ function restore() {
 	
   var items = ["headerColor", "headerOpacity", "windowColor", "windowOpacity", "timerTick", "windowsToTabs",
                 "enableRefresh", "refreshToReconnect", "refreshTime", 
-                "speedFormat","reviveType", "reviveLimit", "workmap"];
+                "speedFormat"];
 
   var onGet = items => {
 
@@ -63,15 +61,6 @@ function restore() {
     
     if (items.windowsToTabs) {
       $("#windowsToTabs").prop('checked', true);
-    }
-    if (items.workmap) {
-      $("#workmap").val(items.workmap);
-    }
-    if (items.reviveType) {
-      $("#reviveType").val(items.reviveType);
-    }
-    if (items.reviveLimit) {
-      $("#reviveLimit").val(items.reviveLimit);
     }
     if (items.workmap) {
       $("#workmap").val(items.workmap);

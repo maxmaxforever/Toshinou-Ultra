@@ -26,8 +26,9 @@ class Settings {
       kronos: false,
       hades: false,
       kuiper: false,
-      lockNpcs: false,
+      lockNpc: false,
       lockPlayers: false,
+      excludeNpcs: false,
       autoAttack: false,
       autoAttackNpcs: false,
       npcCircleRadius : 500,
@@ -48,7 +49,7 @@ class Settings {
       flyingFormation: -2,
       useAbility: false,
       abilitySlot: -1,
-      reviveType: 1,
+      reviveType: 0,
       reviveLimit: 5,
       workmap: 0
     };
@@ -69,26 +70,5 @@ class Settings {
 
   getNpc(name) {
     return !this.settings.npcs[name];
-  }
-
-  loadSettingsToInterface(){
-    Object.keys(this.settings).forEach((key) =>{
-      let a = document.getElementById(key);
-      console.log(a);
-			if(a){	
-			switch(a.type){
-				case "checkbox":
-					a.checked = this.defaults[key];
-					break;
-				case "range":
-				case "select":
-					a.value = this.defaults[key];
-					break;
-				default:
-					console.log(a.type);
-					break;
-				}
-			}
-		});
   }
 }

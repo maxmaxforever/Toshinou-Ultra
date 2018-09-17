@@ -8,12 +8,12 @@ class ShipSelectedHandler {
       let parsedJson = JSON.parse(e.detail);
 
       let ship = a.ships[parsedJson.userId];
-      ship.maxHp = parsedJson[Variables.selectMaxHp]; //
-      ship.maxShd = parsedJson[Variables.selectMaxShd]; // 
-      ship.hp = parsedJson[Variables.selectHp];//_-p2W 
-      ship.shd = parsedJson.shield;
-
-      if (ship != null){
+      if(ship != null){
+        ship.maxHp = parsedJson[Variables.selectMaxHp];
+        ship.maxShd = parsedJson[Variables.selectMaxShd];
+        ship.hp = parsedJson[Variables.selectHp];
+        ship.shd = parsedJson.shield;
+        
         a.lockedShip = ship;
         if(window.settings.settings.autoAttack || window.settings.settings.autoAttackNpcs && a.autoLocked && $.now() - a.lastAutoLock < 900){
           if (!a.attacking && window.settings.settings.avoidAttackedNpcs || !a.attacking && a.lockedShip) {

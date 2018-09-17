@@ -117,16 +117,19 @@ class ShipSettings{
         },
         {
             name: 'reviveLimit',
-            labelText: 'Revive Limit: ',
+            labelText: 'Revive Limit<span> (5)</span>: ',
             type: "range",
             appendTo: this.shipSettingsWindow,
+            labelBefore: true,
             attrs:{
                 min: 0,
                 max: 100,
+                step: 1,
                 value: 5
             },
             event: function () {
                 window.settings.settings.reviveLimit = this.value;
+                $('span:last-child', this.label).text(' (' + this.value + ')');
             }
         }
 

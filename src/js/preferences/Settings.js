@@ -73,7 +73,8 @@ class Settings {
 
   loadSettingsToInterface(){
     Object.keys(this.settings).forEach((key) =>{
-			let a = document.getElementById(key);
+      let a = document.getElementById(key);
+      console.log(a);
 			if(a){	
 			switch(a.type){
 				case "checkbox":

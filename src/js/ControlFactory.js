@@ -103,6 +103,9 @@ class ControlFactory {
     let input = jQuery("<input>");
     input.attr("type", type);
     input.attr("id", name);
+    if(type == "checkbox"){
+      console.log(window.settings.settings[name]);
+    }
 
     Object.keys(attrs).forEach((attname) => {
       input.attr(attname, attrs[attname]);

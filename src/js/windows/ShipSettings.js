@@ -103,6 +103,32 @@ class ShipSettings{
                 window.settings.settings.abilitySlot = this.value;
             }
         },
+        {
+            name: 'reviveType',
+            labelText: 'Revive type: ',
+            type: "select",
+            appendTo: this.shipSettingsWindow,
+            options: {0:"base", 1:"portal", 2:"place"},
+            attrs:{
+            },
+            event: function () {
+                window.settings.settings.reviveType = this.value;
+            }
+        },
+        {
+            name: 'reviveLimit',
+            labelText: 'Revive Limit: ',
+            type: "range",
+            appendTo: this.shipSettingsWindow,
+            attrs:{
+                min: 0,
+                max: 100,
+                value: 5
+            },
+            event: function () {
+                window.settings.settings.reviveLimit = this.value;
+            }
+        }
 
         ];
 

@@ -142,9 +142,9 @@ class GeneralSettingsWindow {
       }
     });
 
-    let saveButton = jQuery('<div class="saveButton"><button class="btn_save save btn">💾</button></div>');
+    let saveButton = jQuery('<div class="saveButton"><button class="btn_save save btn">💾 Save</button></div>');
     this.botSettingsWindow.append(saveButton);
-    let clearButton = jQuery('<div class="clearButton"><button class="btn_clear save btn">clear settings</button></div>');
+    let clearButton = jQuery('<div class="clearButton"><button class="btn_clear save btn">♲ Clear Saved</button></div>');
     this.botSettingsWindow.append(clearButton);
   }
 }

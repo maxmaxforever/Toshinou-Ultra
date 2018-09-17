@@ -118,10 +118,9 @@ function init() {
 
   window.shipSettings = new ShipSettings();
   window.shipSettings.createWindow();
-  
+  window.setInterval(logic, window.tickTime);
   Injector.injectScriptFromResource("res/injectables/HeroPositionUpdater.js");
 
-  window.setInterval(logic, window.tickTime);
   settings.loadSettingsToInterface();
   // set refreshcount to 3 if page loaded until here
   api.changeRefreshCount(3);

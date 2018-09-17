@@ -86,6 +86,7 @@
         "js/handlers/commands/QuickSlotHandler.js",
         "js/Api.js",
         "js/ControlFactory.js",
+        "js/worker.js"
       ],
       "css": [
         "css/style.css"

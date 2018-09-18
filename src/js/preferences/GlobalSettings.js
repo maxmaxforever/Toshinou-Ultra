@@ -7,7 +7,6 @@ class GlobalSettings {
       windowColor: "#191919",
       windowOpacity: "0.8",
       timerTick: 300,
-      enableRefresh: false,
       refreshToReconnect: false,
       refreshTime: 60,
       speedFormat: 'hour',
@@ -54,13 +53,5 @@ class GlobalSettings {
 
   get windowsToTabs() {
     return this._settings.windowsToTabs;
-  }
-
-  get reviveType() {
-    return this._settings.reviveType;
-  }
-
-  get reviveLimit() {
-    return this._settings.reviveLimit;
   }
 }

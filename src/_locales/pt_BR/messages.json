@@ -252,21 +252,21 @@
     "message": "Mudar Formação de drone"
   },
   "attackformationslot": {
-    "message": "Slot da formação de combate"
+    "message": "Slot da formação de combate: "
   },
   "flyingformationslot": {
-    "message": "Slot da formação de voar"
+    "message": "Slot da formação de voar: "
   },
   "droneformations": {
-    "message": "Formação de drone(BETA)"
+    "message": "Formação de drone"
   },
   "shipability": {
-    "message": "Habilidade da nave(BETA)"
+    "message": "Habilidade da nave"
   },
   "useability": {
     "message": "Usar Habilidade"
   },
   "abilityslot": {
-    "message": "Slot da habilidade"
+    "message": "Slot da habilidade: "
   }
 }

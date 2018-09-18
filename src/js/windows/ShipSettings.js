@@ -8,7 +8,7 @@ class ShipSettings{
         let controls = [
         {
             name: 'autoChangeConfig',
-            labelText: 'Change Config',
+            labelText: chrome.i18n.getMessage('autochangeconfig'),
             appendTo: this.shipSettingsWindow,
             event: function () {
                 $(".configs").prop("disabled", !this.checked );
@@ -17,7 +17,7 @@ class ShipSettings{
         },
         {
             name: 'changeFormation',
-            labelText: 'Change Drone Formation',
+            labelText: chrome.i18n.getMessage('changedroneformation'),
             appendTo: this.shipSettingsWindow,
             event: function () {
                 $(".formations").prop("disabled", !this.checked);
@@ -26,7 +26,7 @@ class ShipSettings{
         },
         {
             name: 'useAbility',
-            labelText: 'Use Ability',
+            labelText: chrome.i18n.getMessage('useability'),
             appendTo: this.shipSettingsWindow,
             event: function () {
                 $(".ability").prop("disabled", !this.checked);
@@ -35,7 +35,7 @@ class ShipSettings{
         },
         {
             name: 'attackConfig',
-            labelText: 'Attack config slot: ',
+            labelText: chrome.i18n.getMessage('attackconfig'),
             type: "select",
             disabled: true && !window.settings.settings.autoChangeConfig,
             appendTo: this.shipSettingsWindow,
@@ -49,7 +49,7 @@ class ShipSettings{
         },
         {
             name: 'flyingConfig',
-            labelText: 'Flying Config Slot: ',
+            labelText: chrome.i18n.getMessage('flyingconfig'),
             type: "select",
             disabled: true && !window.settings.settings.autoChangeConfig,
             appendTo: this.shipSettingsWindow,
@@ -63,7 +63,7 @@ class ShipSettings{
         },
         {
             name: 'attackFormation',
-            labelText: 'Attack formation slot: ',
+            labelText: chrome.i18n.getMessage('attackformationslot'),
             type: "select",
             disabled: true && !window.settings.settings.changeFormation,
             appendTo: this.shipSettingsWindow,
@@ -77,7 +77,7 @@ class ShipSettings{
         },
         {
             name: 'flyingFormation',
-            labelText: 'Flying formation slot: ',
+            labelText: chrome.i18n.getMessage('flyingformationslot'),
             type: "select",
             disabled: true && !window.settings.settings.changeFormation,
             appendTo: this.shipSettingsWindow,

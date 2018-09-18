@@ -258,16 +258,16 @@
     "message": "Change Drone Formation"
   },
   "attackformationslot": {
-    "message": "Attack Formation Slot"
+    "message": "Attack Formation Slot: "
   },
   "flyingformationslot": {
-    "message": "Flying Formation Slot"
+    "message": "Flying Formation Slot: "
   },
   "droneformations": {
-    "message": "Drone Formations(BETA)"
+    "message": "Drone Formations"
   },
   "shipability": {
-    "message": "Ship Ability (BETA)"
+    "message": "Ship Ability "
   },
   "useability": {
     "message": "Use Ability"

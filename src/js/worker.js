@@ -4,7 +4,7 @@ let notrightId;
 let state = false;
 
 // gets how many times the page reloaded
-// it fixes the fake unsafe js 
+// it fixes the fake unsafe js
 let refreshCounter;
 chrome.storage.local.get("refreshCount", function(result) {
 	refreshCounter = result["refreshCount"];
@@ -46,7 +46,6 @@ $(document).ready(function () {
 		warning.appendTo("body");
 		throw new Error("Safety tests failed!");
 	}
-  
     preloader.appendTo($("#container"));
 
     window.settings = new Settings();
@@ -203,16 +202,18 @@ function init() {
 		if(v && window.settings.enableRefresh){cntBtnPlay.click();}
 	});
 }
+
+
 function logic() {
 
 	if(window.fleeingFromEnemy){
 		console.log("Fleeing from enemy!!");
 	}
 
-
 	let circleBox = null;
 	if (api.isDisconnected) {
 		if (window.fleeingFromEnemy) {
+			console.log("not fleeing because disconnected");
 			window.fleeFromEnemy = false;
 		}
 		if (api.disconnectTime && $.now() - api.disconnectTime > 5000 && (!api.reconnectTime || (api.reconnectTime && $.now() - api.reconnectTime > 15000)) && window.reviveCount < window.settings.settings.reviveLimit) {
@@ -226,7 +227,6 @@ function logic() {
 		}
 		return;
 	}
-
 
 	window.minimap.draw();
 
@@ -257,7 +257,7 @@ function logic() {
 				window.movementDone = false;
 				return;
 			}
-		}   
+		}
 	}
 
 	if(window.settings.settings.useAbility && window.hero.skillName == "solace"){
@@ -266,17 +266,18 @@ function logic() {
 				return;
 		}
 	}
-
-	if ((api.isRepairing && window.hero.hp !== window.hero.maxHp) && !window.settings.settings.ggbot && !window.settings.settings.palladium) {
-		return;
-	} else if (api.isRepairing && window.hero.hp === window.hero.maxHp) {
-		api.isRepairing = false;
-		if (window.settings.settings.autoChangeConfig){
-			if (window.settings.settings.attackConfig != window.hero.shipconfig) {
-				api.changeConfig();
+	if(api.isRepairing){
+		if (window.hero.hp !== window.hero.maxHp && !window.settings.settings.ggbot && !window.settings.settings.palladium) {
+			return;
+		}else if (window.hero.hp === window.hero.maxHp) {
+			api.isRepairing = false;
+			if (window.settings.settings.autoChangeConfig){
+				if (window.settings.settings.attackConfig != window.hero.shipconfig) {
+					api.changeConfig();
+				}
 			}
 		}
-	}
+	
 
 	if ($.now() - api.resetBlackListTime > api.blackListTimeOut) {
 		api._blackListedBoxes = [];
@@ -361,15 +362,15 @@ function logic() {
 					window.movementDone = false;
 					window.fleeingFromEnemy = true;
 					setTimeout(() => {
-					window.movementDone = true;
-					window.fleeingFromEnemy = false;
-					if (window.settings.settings.autoChangeConfig && window.settings.settings.attackConfig != window.hero.shipconfig) {
-						api.changeConfig();
-					}
-					if (window.settings.settings.changeFormation && api.formation != window.settings.settings.flyingFormation) {
-						api.changeFormation(window.settings.settings.flyingFormation);
-					}
-					console.log("Fleeing from enemy inside timeout!!"+ console.log($.now()));
+						window.movementDone = true;
+						window.fleeingFromEnemy = false;
+						if (window.settings.settings.autoChangeConfig && window.settings.settings.attackConfig != window.hero.shipconfig) {
+							api.changeConfig();
+						}
+						if (window.settings.settings.changeFormation && api.formation != window.settings.settings.flyingFormation) {
+							api.changeFormation(window.settings.settings.flyingFormation);
+						}
+						console.log("Fleeing from enemy inside timeout!!"+ console.log($.now()));
 					}, MathUtils.random(30000, 35000));
 					return;
 				}
@@ -504,16 +505,14 @@ function logic() {
 		}
 	}
 
-	if ((api.targetShip && $.now() - api.lockTime > 5000 && !api.attacking) || ($.now() - api.lastAttack > 10000)) {
+	if ((api.targetShip && $.now() - api.lockTime > 5000 && !api.attacking) || ($.now() - api.lastAttack > 10000))
 		api.resetTarget("enemy");
-	}
 
 	let x;
 	let y;
 
-	if (window.settings.settings.palladium) {
+	if (window.settings.settings.palladium)
 		api.battlerayFix();
-	}
 
 	/*Dodge the CBS*/
 	if (window.settings.settings.dodgeTheCbs && api.battlestation != null) {
@@ -541,18 +540,25 @@ function logic() {
 		}
 	}
 
-	if (api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.settings.moveRandomly && !window.settings.settings.palladium && !window.bigMap) {
-		x = MathUtils.random(200, 20800);
-		y = MathUtils.random(200, 12900);
-	} else if (api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.settings.moveRandomly && !window.settings.settings.palladium && window.bigMap) {
-		x = MathUtils.random(500, 41500);
-		y = MathUtils.random(500, 25700);
-	} else if (api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.settings.moveRandomly && window.settings.settings.palladium) {
-		x = MathUtils.random(13000, 30400);
-		y = MathUtils.random(19000, 25500)
+	if(api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.settings.moveRandomly){
+		if ( !window.settings.settings.palladium && !window.bigMap) {
+			x = MathUtils.random(200, 20800);
+			y = MathUtils.random(200, 12900);
+		} else if (!window.settings.settings.palladium && window.bigMap) {
+			x = MathUtils.random(500, 41500);
+			y = MathUtils.random(500, 25700);
+		} else if (window.settings.settings.palladium) {
+			// Palladium fog.
+			x = MathUtils.random(13000, 30400);
+			y = MathUtils.random(19000, 25500)
+		}
 	}
 
+
 	if (api.targetShip && window.settings.settings.killNpcs && api.targetBoxHash == null) {
+		api.targetShip.update();
+		let dist = api.targetShip.distanceTo(window.hero.position);
+
 		if(api.attacking){
 			if (window.settings.settings.autoChangeConfig && window.settings.settings.attackConfig != window.hero.shipconfig){
 				api.changeConfig();
@@ -562,11 +568,11 @@ function logic() {
 					api.changeFormation(window.settings.settings.attackFormation);
 				}
 			}
-			if(window.settings.settings.useAbility && window.hero.skillName){
+			if(window.settings.settings.useAbility && window.hero.skillName && dist <= 500){
 				// Make hp and shield heren a user option.
 				if((window.hero.skillname == "cyborg" && api.targetShip.hp > window.globalSettings.cyborgHp)||
-				(window.hero.skillName == "venom" && api.targetShip.hp > window.globalSettings.venomHp))
-				{ 
+					(window.hero.skillName == "venom" && api.targetShip.hp > window.globalSettings.venomHp))
+				{
 					api.useAbility();
 				} else if(window.hero.skillName == "diminisher" && api.targetShip.shd > window.globalSettings.diminisherShd){ // this one too
 					api.useAbility();
@@ -575,8 +581,6 @@ function logic() {
 				}
 			}
 		}
-		api.targetShip.update();
-		let dist = api.targetShip.distanceTo(window.hero.position);
 		if (window.settings.settings.ggbot && api.targetShip.position.x == 20999 && api.targetShip.position.y == 13499) {
 			//GG bottom right corner
 			x = 20495;
@@ -601,19 +605,18 @@ function logic() {
 			y = api.targetShip.position.y + MathUtils.random(-200, 200);
 		} else if (api.lockedShip && api.lockedShip.id == api.targetShip.id) {
 			if (window.settings.settings.circleNpc) {
-			let enemy = api.targetShip.position;        
-			let f = Math.atan2(window.hero.position.x - enemy.x, window.hero.position.y - enemy.y) + 0.5;
-			let s = Math.PI / 180;
-			let rot = MathUtils.random(-10, 10);
-			f += s;
-			x = enemy.x + window.settings.settings.npcCircleRadius * Math.sin(f);
-			y = enemy.y + window.settings.settings.npcCircleRadius * Math.cos(f);
+				let enemy = api.targetShip.position;
+				let f = Math.atan2(window.hero.position.x - enemy.x, window.hero.position.y - enemy.y) + 0.5;
+				let s = Math.PI / 180;
+				let rot = MathUtils.random(-10, 10);
+				f += s;
+				x = enemy.x + window.settings.settings.npcCircleRadius * Math.sin(f);
+				y = enemy.y + window.settings.settings.npcCircleRadius * Math.cos(f);
 
-
-			let nearestBox = api.findNearestBox();
-			if (nearestBox && nearestBox.box && nearestBox.distance < 300) {
-				circleBox = nearestBox;
-			}
+				let nearestBox = api.findNearestBox();
+				if (nearestBox && nearestBox.box && nearestBox.distance < 300) {
+					circleBox = nearestBox;
+				}
 			}
 		} else {
 			api.resetTarget("enemy");

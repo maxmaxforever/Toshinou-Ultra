@@ -6,13 +6,13 @@ class AttackWindow {
     });
 
     this.targetNameTxt = jQuery("<h4>");
-    this.targetNameTxt.text(chrome.i18n.getMessage("target")+" - ");
+    this.targetNameTxt.text("Target: ");
 
     this.hpTxt = jQuery("<h4>");
-    this.hpTxt.text(chrome.i18n.getMessage("hp")+" - ");
+    this.hpTxt.text("HP:" );
 
     this.shdTxt = jQuery("<h4>");
-    this.shdTxt.text(chrome.i18n.getMessage("shd")+" - ");
+    this.shdTxt.text("SHIELD:" );
 
     this.targetNameTxt.appendTo(this.attackWindow);
     this.hpTxt.appendTo(this.attackWindow);
@@ -20,13 +20,13 @@ class AttackWindow {
   }
 
   removeTarget() {
-    this.targetName.text(chrome.i18n.getMessage("target"));
-    this.hpTxt.text(chrome.i18n.getMessage("hp"));
-    this.shdTxt.text(chrome.i18n.getMessage("shd"));
+    this.targetName.text("Target: ");
+    this.hpTxt.text("HP:");
+    this.shdTxt.text("SHIELD:" );
   }
 
   targetName(value) {
-    this.targetNameTxt.text(chrome.i18n.getMessage("target") + value);
+    this.targetNameTxt.text("Target: " + value);
   }
 
   hp(value) {

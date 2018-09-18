@@ -13,7 +13,7 @@ class Settings {
       circleNpc: false,
       dontCircleWhenHpBelow25Percent: false,
       resetTargetWhenHpBelow25Percent: false,
-      repairWhenHpIsLowerThanPercent: false,
+      repairWhenHpIsLowerThanPercent: 30,
       ggbot: false,
       alpha: false,
       beta: false,
@@ -51,6 +51,8 @@ class Settings {
       abilitySlot: -1,
       reviveType: 0,
       reviveLimit: 5,
+      enableRefresh: false,
+      refreshTime: 60,
       workmap: 0
     };
     chrome.storage.local.get(this.defaults, items => {

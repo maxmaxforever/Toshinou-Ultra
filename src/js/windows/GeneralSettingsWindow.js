@@ -80,7 +80,7 @@ class GeneralSettingsWindow {
           min: 1,
           max: 800,
           step: 1,
-          value: 500,
+          value: 500
         },
         event: function (ev) {
           window.settings.settings.npcCircleRadius = this.value;
@@ -113,7 +113,7 @@ class GeneralSettingsWindow {
           min: 0,
           max: 100,
           step: 1,
-          value: 10,
+          value: 30
         },
         event: function (ev) {
           window.settings.settings.repairWhenHpIsLowerThanPercent = this.value;
@@ -131,7 +131,32 @@ class GeneralSettingsWindow {
         event: function (ev) {
           window.settings.settings.workmap = this.value;
         }
-      }
+      },
+      {
+        name: 'enableRefresh',
+        labelText: chrome.i18n.getMessage("enablerefresh"),
+        appendTo: this.botSettingsWindow,
+        event: function () {
+          window.settings.settings.enableRefresh = this.checked;
+        }
+      },
+      {
+        name: 'refreshTime',
+        labelText: chrome.i18n.getMessage("refreshtime"),
+        type: 'number',
+        labelBefore: true,
+        appendTo: this.botSettingsWindow,
+        attrs:{
+          size: 2,
+          min: 30,
+          max: 120,
+          value:60
+        },
+        event: function () {
+          window.settings.settings.refreshTime = this.value;
+        }
+      },
+      
     ];
 
     controls.forEach((control) => {
@@ -142,9 +167,9 @@ class GeneralSettingsWindow {
       }
     });
 
-    let saveButton = jQuery('<div class="saveButton"><button class="btn_save save btn">💾 Save</button></div>');
+    let saveButton = jQuery('<div class="saveButton"><button class="btn_save save btn">💾 Save Settings</button></div>');
     this.botSettingsWindow.append(saveButton);
-    let clearButton = jQuery('<div class="clearButton"><button class="btn_clear save btn">♲ Clear Saved</button></div>');
+    let clearButton = jQuery('<div class="clearButton"><button class="btn_clear save btn">♲ Clear Saved Settings</button></div>');
     this.botSettingsWindow.append(clearButton);
   }
 }

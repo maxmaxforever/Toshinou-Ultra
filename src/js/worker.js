@@ -191,7 +191,6 @@ function init() {
     saveBtn.on('click', (e) => {
       console.log("saving");
       chrome.storage.local.set(window.settings.settings);
-      api.setSettingsTime = $.now();
     });
     let clearBtn = $('.clearButton .btn_clear');
     clearBtn.on('click', (e) => {
@@ -210,12 +209,11 @@ function logic() {
 
   let circleBox = null;
   if (api.isDisconnected) {
-    console.log("disconnected!");
     if (window.fleeingFromEnemy) {
       window.fleeFromEnemy = false;
     }
     if (api.disconnectTime && $.now() - api.disconnectTime > 60000 && (!api.reconnectTime || (api.reconnectTime && $.now() - api.reconnectTime > 15000)) && window.reviveCount < window.settings.settings.reviveLimit) {
-      if(window.globalSettings.enableRefresh && window.globalSettings.refreshToReconnect){
+      if(window.settings.settings.enableRefresh){
         window.location.reload();
         state = true;
       }else{
@@ -234,7 +232,7 @@ function logic() {
   }
 
 
-  if (($.now() - api.setSettingsTime > window.globalSettings.refreshTime * 60000 || api.disconnectTime > 100000) && window.globalSettings.enableRefresh && !window.settings.settings.ggbot) {
+  if ((window.settings.settings.refreshTime * 60000 || api.disconnectTime > 100000) && window.settings.settings.enableRefresh && !window.settings.settings.ggbot) {
     if ((api.Disconected && !state) || window.settings.settings.palladium) {
       window.location.reload();
       state = true;
@@ -340,7 +338,7 @@ if (window.settings.settings.fleeFromEnemy) {
                 api.changeFormation(window.settings.settings.flyingFormation);
               }
             }
-            console.log("Fleeing from enemy inside timeout with gg jump!!");
+            console.log("Fleeing from enemy inside timeout with gg jump!!: "+ $.now());
           }, MathUtils.random(30000, 35000));
         }
         return;

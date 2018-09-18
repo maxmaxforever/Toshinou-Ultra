@@ -168,7 +168,7 @@
     "message": "Não circule quando a Vida <25%"
   },
   "repairwhenhp": {
-    "message": "Reparar quando a Vida <span> (10%) </ span>"
+    "message": "Reparar quando a Vida <span> (30%) </ span>"
   },
   "jumpandreturn": {
     "message": "Saltar e retornar"

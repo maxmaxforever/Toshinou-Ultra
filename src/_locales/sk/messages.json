@@ -174,7 +174,7 @@
     "message": "Nekrúžiť keď npc má HP < 25%"
   },
   "repairwhenhp": {
-    "message": "Opravovať keď < <span> (10%)</span>"
+    "message": "Opravovať keď < <span> (30%)</span>"
   },
   "jumpandreturn": {
     "message": "Skok a návrat"

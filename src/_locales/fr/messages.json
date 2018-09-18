@@ -174,7 +174,7 @@
     "message": "Ne pas faire de cercle quand HP < 25%"
   },
   "repairwhenhp": {
-    "message": "Réparer quand HP < <span> (10%)</span>"
+    "message": "Réparer quand HP < <span> (30%)</span>"
   },
   "jumpandreturn": {
     "message": "Sauter et revenir"

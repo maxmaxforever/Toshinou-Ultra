@@ -173,7 +173,7 @@
     "message": "Non circolare quando PV < 25%"
   },
   "repairwhenhp": {
-    "message": "Ripara quando pv < <span> (10%)</span>"
+    "message": "Ripara quando pv < <span> (30%)</span>"
   },
   "jumpandreturn": {
     "message": "Salta e Ritorna"

@@ -8,7 +8,6 @@ class GlobalSettings {
       windowOpacity: "0.8",
       timerTick: 300,
       refreshToReconnect: false,
-      refreshTime: 60,
       speedFormat: 'hour',
       windowsToTabs: false,
     }, items => {
@@ -40,17 +39,10 @@ class GlobalSettings {
     return this._settings.speedFormat;
   }
 
-  get enableRefresh() {
-    return this._settings.enableRefresh;
-  }
   get refreshToReconnect(){
     return this._settings.refreshToReconnect;
   }
-
-  get refreshTime() {
-    return this._settings.refreshTime;
-  }
-
+  
   get windowsToTabs() {
     return this._settings.windowsToTabs;
   }

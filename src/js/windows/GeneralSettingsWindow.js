@@ -122,7 +122,7 @@ class GeneralSettingsWindow {
       },
       {
         name: 'workmap',
-        labelText: "Workmap: ",
+        labelText: chrome.i18n.getMessage('workmap'),
         type: 'select',
         appendTo: this.botSettingsWindow,
         options: {0:"any", 2:"1-2", 3:"1-3", 4:"1-4", 6:"2-2", 7:"2-3", 8:"2-4", 10:"3-2", 11:"3-3", 12:"3-4", 13:"4-1", 14:"4-2", 15:"4-3", 16:"4-4", 29:"4-5", 17:"1-5", 18:"1-6", 19:"1-7", 20:"1-8", 21:"2-5", 22:"2-6", 23:"2-7", 24:"2-8", 25:"3-5", 26:"3-6", 27:"3-7", 28:"3-8"},

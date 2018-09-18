@@ -12,7 +12,7 @@ class NpcSettingsWindow {
 
       controls.push({
         name: `npc${i}`,
-        labelText: n.replace(/(\}|\{|\:|\.|\(|\)|\-|\=|\[|\])/g, ""),
+        labelText: n,//.replace(/(\}|\{|\:|\.|\(|\)|\-|\=|\[|\])/g, ""),
         appendTo: this.npcSettingsWindow,
         event: function () {
           window.settings.setNpc(n, this.checked);

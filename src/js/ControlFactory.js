@@ -113,6 +113,8 @@ class ControlFactory {
     if(type == "checkbox"){
       if(window.settings.settings[name] != null){
         input.prop('checked',window.settings.settings[name]);
+      }else if(window.settings.settings.npcs[labelText]){
+        input.prop('checked', true);
       }else{
         console.log(name);
       }

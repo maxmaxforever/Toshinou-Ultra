@@ -57,7 +57,6 @@ $(document).ready(function () {
     window.statusPlayBot = false;
     window.saved = false;
     window.loaded = false;
-    window.refreshed = false;
     window.fleeingFromEnemy = false;
     window.debug = false;
     window.tickTime = window.globalSettings.timerTick;
@@ -92,11 +91,14 @@ function init() {
   if (window.initialized)
     return;
 
-  window.minimap = new Minimap(api);
-  window.minimap.createWindow();
-
   window.attackWindow = new AttackWindow();
   window.attackWindow.createWindow();
+
+  window.autolockWindow = new AutolockWindow();
+  window.autolockWindow.createWindow();
+
+  window.collectionWindow = new CollectionWindow();
+  window.collectionWindow.createWindow();
 
   window.generalSettingsWindow = new GeneralSettingsWindow();
   window.generalSettingsWindow.createWindow();
@@ -104,20 +106,18 @@ function init() {
   window.GGSettingsWindow = new GGSettingsWindow();
   window.GGSettingsWindow.createWindow();
 
+  window.minimap = new Minimap(api);
+  window.minimap.createWindow();
+
   window.npcSettingsWindow = new NpcSettingsWindow();
   window.npcSettingsWindow.createWindow();
 
-  window.statisticWindow = new StatisticWindow();
-  window.statisticWindow.createWindow();
-  
-  window.autolockWindow = new AutolockWindow();
-  window.autolockWindow.createWindow();
-
-  window.collectionWindow = new CollectionWindow();
-  window.collectionWindow.createWindow();
-
   window.shipSettings = new ShipSettings();
   window.shipSettings.createWindow();
+
+  window.statisticWindow = new StatisticWindow();
+  window.statisticWindow.createWindow();
+
   window.setInterval(logic, window.tickTime);
   Injector.injectScriptFromResource("res/injectables/HeroPositionUpdater.js");
 
@@ -180,6 +180,7 @@ function init() {
       api.resetTarget("all");
       window.fleeingFromEnemy = false;
       window.settings.settings.pause = true;
+      api.startTime = $.now();
     } else {
       cntBtnPlay.html("Stop");
       cntBtnPlay.removeClass('in_play').addClass('in_stop');
@@ -189,31 +190,34 @@ function init() {
   });
     let saveBtn = $('.saveButton .btn_save');
     saveBtn.on('click', (e) => {
-      console.log("saving");
       chrome.storage.local.set(window.settings.settings);
     });
     let clearBtn = $('.clearButton .btn_clear');
     clearBtn.on('click', (e) => {
-      console.log("deleting");
       chrome.storage.local.set(window.settings.defaults);
     });
+    // LUL
+    chrome.storage.local.get({"refreshed" :false}, function(v){
+      if(v){cntBtnPlay.click();}
+    });
+    chrome.storage.local.set({"refreshed" :false});
 }
 
 function logic() {
 
-  if(true){
-    if(window.fleeingFromEnemy){
-      console.log("Fleeing from enemy!!");
-    }
+  if(window.fleeingFromEnemy){
+    console.log("Fleeing from enemy!!");
   }
+
 
   let circleBox = null;
   if (api.isDisconnected) {
     if (window.fleeingFromEnemy) {
       window.fleeFromEnemy = false;
     }
-    if (api.disconnectTime && $.now() - api.disconnectTime > 60000 && (!api.reconnectTime || (api.reconnectTime && $.now() - api.reconnectTime > 15000)) && window.reviveCount < window.settings.settings.reviveLimit) {
-      if(window.settings.settings.enableRefresh){
+    if (api.disconnectTime && $.now() - api.disconnectTime > 5000 && (!api.reconnectTime || (api.reconnectTime && $.now() - api.reconnectTime > 15000)) && window.reviveCount < window.settings.settings.reviveLimit) {
+      if(api.disconnectTime && $.now() - api.disconnectTime > 60000 && window.settings.settings.enableRefresh){
+        chrome.storage.local.set({"refreshed" :true});
         window.location.reload();
         state = true;
       }else{
@@ -232,8 +236,9 @@ function logic() {
   }
 
 
-  if ((window.settings.settings.refreshTime * 60000 || api.disconnectTime > 100000) && window.settings.settings.enableRefresh && !window.settings.settings.ggbot) {
+  if ((api.startTime && $.now() - api.startTime >= window.settings.settings.refreshTime * 60000 || api.disconnectTime > 100000) && window.settings.settings.enableRefresh && !window.settings.settings.ggbot) {
     if ((api.Disconected && !state) || window.settings.settings.palladium) {
+      chrome.storage.local.set({"refreshed" :true});
       window.location.reload();
       state = true;
     } else {
@@ -571,11 +576,11 @@ if (window.settings.settings.fleeFromEnemy) {
       }
       if(window.settings.settings.useAbility && window.hero.skillName){
         // Make hp and shield heren a user option.
-        if((window.hero.skillname == "cyborg" && api.targetShip.hp > 100000)||
-          (window.hero.skillName == "venom" && api.targetShip.hp > 60000))
+        if((window.hero.skillname == "cyborg" && api.targetShip.hp > window.globalSettings.cyborgHp)||
+          (window.hero.skillName == "venom" && api.targetShip.hp > window.globalSettings.venomHp))
         { 
           api.useAbility();
-        } else if(window.hero.skillName == "diminisher" && api.targetShip.shd > 60000){ // this one too
+        } else if(window.hero.skillName == "diminisher" && api.targetShip.shd > window.globalSettings.diminisherShd){ // this one too
           api.useAbility();
         } else if(window.hero.skillname == "sentinel"){
           api.useAbility();

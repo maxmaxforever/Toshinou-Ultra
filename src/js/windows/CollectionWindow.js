@@ -5,7 +5,8 @@ Created by Freshek on 14.10.2017
 class CollectionWindow {
     createWindow() {
       this.collectionWindow = WindowFactory.createWindow({
-        width: 300,
+        width: 320,
+        maxHeight: 300,
         text: "Collection"
       });
   

@@ -10,11 +10,13 @@ class GlobalSettings {
       refreshToReconnect: false,
       speedFormat: 'hour',
       windowsToTabs: false,
+      venomHp: 60000,
+      cyborgHp:100000,
+      diminisherShd: 60000
     }, items => {
       self._settings = items;
     });
   }
-
   get headerColor() {
     return this._settings.headerColor;
   }
@@ -45,5 +47,17 @@ class GlobalSettings {
   
   get windowsToTabs() {
     return this._settings.windowsToTabs;
+  }
+
+  get venomHp() {
+    return this._settings.venomHp;
+  }
+
+  get cyborgHp() {
+    return this._settings.cyborgHp;
+  }
+
+  get diminisherShd() {
+    return this._settings.diminisherShd;
   }
 }

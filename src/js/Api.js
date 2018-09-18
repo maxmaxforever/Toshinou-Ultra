@@ -5,6 +5,7 @@ class Api {
     this.boxes = {};
     this.ships = {};
     this.battlestation = null;
+    this.startTime = null;
     this.lastMovement = 0;
     this.isDisconnected = false;
     this.disconnectTime = null;
@@ -354,6 +355,13 @@ class Api {
     };
   }
   
+  refresh(){
+    chrome.storage.local.set({"refreshed" :true});
+  }
+
+  refreshed(){
+    chrome.storage.local.get({"refreshed" :true});
+  }
 
   findNearestShip() {
     let minDist = window.settings.settings.palladium ? window.settings.settings.npcCircleRadius : 100000;

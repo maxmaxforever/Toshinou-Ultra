@@ -113,7 +113,7 @@ class ControlFactory {
       }else if(window.settings.settings.npcs[labelText]){
         input.prop('checked', true);
       }
-    }else if(type == "range"){
+    }else if(type == "range" || type == "number"){
       input.val(window.settings.settings[name]);
     }
 

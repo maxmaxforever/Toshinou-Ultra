@@ -10,14 +10,12 @@ function saveOptions(e) {
     windowColor:        $("#windowColor").val(),
     windowOpacity:      $("#windowOpacity").val(),
     timerTick:          $("#timerTick").val(),
-    enableRefresh:      $("#enableRefresh").prop('checked'),
-    refreshToReconnect: $("#refreshToReconnect").prop('checked'),
-    refreshTime:        $("#refreshTime").val(),
     speedFormat:        $('input[name="speedFormat"]:checked').val(),
     windowsToTabs:      $("#windowsToTabs").prop('checked'),
-    abilitySlot:       $("#abilitySlot").val(),
-    collectBoxWhenCircle: $("#collectBoxWhenCircle").prop('checked'),
-    workmap: $("#workmap").val(),
+    venomHp:            $("#venomHp").val(),
+    cyborgHp:           $("#cyborgHp").val(),
+    diminisherShd:      $("#diminisherShd").val(),
+
   };
 
   chrome.storage.local.set(elements);
@@ -33,7 +31,7 @@ function restore() {
 	
   var items = ["headerColor", "headerOpacity", "windowColor", "windowOpacity", "timerTick", "windowsToTabs",
                 "enableRefresh", "refreshToReconnect", "refreshTime", 
-                "speedFormat"];
+                "speedFormat","venomHp", "cyborgHp", "diminisherShd"];
 
   var onGet = items => {
 
@@ -58,13 +56,15 @@ function restore() {
       let sel = `#speedFormat_${items.speedFormat}`;
       $(sel).prop('checked', true);
     }
-    
-    if (items.windowsToTabs) {
+    if (items.windowsToTabs)
       $("#windowsToTabs").prop('checked', true);
-    }
-    if (items.workmap) {
-      $("#workmap").val(items.workmap);
-    }
+    
+    if (items.venomHp)
+      $("#venomHp").val(items.venomHp);
+    if (items.cyborgHp)
+      $("#cyborgHp").val(items.cyborgHp);
+    if (items.diminisherShd)
+      $("#diminisherShd").val(items.diminisherShd);
   };
 
   chrome.storage.local.get(items, onGet);

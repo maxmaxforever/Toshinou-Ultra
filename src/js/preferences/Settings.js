@@ -53,6 +53,7 @@ class Settings {
       reviveLimit: 5,
       enableRefresh: false,
       refreshTime: 60,
+      refreshed: false,
       workmap: 0
     };
     chrome.storage.local.get(this.defaults, items => {

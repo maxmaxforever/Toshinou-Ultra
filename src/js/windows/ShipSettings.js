@@ -1,7 +1,7 @@
 class ShipSettings{
     createWindow() {
         this.shipSettingsWindow = WindowFactory.createWindow({
-          width: 300,
+          width: 320,
           text: "Ship Settings"
         });
     

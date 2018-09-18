@@ -47,10 +47,7 @@ class ControlFactory {
     });
     if(window.settings.settings[name] != null){
       select.val(window.settings.settings[name]);
-    }else{
-      console.log(name);
     }
-
     let label = jQuery("<label>");
     label.html(labelText);
     label.appendTo(appendTo);
@@ -115,8 +112,6 @@ class ControlFactory {
         input.prop('checked',window.settings.settings[name]);
       }else if(window.settings.settings.npcs[labelText]){
         input.prop('checked', true);
-      }else{
-        console.log(name);
       }
     }else if(type == "range"){
       input.val(window.settings.settings[name]);

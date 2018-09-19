@@ -1,6 +1,6 @@
 class ShipSelectedHandler {
   static get ID() {
-    return 13233;//32473;
+    return 13233;
   }
 
   constructor() {
@@ -15,12 +15,10 @@ class ShipSelectedHandler {
         ship.shd = parsedJson.shield;
         
         a.lockedShip = ship;
-        if(window.settings.settings.autoAttack || window.settings.settings.autoAttackNpcs && a.autoLocked && $.now() - a.lastAutoLock < 900){
-          if (!a.attacking && window.settings.settings.avoidAttackedNpcs || !a.attacking && a.lockedShip) {
-            a.startLaserAttack();
-            a.lastAttack = $.now();
-            a.attacking = true;
-          }
+        if (!api.attacking && (window.settings.settings.killNpcs && ship.isNpc && !window.settings.settings.pause) || (window.settings.settings.autoAttack && ship.isEnemy && !ship.isNpc) || (window.settings.settings.autoAttackNpcs && ship.isNpc)) {
+          api.startLaserAttack();
+          a.lastAttack = $.now();
+          api.attacking = true;
         }
       }
     }

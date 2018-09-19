@@ -57,10 +57,12 @@ $(document).ready(function () {
     window.saved = false;
     window.loaded = false;
     window.fleeingFromEnemy = false;
-    window.debug = false;
+	window.debug = false;
+	window.sleep = false;
     window.tickTime = window.globalSettings.timerTick;
     let hm = new HandlersManager(api);
 
+	hm.registerCommand(AssetCreatedHandler.ID, new AssetCreatedHandler());
     hm.registerCommand(BoxInitHandler.ID, new BoxInitHandler());
     hm.registerCommand(ResourceInitHandler.ID, new ResourceInitHandler());
     hm.registerCommand(ShipAttackHandler.ID, new ShipAttackHandler());
@@ -76,7 +78,8 @@ $(document).ready(function () {
     hm.registerCommand(HeroDiedHandler.ID, new HeroDiedHandler());
     hm.registerCommand(HeroUpdateHitpointsHandler.ID, new HeroUpdateHitpointsHandler());
     hm.registerCommand(HeroUpdateShieldHandler.ID, new HeroUpdateShieldHandler());
-    hm.registerCommand(AssetCreatedHandler.ID, new AssetCreatedHandler());
+	hm.registerCommand(QuickSlotHandler.ID, new QuickSlotHandler());
+
 
     hm.registerEvent("updateHeroPos", new HeroPositionUpdateEventHandler());
     hm.registerEvent("movementDone", new MovementDoneEventHandler());
@@ -199,32 +202,19 @@ function init() {
 	});
 	// LUL
 	chrome.storage.local.get({"refreshed" :false}, function(v){
-		if(v && window.settings.enableRefresh){cntBtnPlay.click();}
+		if(v && window.settings.settings.enableRefresh){cntBtnPlay.click();}
 	});
 }
 
 
 function logic() {
-
-	if(window.fleeingFromEnemy){
-		console.log("Fleeing from enemy!!");
-	}
-
 	let circleBox = null;
+
 	if (api.isDisconnected) {
-		if (window.fleeingFromEnemy) {
-			console.log("not fleeing because disconnected");
+		if (window.fleeingFromEnemy) 
 			window.fleeFromEnemy = false;
-		}
-		if (api.disconnectTime && $.now() - api.disconnectTime > 5000 && (!api.reconnectTime || (api.reconnectTime && $.now() - api.reconnectTime > 15000)) && window.reviveCount < window.settings.settings.reviveLimit) {
-			if(api.disconnectTime && $.now() - api.disconnectTime > 60000 && window.settings.settings.enableRefresh){
-				chrome.storage.local.set({"refreshed" :true});
-				window.location.reload();
-				state = true;
-			}else{
-				api.reconnect();
-			}
-		}
+		if (api.disconnectTime && $.now() - api.disconnectTime > 5000 && (!api.reconnectTime || (api.reconnectTime && $.now() - api.reconnectTime > 15000)) && window.reviveCount < window.settings.settings.reviveLimit) 
+			api.reconnect();
 		return;
 	}
 
@@ -236,7 +226,7 @@ function logic() {
 	}
 
 
-	if ((api.startTime && $.now() - api.startTime >= window.settings.settings.refreshTime * 60000 || api.disconnectTime > 100000)
+	if ((api.startTime && $.now() - api.startTime >= window.settings.settings.refreshTime * 60000)
 	 && window.settings.settings.enableRefresh && !window.settings.settings.ggbot) {
 		if ((api.Disconected && !state) || window.settings.settings.palladium) {
 			chrome.storage.local.set({"refreshed" :true});
@@ -266,6 +256,7 @@ function logic() {
 				return;
 		}
 	}
+
 	if(api.isRepairing){
 		if (window.hero.hp !== window.hero.maxHp && !window.settings.settings.ggbot && !window.settings.settings.palladium) {
 			return;
@@ -277,7 +268,7 @@ function logic() {
 				}
 			}
 		}
-	
+	}
 
 	if ($.now() - api.resetBlackListTime > api.blackListTimeOut) {
 		api._blackListedBoxes = [];
@@ -315,14 +306,9 @@ function logic() {
 		let enemyResult = api.checkForEnemy();
 
 		if (enemyResult.run) {
-			if (window.settings.settings.autoChangeConfig && window.settings.settings.flyingConfig != window.hero.shipconfig) {
-				api.changeConfig();
-			}
+			api.flyingMode();
 			if (window.settings.settings.useAbility && window.hero.skillName == "spectrum") {
 				api.useAbility();
-			}
-			if (window.settings.settings.changeFormation && api.formation != window.settings.settings.flyingFormation) {
-				api.changeFormation(window.settings.settings.flyingFormation);
 			}
 			if (window.settings.settings.jumpFromEnemy) {
 				let gate = api.findNearestGate();
@@ -333,21 +319,9 @@ function logic() {
 					api.resetTarget("all");
 					api.move(x, y);
 					if (api.jumpAndGoBack(gate.gate.gateId)) {
+						api.jumped = true;
 						window.movementDone = false;
 						window.fleeingFromEnemy = true;
-						setTimeout(() => {
-						window.movementDone = true;
-						window.fleeingFromEnemy = false;
-						if (window.settings.settings.autoChangeConfig){
-							if (window.settings.settings.attackConfig != window.hero.shipconfig) {
-								api.changeConfig();
-							}
-							if(window.settings.settings.changeFormation && api.formation != window.settings.settings.flyingFormation){
-								api.changeFormation(window.settings.settings.flyingFormation);
-							}
-						}
-						console.log("Fleeing from enemy inside timeout with gg jump!!: "+ $.now());
-						}, MathUtils.random(30000, 35000));
 					}
 					return;
 				}
@@ -361,17 +335,11 @@ function logic() {
 					api.move(x, y);
 					window.movementDone = false;
 					window.fleeingFromEnemy = true;
-					setTimeout(() => {
-						window.movementDone = true;
-						window.fleeingFromEnemy = false;
-						if (window.settings.settings.autoChangeConfig && window.settings.settings.attackConfig != window.hero.shipconfig) {
-							api.changeConfig();
-						}
-						if (window.settings.settings.changeFormation && api.formation != window.settings.settings.flyingFormation) {
-							api.changeFormation(window.settings.settings.flyingFormation);
-						}
-						console.log("Fleeing from enemy inside timeout!!"+ console.log($.now()));
-					}, MathUtils.random(30000, 35000));
+					//api.sleepTime = $.now()+MathUtils.random(30000, 35000);
+					window.movementDone = true;
+					window.fleeingFromEnemy = false;
+					api.flyingMode();
+					console.log("Fleeing from enemy inside timeout!!"+ console.log($.now()));
 					return;
 				}
 			}
@@ -390,7 +358,8 @@ function logic() {
 				f += s;
 				let x = 10890 + 4000 * Math.sin(f);
 				let y = 6750 + 4000 * Math.cos(f);
-				if (x > 20800 && x < 500 && y > 12900 && y < 500) {//To avoid entering radiation
+				//To avoid entering radiation.
+				if (x > 20800 && x < 500 && y > 12900 && y < 500) {
 					x = MathUtils.random(500, 20800);
 					y = MathUtils.random(500, 12900);
 				} else {
@@ -399,14 +368,18 @@ function logic() {
 				api.isRepairing = true;
 				return;
 			} else {
-			return;
+			return;y
 			}
 		} else {
+			console.log("hp: "+window.hero.hp+"maxHp: "+window.hero.maxHp)
+			console.log(MathUtils.percentFrom(window.hero.hp, window.hero.maxHp)+ " - " +window.settings.settings.repairWhenHpIsLowerThanPercent);
+
 			let gate = api.findNearestGate();
 			if (gate.gate) {
 				api.resetTarget("all");
 				if (window.settings.settings.jumpFromEnemy) {
 					if (api.jumpAndGoBack(gate.gate.gateId)) {
+						api.jumped = true;
 						api.isRepairing = true;
 					}
 					return;
@@ -415,12 +388,7 @@ function logic() {
 					let y = gate.gate.position.y + MathUtils.random(-100, 100);
 					api.move(x, y);
 					window.movementDone = false;
-					if (window.settings.settings.autoChangeConfig && window.settings.settings.flyingConfig != window.hero.shipconfig) {
-						api.changeConfig();
-					}
-					if (window.settings.settings.changeFormation && api.formation != window.settings.settings.flyingFormation) {
-						api.changeFormation(window.settings.settings.flyingFormation);
-					}
+					api.flyingMode();
 					api.isRepairing = true;
 					console.log("going to repair!");
 					return;
@@ -429,12 +397,13 @@ function logic() {
 		}
 	}
 
-	if (!window.settings.settings.palladium && !window.settings.settings.ggbot && window.settings.settings.workmap != 0 &&  window.hero.mapId != window.settings.settings.workmap) {
+	if (!window.settings.palladium && !window.settings.ggbot && window.settings.settings.workmap != 0 &&  window.hero.mapId != window.settings.settings.workmap) {
 		api.goToMap(window.settings.settings.workmap);
 		return;
 	} else {
 		api.rute = null;
 	}
+	
 
 	if (window.X1Map || (window.settings.settings.palladium && window.hero.mapId != 93)) {
 		return;
@@ -446,12 +415,7 @@ function logic() {
 
 		if ((ship.distance > 1000 || !ship.ship) && (box.box)) {
 			if (!(MathUtils.percentFrom(window.hero.shd, window.hero.maxShd) < 90) && window.settings.settings.autoChangeConfig && window.settings.settings.palladium) {
-				if(window.settings.settings.changeFormation && api.formation != window.settings.settings.flyingFormation){
-					api.changeFormation(window.settings.settings.flyingFormation);
-				}
-				if (window.settings.settings.flyingConfig != window.hero.shipconfig) {
-					api.changeConfig();
-				}
+				api.flyingMode();
 			}
 			api.collectBox(box.box);
 			api.targetBoxHash = box.box.hash;
@@ -467,6 +431,13 @@ function logic() {
 			api.targetShip = ship.ship;
 			return;
 		}
+	}
+
+	// Failsafe in case attack starts too early
+	if (api.lockedShip && ($.now() - api.lockTime > 2500 && $.now() - api.lockTime < 6000) && $.now() - api.lastAttack > 2000 && api.lockedShip.distanceTo(hero.position) < 1200) {
+		api.startLaserAttack();
+		api.lastAttack = $.now();
+		return;
 	}
 
 	if (api.targetShip && window.settings.settings.killNpcs) {
@@ -486,12 +457,12 @@ function logic() {
 			return;
 		}
 
-		if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 == api.lockedShip.maxShd && window.settings.settings.avoidAttackedNpcs || !api.attacking && api.lockedShip && !window.settings.settings.avoidAttackedNpcs) {
+		/*if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 == api.lockedShip.maxShd && window.settings.settings.avoidAttackedNpcs || !api.attacking && api.lockedShip && !window.settings.settings.avoidAttackedNpcs) {
 			api.startLaserAttack();
 			api.lastAttack = $.now();
 			api.attacking = true;
 			return;
-		}
+		}*/
 	}
 
 	if (api.targetBoxHash && $.now() - api.collectTime > 7000) {
@@ -505,7 +476,7 @@ function logic() {
 		}
 	}
 
-	if ((api.targetShip && $.now() - api.lockTime > 5000 && !api.attacking) || ($.now() - api.lastAttack > 10000))
+	if ((api.targetShip && $.now() - api.lockTime > 6000 && !api.attacking) || ($.now() - api.lastAttack > 10000))
 		api.resetTarget("enemy");
 
 	let x;
@@ -550,7 +521,7 @@ function logic() {
 		} else if (window.settings.settings.palladium) {
 			// Palladium fog.
 			x = MathUtils.random(13000, 30400);
-			y = MathUtils.random(19000, 25500)
+			y = MathUtils.random(19000, 25500);
 		}
 	}
 
@@ -568,7 +539,7 @@ function logic() {
 					api.changeFormation(window.settings.settings.attackFormation);
 				}
 			}
-			if(window.settings.settings.useAbility && window.hero.skillName && dist <= 500){
+			if(window.settings.settings.useAbility && window.hero.skillName && dist <450){
 				// Make hp and shield heren a user option.
 				if((window.hero.skillname == "cyborg" && api.targetShip.hp > window.globalSettings.cyborgHp)||
 					(window.hero.skillName == "venom" && api.targetShip.hp > window.globalSettings.venomHp))

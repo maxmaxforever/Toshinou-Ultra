@@ -1,6 +1,7 @@
 class Api {
 	constructor() {
 		this._blackListedBoxes = [];
+		this._blackListedNpcs = [];
 		this.gates = [];
 		this.boxes = {};
 		this.boxBuffer = [];
@@ -18,12 +19,13 @@ class Api {
 		this.starSystem = [];
 		this.workmap = null;
 		this.changeConfigTime = $.now();
-		this.autoLocked = false;
+		this.changeFormationTime = $.now();
 		this.lastAutoLock = $.now();
+		this.autoLocked = false;
 		// QuickSlot stuff
 		this.abilityCoolDown = 1;
-		this.changeFormationTime = $.now();
 		this.formation = -1;
+		this.sleepTime = null;
 	}
 
 	combatMode(){
@@ -31,7 +33,12 @@ class Api {
 	}
 
 	flyingMode(){
-
+		if (window.settings.settings.autoChangeConfig && window.settings.settings.flyingConfig != window.hero.shipconfig) {
+			api.changeConfig();
+		}
+		if (window.settings.settings.changeFormation && api.formation != window.settings.settings.flyingFormation) {
+			api.changeFormation(window.settings.settings.flyingFormation);
+		}
 	}
 
 	useAbility(){
@@ -74,16 +81,27 @@ class Api {
 	
 	quickSlot(n){
 		if(n>=0 && n< 10){
-		let slots = [48,49,50,51,52,53,54,55,56,57];
-		Injector.injectScript('document.getElementById("preloader").pressKey('+slots[n]+');');
-		setTimeout(() => {
+			let slots = [48,49,50,51,52,53,54,55,56,57];
 			Injector.injectScript('document.getElementById("preloader").pressKey('+slots[n]+');');
-		}, 700);
+			setTimeout(() => {
+				Injector.injectScript('document.getElementById("preloader").pressKey('+slots[n]+');');
+			}, 700);
 		}
 	}
   
 	changeRefreshCount(n){
 		chrome.storage.local.set({"refreshCount": n});
+	}
+
+	isShipOnBlacklist(id) {
+		return this._blackListedNpcs.includes(id);
+	}
+
+	blackListId(id) {
+		this._blackListedNpcs.push(id);
+		setTimeout(() => {
+			this._blackListedNpcs.shift();
+		}, 120000);
 	}
 
 	lockShip(ship) {
@@ -103,10 +121,10 @@ class Api {
 
 	lockNpc(ship) {
 		if (!(ship instanceof Ship))
-		return;
+			return;
 
 		if (this.ships[ship.id] == null)
-		return;
+			return;
 
 		this.lockTime = $.now();
 
@@ -120,13 +138,13 @@ class Api {
 
 	collectBox(box) {
 		if (!(box instanceof Box))
-		return;
+			return;
 
 		if (this.boxes[box.hash] == null)
-		return;
+			return;
 
 		if (MathUtils.random(1, 100) >= window.settings.settings.collectionSensitivity) {
-		return;
+			return;
 		}
 
 		Injector.injectScript('document.getElementById("preloader").collectBox' + box.hash + '()');
@@ -136,7 +154,7 @@ class Api {
 
 	move(x, y) {
 		if (!isNaN(x) && !isNaN(y)) {
-		window.hero.move(new Vector2D(x, y));
+			window.hero.move(new Vector2D(x, y));
 		}
 	}
 
@@ -158,43 +176,50 @@ class Api {
 
 	changeConfig() {
 		if (this.changeConfigTime && $.now() - this.changeConfigTime > 5000) {
-		this.changeConfigTime = $.now();
-		Injector.injectScript('document.getElementById("preloader").changeConfig();');
+			this.changeConfigTime = $.now();
+			Injector.injectScript('document.getElementById("preloader").changeConfig();');
 		}
 	}
 
 
 	resetTarget(target) {
-		if (target == "enemy") {
-		this.targetShip = null;
-		this.attacking = false;
-		this.triedToLock = false;
-		this.lockedShip = null;
-		} else if (target == "box") {
-		this.targetBoxHash = null;
-		} else if (target == "all") {
-		this.targetShip = null;
-		this.attacking = false;
-		this.triedToLock = false;
-		this.lockedShip = null;
-		this.targetBoxHash = null;
+		switch(target){
+			case "enemy":
+				this.targetShip = null;
+				this.attacking = false;
+				this.triedToLock = false;
+				this.lockedShip = null;
+				break;
+			case "box":
+				this.targetBoxHash = null;
+
+				break;
+			case "all":
+				this.targetShip = null;
+				this.attacking = false;
+				this.triedToLock = false;
+				this.lockedShip = null;
+				this.targetBoxHash = null;
+				break;
+			default:
+				break;
 		}
 	}
 
 	jumpInGG(id, settings) { //Usage: api.jumpInGG(70, window.settings.settings.kappa);
 		if (settings) {
-		let gate = this.findNearestGatebyGateType(id);
-		if (gate.gate) {
-			let x = gate.gate.position.x;
-			let y = gate.gate.position.y;
-			if (window.hero.position.distanceTo(gate.gate.position) < 200 && this.jumpTime && $.now() - this.jumpTime > 3000) {
-			this.jumpGate();
-			this.jumpTime = $.now();
+			let gate = this.findNearestGatebyGateType(id);
+			if (gate.gate) {
+				let x = gate.gate.position.x;
+				let y = gate.gate.position.y;
+				if (window.hero.position.distanceTo(gate.gate.position) < 200 && this.jumpTime && $.now() - this.jumpTime > 3000) {
+					this.jumpGate();
+					this.jumpTime = $.now();
+				}
+				this.resetTarget("all");
+				this.move(x, y);
+				window.movementDone = false;
 			}
-			this.resetTarget("all");
-			this.move(x, y);
-			window.movementDone = false;
-		}
 		}
 	}
 
@@ -218,71 +243,70 @@ class Api {
 
 	jumpAndGoBack(gateId){
 		if (window.settings.settings.workmap != null) {
-		this.workmap = window.settings.settings.workmap;
+			this.workmap = window.settings.settings.workmap;
 		} else {
-		this.workmap = window.hero.mapId;
+			this.workmap = window.hero.mapId;
 		}
 		let hasJumped = this.jumpInGateByID(gateId);
-		
 		return hasJumped;
 	}
 
 	ggDeltaFix() {
 		let shipsCount = Object.keys(this.ships).length;
 		for (let property in this.ships) {
-		let ship = this.ships[property];
-		if (ship && (ship.name == "-=[ StreuneR ]=- δ4" || 
-			ship.name == "-=[ Lordakium ]=- δ9" || 
-			ship.name == "-=[ Sibelon ]=- δ14" || 
-			ship.name == "-=[ Kristallon ]=- δ19")) {
-			window.settings.settings.resetTargetWhenHpBelow25Percent=false;
-			if (shipsCount > 1) {
-			window.settings.setNpc(ship.name, true);
-			if (this.targetShip == ship){
-				this.resetTarget("enemy");
+			let ship = this.ships[property];
+			if (ship && (ship.name == "-=[ StreuneR ]=- δ4" || 
+				ship.name == "-=[ Lordakium ]=- δ9" || 
+				ship.name == "-=[ Sibelon ]=- δ14" || 
+				ship.name == "-=[ Kristallon ]=- δ19")) {
+				window.settings.settings.resetTargetWhenHpBelow25Percent=false;
+				if (shipsCount > 1) {
+					window.settings.setNpc(ship.name, true);
+					if (this.targetShip == ship){
+						this.resetTarget("enemy");
+					}
+				} else {
+					window.settings.setNpc(ship.name, false);
+					this.targetShip = ship;
+				}
 			}
-			} else {
-			window.settings.setNpc(ship.name, false);
-			this.targetShip = ship;
-			}
-		}
 		}
 	}
 
 	ggZetaFix() {
 		let shipsCount = Object.keys(this.ships).length;
 		for (let property in this.ships) {
-		let ship = this.ships[property];
-		if (ship && (ship.name == "-=[ Devourer ]=- ζ25" || ship.name == "-=[ Devourer ]=- ζ27")) {
-			window.settings.settings.resetTargetWhenHpBelow25Percent=false;
-			if (shipsCount > 1) {
-			window.settings.setNpc(ship.name, true);
-			if (this.targetShip == ship) {
-				this.resetTarget("enemy");
+			let ship = this.ships[property];
+			if (ship && (ship.name == "-=[ Devourer ]=- ζ25" || ship.name == "-=[ Devourer ]=- ζ27")) {
+				window.settings.settings.resetTargetWhenHpBelow25Percent=false;
+				if (shipsCount > 1) {
+					window.settings.setNpc(ship.name, true);
+					if (this.targetShip == ship) {
+						this.resetTarget("enemy");
+					}
+				} else {
+					window.settings.setNpc(ship.name, false);
+					this.targetShip = ship;
+				}
 			}
-			} else {
-			window.settings.setNpc(ship.name, false);
-			this.targetShip = ship;
-			}
-		}
 		}
 	}
 
 	battlerayFix() {
-	for (let property in this.ships) {
-		let ship = this.ships[property];
-		if (ship && (ship.name == "-=[ Battleray ]=-") && ship.distanceTo(window.hero.position) < 700) {
-			let shipsCount = this.countNpcAroundByType("-=[ Interceptor ]=-", 600);
-			if (shipsCount > 1 && !(lockedShip && lockedShip.percentOfHp > 80 && lockedShip.name == "-=[ Battleray ]=-")) {
-			window.settings.setNpc(ship.name, true);
-			if (this.targetShip == ship){
-				this.resetTarget("enemy");
+		for (let property in this.ships) {
+			let ship = this.ships[property];
+			if (ship && (ship.name == "-=[ Battleray ]=-") && ship.distanceTo(window.hero.position) < 700) {
+				let shipsCount = this.countNpcAroundByType("-=[ Interceptor ]=-", 600);
+				if (shipsCount > 1 && !(lockedShip && lockedShip.percentOfHp > 80 && lockedShip.name == "-=[ Battleray ]=-")) {
+					window.settings.setNpc(ship.name, true);
+					if (this.targetShip == ship){
+						this.resetTarget("enemy");
+					}
+				} else {
+					window.settings.setNpc(ship.name, false);
+					this.targetShip = ship;
+				}
 			}
-			} else {
-			window.settings.setNpc(ship.name, false);
-			this.targetShip = ship;
-			}
-		}
 		}
 	}
 
@@ -290,10 +314,10 @@ class Api {
 		let shipsCount = Object.keys(this.ships).length;
 		let shipsAround = 0;
 		for (let property in this.ships) {
-		let ship = this.ships[property];
-		if (ship && (ship.distanceTo(window.hero.position) < distance) && (ship.name == type)) {
-			shipsAround++;
-		}
+			let ship = this.ships[property];
+			if (ship && (ship.distanceTo(window.hero.position) < distance) && (ship.name == type)) {
+				shipsAround++;
+			}
 		}
 		return shipsAround;
 	}
@@ -470,6 +494,7 @@ class Api {
 
 	markHeroAsDead() {
 		this.heroDied = true;
+		window.fleeingFromEnemy = false;
 		Injector.injectScript("window.heroDied = true;");
 	}
 

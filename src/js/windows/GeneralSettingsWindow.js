@@ -89,10 +89,10 @@ class GeneralSettingsWindow {
 		appendTo: this.botSettingsWindow,
 		labelBefore: true,
 		attrs: {
-		min: 1,
-		max: 800,
-		step: 1,
-		value: 500
+			min: 1,
+			max: 800,
+			step: 1,
+			value: 500
 		},
 		event: function (ev) {
 			window.settings.settings.npcCircleRadius = this.value;

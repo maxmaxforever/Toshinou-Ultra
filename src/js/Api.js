@@ -29,7 +29,14 @@ class Api {
 	}
 
 	combatMode(){
-
+		if (window.settings.settings.autoChangeConfig && window.settings.settings.attackConfig != window.hero.shipconfig){
+			api.changeConfig();
+		}
+		if (window.settings.settings.changeFormation && !api.isRepairing){
+			if (window.settings.settings.attackFormation != api.formation) {
+				api.changeFormation(window.settings.settings.attackFormation);
+			}
+		}
 	}
 
 	flyingMode(){

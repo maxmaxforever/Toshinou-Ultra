@@ -371,9 +371,8 @@ function logic() {
 			return;y
 			}
 		} else {
-			console.log("hp: "+window.hero.hp+"maxHp: "+window.hero.maxHp)
+			console.log("hp: "+window.hero.hp+" maxHp: "+window.hero.maxHp)
 			console.log(MathUtils.percentFrom(window.hero.hp, window.hero.maxHp)+ " - " +window.settings.settings.repairWhenHpIsLowerThanPercent);
-
 			let gate = api.findNearestGate();
 			if (gate.gate) {
 				api.resetTarget("all");
@@ -454,6 +453,7 @@ function logic() {
 		if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 != api.lockedShip.maxShd && window.settings.settings.avoidAttackedNpcs) {
 			notrightId = api.lockedShip.id;
 			api.resetTarget("enemy");
+			console.log("reset1");
 			return;
 		}
 
@@ -476,8 +476,10 @@ function logic() {
 		}
 	}
 
-	if ((api.targetShip && $.now() - api.lockTime > 6000 && !api.attacking) || ($.now() - api.lastAttack > 10000))
+	if ((api.targetShip && $.now() - api.lockTime > 6000 && !api.attacking) || !api.attacking && ($.now() - api.lastAttack > 10000)){
+		console.log("reset2");
 		api.resetTarget("enemy");
+	}
 
 	let x;
 	let y;
@@ -531,14 +533,7 @@ function logic() {
 		let dist = api.targetShip.distanceTo(window.hero.position);
 
 		if(api.attacking){
-			if (window.settings.settings.autoChangeConfig && window.settings.settings.attackConfig != window.hero.shipconfig){
-				api.changeConfig();
-			}
-			if (window.settings.settings.changeFormation && !api.isRepairing){
-				if (window.settings.settings.attackFormation != api.formation) {
-					api.changeFormation(window.settings.settings.attackFormation);
-				}
-			}
+			api.combatMode();
 			if(window.settings.settings.useAbility && window.hero.skillName && dist <450){
 				// Make hp and shield heren a user option.
 				if((window.hero.skillname == "cyborg" && api.targetShip.hp > window.globalSettings.cyborgHp)||
@@ -590,6 +585,7 @@ function logic() {
 				}
 			}
 		} else {
+			console.log("enemy");
 			api.resetTarget("enemy");
 		}
 	}

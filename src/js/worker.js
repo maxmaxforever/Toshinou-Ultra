@@ -91,7 +91,7 @@ $(document).ready(function () {
 
 function init() {
 	if (window.initialized)
-	return;
+		return;
 
 	window.attackWindow = new AttackWindow();
 	window.attackWindow.createWindow();
@@ -120,7 +120,9 @@ function init() {
 	window.statisticWindow = new StatisticWindow();
 	window.statisticWindow.createWindow();
 
+	api.startTime = $.now();
 	window.setInterval(logic, window.tickTime);
+	
 	Injector.injectScriptFromResource("res/injectables/HeroPositionUpdater.js");
 
 	// set refreshcount to 3 if page loaded until here
@@ -184,7 +186,6 @@ function init() {
 			api.resetTarget("all");
 			window.fleeingFromEnemy = false;
 			window.settings.settings.pause = true;
-			api.startTime = $.now();
 		} else {
 			cntBtnPlay.html("Stop");
 			cntBtnPlay.removeClass('in_play').addClass('in_stop');

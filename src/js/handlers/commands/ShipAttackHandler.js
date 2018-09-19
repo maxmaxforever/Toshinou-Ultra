@@ -14,7 +14,6 @@ class ShipAttackHandler {
 				return
 
 			if (attackerId == window.hero.id) {
-				a.lastAttack = $.now();
 				window.attackWindow.hp(shipAttackCmd[Variables.attackHp]);
 				window.attackWindow.shd(shipAttackCmd[Variables.attackShd]);
 				window.attackWindow.targetName(ship.name);

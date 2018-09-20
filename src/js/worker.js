@@ -214,7 +214,7 @@ function logic() {
 		return;
 	}
 
-	if(window.fleeFromEnemy && window.enemy){
+	if(window.settings.settings.fleeFromEnemy && window.fleeFromEnemy && window.enemy){
 		let gate = api.findNearestGateForRunAway(window.enemy);
 		if(gate.gate){
 			let dist = window.hero.distanceTo(gate.gate.position);
@@ -358,21 +358,13 @@ function logic() {
 			let gate = api.findNearestGate();
 			if (gate.gate) {
 				api.resetTarget("all");
-				if (window.settings.settings.jumpFromEnemy) {
-					if (api.jumpAndGoBack(gate.gate.gateId)) {
-						api.jumped = true;
-						api.isRepairing = true;
-					}
-					return;
-				} else {
-					let x = gate.gate.position.x + MathUtils.random(-100, 100);
-					let y = gate.gate.position.y + MathUtils.random(-100, 100);
-					api.move(x, y);
-					window.movementDone = false;
-					api.flyingMode();
-					api.isRepairing = true;
-					return;
-				}
+				let x = gate.gate.position.x + MathUtils.random(-100, 100);
+				let y = gate.gate.position.y + MathUtils.random(-100, 100);
+				api.move(x, y);
+				window.movementDone = false;
+				api.flyingMode();
+				api.isRepairing = true;
+				return;
 			}
 		}
 	}
@@ -553,7 +545,6 @@ function logic() {
 				let enemy = api.targetShip.position;
 				let f = Math.atan2(window.hero.position.x - enemy.x, window.hero.position.y - enemy.y) + 0.5;
 				let s = Math.PI / 180;
-				let rot = MathUtils.random(-10, 10);
 				f += s;
 				x = enemy.x + window.settings.settings.npcCircleRadius * Math.sin(f);
 				y = enemy.y + window.settings.settings.npcCircleRadius * Math.cos(f);

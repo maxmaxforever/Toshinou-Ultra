@@ -16,7 +16,6 @@ class ResourceInitHandler {
       }
 
       let pBox = new Box(box.x, box.y, box.hash, box[Variables.resource][Variables.resourceType]);
-      /*-[U1n][_-or]*/
       a.boxes[box.hash] = pBox;
     };
   }

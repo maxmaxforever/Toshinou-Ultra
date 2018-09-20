@@ -77,7 +77,7 @@ class Variables {
   }
 
   static get resource() {
-    return "_-p4B"; // mod
+    return "_-04P"; // mod
   }
 
   static get resourceType() {
@@ -96,5 +96,8 @@ class Variables {
     return "_-vr"; // mod
   }
 
-  // pet id B3a
+  static get heroPetId() {
+    return "_-B3a"; 
+  }
+  
 }

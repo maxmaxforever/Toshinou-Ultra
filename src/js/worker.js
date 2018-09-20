@@ -58,7 +58,7 @@ $(document).ready(function () {
     window.loaded = false;
     window.fleeingFromEnemy = false;
 	window.debug = false;
-	window.sleep = false;
+	window.enemy = null;
     window.tickTime = window.globalSettings.timerTick;
     let hm = new HandlersManager(api);
 
@@ -130,18 +130,6 @@ function init() {
 
 	$(document).keyup(function (e) {
 		let key = e.key;
-
-		if (key == "Pause") {
-			if (!window.settings.settings.pause) {
-				$('.cnt_btn_play .btn_play').html("Play").removeClass('in_stop').addClass('in_play');
-				api.resetTarget("all");
-				window.fleeingFromEnemy = false;
-				window.settings.settings.pause = true;
-			} else {
-				$('.cnt_btn_play .btn_play').html("Stop").removeClass('in_play').addClass('in_stop');
-				window.settings.settings.pause = false;
-			}
-		}
 
 		if (key == "x" && (!window.settings.settings.autoAttackNpcs || (!api.lastAutoLock || $.now() - api.lastAutoLock > 1000)) ||
 		key == "z" && (!window.settings.settings.autoAttack || (!api.lastAutoLock || $.now() - api.lastAutoLock > 1000))) {
@@ -221,11 +209,37 @@ function logic() {
 
 	window.minimap.draw();
 
-	if (api.heroDied || window.settings.settings.pause || (window.settings.settings.fleeFromEnemy && window.fleeingFromEnemy && window.settings.workmap == window.hero.mapId)) {
+	if (api.heroDied || window.settings.settings.pause) {
 		api.resetTarget("all");
 		return;
 	}
 
+	if(window.fleeFromEnemy){
+		let gate = api.findNearestGateForRunAway(window.enemy);
+		if(gate.gate){
+			let dist = window.hero.distanceTo(gate.gate.position);
+			if(dist > 200){
+				api.flyingMode();
+				if (window.settings.settings.useAbility && window.hero.skillName == "spectrum") {
+					api.useAbility();
+				}
+				window.fleeingFromEnemy = true;
+				let x = gate.gate.position.x + MathUtils.random(-100, 100);
+				let y = gate.gate.position.y + MathUtils.random(-100, 100);
+				api.resetTarget("all");
+				api.move(x, y);
+				return;
+			} else if(window.settings.settings.jumpFromEnemy){
+				if (api.jumpAndGoBack(gate.gate.gateId)) {
+					api.jumped = true;
+					window.movementDone = false;
+					window.fleeingFromEnemy = false;
+				}
+			}
+		}else{
+			window.fleeFromEnemy = false;
+		}
+	}
 
 	if ((api.startTime && $.now() - api.startTime >= window.settings.settings.refreshTime * 60000)
 	 && window.settings.settings.enableRefresh && !window.settings.settings.ggbot) {
@@ -305,44 +319,10 @@ function logic() {
 
 	if (window.settings.settings.fleeFromEnemy) {
 		let enemyResult = api.checkForEnemy();
-
 		if (enemyResult.run) {
-			api.flyingMode();
-			if (window.settings.settings.useAbility && window.hero.skillName == "spectrum") {
-				api.useAbility();
-			}
-			if (window.settings.settings.jumpFromEnemy) {
-				let gate = api.findNearestGate();
-				if (gate.gate) {
-					let x = gate.gate.position.x + MathUtils.random(-100, 100);
-					let y = gate.gate.position.y + MathUtils.random(-100, 100);
-					let dist = window.hero.distanceTo(gate.gate.position);
-					api.resetTarget("all");
-					api.move(x, y);
-					if (api.jumpAndGoBack(gate.gate.gateId)) {
-						api.jumped = true;
-						window.movementDone = false;
-						window.fleeingFromEnemy = true;
-					}
-					return;
-				}
-			} else {
-				let gate = api.findNearestGateForRunAway(enemyResult.enemy);
-				if (gate.gate) {
-					let x = gate.gate.position.x + MathUtils.random(-100, 100);
-					let y = gate.gate.position.y + MathUtils.random(-100, 100);
-					let dist = window.hero.distanceTo(gate.gate.position);
-					api.resetTarget("all");
-					api.move(x, y);
-					window.movementDone = false;
-					window.fleeingFromEnemy = true;
-					//api.sleepTime = $.now()+MathUtils.random(30000, 35000);
-					window.movementDone = true;
-					window.fleeingFromEnemy = false;
-					api.flyingMode();
-					return;
-				}
-			}
+			window.enemy = enemyResult.enemy;
+			window.fleeFromEnemy = true;
+			return;
 		}
 	}
 

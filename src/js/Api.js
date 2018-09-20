@@ -466,11 +466,11 @@ class Api {
 				let enemeyDistance = enemy.distanceTo(gate.position);
 				let dist = window.hero.distanceTo(gate.position);
 				if (enemeyDistance < dist) {
-				return;
+					return;
 				}
 				if (dist < minDist) {
-				finalGate = gate;
-				minDist = dist;
+					finalGate = gate;
+					minDist = dist;
 				}
 			}
 		});

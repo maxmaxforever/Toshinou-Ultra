@@ -214,7 +214,7 @@ function logic() {
 		return;
 	}
 
-	if(window.fleeFromEnemy){
+	if(window.fleeFromEnemy && window.enemy){
 		let gate = api.findNearestGateForRunAway(window.enemy);
 		if(gate.gate){
 			let dist = window.hero.distanceTo(gate.gate.position);
@@ -317,12 +317,14 @@ function logic() {
 		}
 	}
 
-	if (window.settings.settings.fleeFromEnemy) {
+	if (window.settings.settings.fleeFromEnemy && !window.settings.settings.palladium) {
 		let enemyResult = api.checkForEnemy();
 		if (enemyResult.run) {
 			window.enemy = enemyResult.enemy;
 			window.fleeFromEnemy = true;
 			return;
+		}else{
+			window.enemy = null;
 		}
 	}
 
@@ -348,8 +350,10 @@ function logic() {
 				api.isRepairing = true;
 				return;
 			} else {
-			return;y
+				return;
 			}
+		} else if(window.settings.settings.palladium){
+			// TODO	
 		} else {
 			let gate = api.findNearestGate();
 			if (gate.gate) {

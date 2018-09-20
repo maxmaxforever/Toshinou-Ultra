@@ -1,97 +1,98 @@
 class Variables {
 
   static get boxType() {
-    return "_-z4S"; 
+    return "_-Q1A"; // mod
   }
 
   static get attackerId() {
-    return "_-DN"; 
+    return "_-64T"; // mod
   }
 
   static get attackHp() {
-    return "_-i4G"; 
+    return "_-G3Y"; //mod
   }
 
   static get attackShd() {
-    return "_-C3f";  
+    return "_-U2B";  //mod
   }
 
   static get attackedId() {
-    return "_-C44"; 
+    return "_-5h"; // mod
   }
 
   static get moveDuration() {
-    return "_-J1q"; 
+    return "_-Z1C"; // mod
   }
 
   static get shipDestoyedId() {
-    return "_-v3w"; 
+    return "_-p1p"; // mod
   }
 
   static get heroInitMaxHp() {
-    return "_-w4g";  
+    return "_-t4b"; // mod  
   }
 
   static get heroInitMaxShd() {
-    return "_-I4Y"; 
+    return "_-82m"; // mod
   }
 
   static get heroInitHp() {
-    return "_-12y"; 
+    return "_-12Y"; // mod
   }
+  
   static get heroUpdateShd(){
-    return "_-f10"; 
+    return "_-55x"; // mod
   }
 
   static get hpUpdateMaxHp() {
-    return "_-Ra";  
+    return "_-p4k"; // mod  
   }
 
   static get hpUpdateHp() {
-    return "_-W2i"; 
+    return "_-c4L"; // mod
   }
 
   static get selectMaxHp() {
-    return "_-Ra"; 
+    return "_-p4k"; // mod
   }
 
   static get selectMaxShd() {
-    return "_-I4Y"; 
+    return "_-82m"; // mod
   }
 
   static get selectHp() {
-    return "_-W2i";
+    return "_-c4L"; // mod
   }
 
   static get clanDiplomacy() {
-    return "_-3H"; 
+    return "_-g1U"; // mod
   }
 
   static get gateId() {
-    return "_-Sl"; 
+    return "_-y3k"; // mod
   }
 
   static get gateType() {
-    return "_-rm"; 
+    return "_-u1b"; // mod
   }
 
   static get resource() {
-    return "_-652"; 
+    return "_-r19"; // mod
   }
 
   static get resourceType() {
-    return "_-5x"; 
+    return "_-i3c"; // mod
   }
 
   static get assetCreateX() {
-    return "_-ki"; 
+    return "_-h32"; // mod
   }
 
   static get assetCreateY() {
-    return "_-ML"; 
+    return "_-n1v"; // mod
   }
 
   static get battlestationClanDiplomacy() {
-    return "_-z4P"; 
+    return "_-b3k"; // mod
   }
 }

@@ -234,14 +234,12 @@ function logic() {
 				return;
 			} else if(window.settings.settings.jumpFromEnemy){
 				// LMAO
-				window.settings.settings.pause = true;
 				setTimeout(function(gate) { 
 					if (api.jumpAndGoBack(gate.gate.gateId)) {
 					api.jumped = true;
 					window.movementDone = false;
 					window.fleeingFromEnemy = false;
-					window.settings.settings.pause = false;
-				}}, 1500, gate);
+				}}, 1000, gate);
 				return;
 				
 			}
@@ -401,12 +399,12 @@ function logic() {
 			api.collectBox(box.box);
 			api.targetBoxHash = box.box.hash;
 			return;
-		} else if (ship.ship && ship.distance < 1000 && window.settings.settings.killNpcs && ship.ship.id != notrightId) {
+		} else if (ship.ship && ship.distance < 1000 && window.settings.settings.killNpcs) {
 			api.lockShip(ship.ship);
 			api.triedToLock = true;
 			api.targetShip = ship.ship;
 			return;
-		} else if (ship.ship && window.settings.settings.killNpcs && ship.ship.id != notrightId) {
+		} else if (ship.ship && window.settings.settings.killNpcs) {
 			ship.ship.update();
 			api.move(ship.ship.position.x - MathUtils.random(-50, 50), ship.ship.position.y - MathUtils.random(-50, 50));
 			api.targetShip = ship.ship;
@@ -432,11 +430,11 @@ function logic() {
 			}
 		}
 
-		if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 != api.lockedShip.maxShd && window.settings.settings.avoidAttackedNpcs) {
+		/*if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 != api.lockedShip.maxShd && window.settings.settings.avoidAttackedNpcs) {
 			notrightId = api.lockedShip.id;
 			api.resetTarget("enemy");
 			return;
-		}
+		}*/
 
 		/*if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 == api.lockedShip.maxShd && window.settings.settings.avoidAttackedNpcs || !api.attacking && api.lockedShip && !window.settings.settings.avoidAttackedNpcs) {
 			api.startLaserAttack();

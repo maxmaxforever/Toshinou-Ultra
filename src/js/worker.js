@@ -411,6 +411,10 @@ function logic() {
 			return;
 		}
 	}
+	// npc killing stuck
+	if ((api.targetShip && $.now() - api.lockTime > 6000 && api.attacking) || !api.attacking && ($.now() - api.lastAttack > 10000)){
+		api.resetTarget("enemy");
+	}
 
 	// Failsafe in case attack starts too early
 	if (api.lockedShip && ($.now() - api.lockTime > 2500 && $.now() - api.lockTime < 6000) && $.now() - api.lastAttack > 2000 && api.lockedShip.distanceTo(hero.position) < 1200) {
@@ -455,9 +459,6 @@ function logic() {
 		}
 	}
 
-	if ((api.targetShip && $.now() - api.lockTime > 6000 && !api.attacking) || !api.attacking && ($.now() - api.lastAttack > 10000)){
-		api.resetTarget("enemy");
-	}
 
 	let x;
 	let y;

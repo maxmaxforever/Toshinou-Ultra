@@ -17,6 +17,10 @@ class Variables {
   }
 
   static get attackedId() {
+    return "_-d1v"; // mod
+  }
+
+  static get heroAttackedId() {
     return "_-43L"; // mod
   }
 
@@ -77,7 +81,7 @@ class Variables {
   }
 
   static get resource() {
-    return "_-p4B"; // mod
+    return "_-04P"; // mod
   }
 
   static get resourceType() {
@@ -96,5 +100,8 @@ class Variables {
     return "_-vr"; // mod
   }
 
-  // pet id B3a
+  static get heroPetId() {
+    return "_-B3a"; 
+  }
+  
 }

@@ -25,9 +25,15 @@ class Api {
 		// QuickSlot stuff
 		this.abilityCoolDown = 1;
 		this.formation = -1;
-		this.sleepTime = null;
+		this.pauseTime = null;
+		this.pauseStop = null;
 	}
 
+	pause(t){
+		window.settings.settings.pause = true;
+		this.pauseTime = $.now();
+		this.pauseStop = t;
+	}
 	combatMode(){
 		if (window.settings.settings.autoChangeConfig && window.settings.settings.attackConfig != window.hero.shipconfig){
 			api.changeConfig();
@@ -413,10 +419,10 @@ class Api {
 		let finalShip;
 
 		if (!window.settings.settings.killNpcs) {
-		return {
-			ship: null,
-			distance: minDist
-		};
+			return {
+				ship: null,
+				distance: minDist
+			};
 		}
 
 		for (let property in this.ships) {
@@ -425,7 +431,7 @@ class Api {
 			let dist = ship.distanceTo(window.hero.position);
 
 			if (dist < minDist) {
-				if (ship.isNpc && window.settings.getNpc(ship.name) && !ship.isAttacked) {
+				if (ship.isNpc && window.settings.getNpc(ship.name) && !this.isShipOnBlacklist(ship.id) && !ship.isAttacked) {
 					finalShip = ship;
 					minDist = dist;
 				}

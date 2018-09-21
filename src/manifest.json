@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Toshinou Revamped Delta",
-  "version": "0.24",
+  "version": "0.26",
   "default_locale": "en",
   "description": "__MSG_desextension__",
     "page_action": {
@@ -60,6 +60,7 @@
         "js/objects/Gate.js",
         "js/objects/Portal.js",
         "js/objects/Map.js",
+        "js/objects/Pet.js",
         "js/objects/CBS/Battlestation.js",
         "js/objects/CBS/BattlestationModule.js",
         "js/handlers/HandlersManager.js",
@@ -84,6 +85,8 @@
         "js/handlers/commands/AssetCreatedHandler.js",
         "js/handlers/commands/HeroUpdateShieldHandler.js",
         "js/handlers/commands/QuickSlotHandler.js",
+        "js/handlers/commands/HeroPetUpdateHandler.js",
+        "js/handlers/commands/HeroAttackHandler.js",
         "js/Api.js",
         "js/ControlFactory.js",
         "js/worker.js"

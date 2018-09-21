@@ -56,7 +56,7 @@ $(document).ready(function () {
     window.statusPlayBot = false;
     window.saved = false;
     window.loaded = false;
-    window.fleeingFromEnemy = false;
+	window.fleeingFromEnemy = false;
 	window.debug = false;
 	window.enemy = null;
     window.tickTime = window.globalSettings.timerTick;
@@ -79,6 +79,9 @@ $(document).ready(function () {
     hm.registerCommand(HeroUpdateHitpointsHandler.ID, new HeroUpdateHitpointsHandler());
     hm.registerCommand(HeroUpdateShieldHandler.ID, new HeroUpdateShieldHandler());
 	hm.registerCommand(QuickSlotHandler.ID, new QuickSlotHandler());
+	hm.registerCommand(HeroPetUpdateHandler.ID, new HeroPetUpdateHandler());
+	hm.registerCommand(HeroAttackHandler.ID, new HeroAttackHandler());
+
 
 
     hm.registerEvent("updateHeroPos", new HeroPositionUpdateEventHandler());
@@ -230,11 +233,17 @@ function logic() {
 				api.move(x, y);
 				return;
 			} else if(window.settings.settings.jumpFromEnemy){
-				if (api.jumpAndGoBack(gate.gate.gateId)) {
+				// LMAO
+				window.settings.settings.pause = true;
+				setTimeout(function(gate) { 
+					if (api.jumpAndGoBack(gate.gate.gateId)) {
 					api.jumped = true;
 					window.movementDone = false;
 					window.fleeingFromEnemy = false;
-				}
+					window.settings.settings.pause = false;
+				}}, 1500, gate);
+				return;
+				
 			}
 		}else{
 			window.fleeFromEnemy = false;

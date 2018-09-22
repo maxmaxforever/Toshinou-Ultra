@@ -66,7 +66,7 @@ class ControlFactory {
       }
       event.call(this, ev);
     });
-    select.prop( "disabled", disabled );
+    select.prop("disabled", disabled );
     
 
     return {
@@ -107,6 +107,11 @@ class ControlFactory {
     input.attr("type", type);
     input.attr("id", name);
 
+
+    Object.keys(attrs).forEach((attname) => {
+      input.attr(attname, attrs[attname]);
+    });
+
     if(type == "checkbox"){
       if(window.settings.settings[name] != null){
         input.prop('checked',window.settings.settings[name]);
@@ -114,13 +119,8 @@ class ControlFactory {
         input.prop('checked', true);
       }
     }else if(type == "range" || type == "number"){
-      input.val(window.settings.settings[name]);
+      input.attr('value',window.settings.settings[name]);
     }
-
-
-    Object.keys(attrs).forEach((attname) => {
-      input.attr(attname, attrs[attname]);
-    });
 
     let label = jQuery("<label>");
     label.attr("for", name);

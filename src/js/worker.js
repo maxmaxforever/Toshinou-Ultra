@@ -1,6 +1,5 @@
 window.globalSettings = new GlobalSettings();
 let api;
-let notrightId;
 let state = false;
 
 // gets how many times the page reloaded
@@ -412,7 +411,7 @@ function logic() {
 		}
 	}
 	// npc killing stuck
-	if ((api.targetShip && $.now() - api.lockTime > 6000 && api.attacking) || !api.attacking && ($.now() - api.lastAttack > 10000)){
+	if ((api.targetShip && $.now() - api.lockTime > 6000 && !api.attacking) || !api.attacking && ($.now() - api.lastAttack > 10000)){
 		api.resetTarget("enemy");
 	}
 

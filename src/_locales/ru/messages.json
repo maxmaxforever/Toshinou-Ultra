@@ -162,7 +162,7 @@
     "message": "Убегать от врага"
   },
   "avoidattackednpc": {
-    "message": "Избегать атаки NPC(Не использовать с PET)"
+    "message": "Избегать атаки NPC"
   },
   "circle": {
     "message": "Крутить"

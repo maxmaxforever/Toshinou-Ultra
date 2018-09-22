@@ -161,7 +161,7 @@
     "message": "Scappa dai nemici"
   },
   "avoidattackednpc": {
-    "message": "Evita NPCs sotto attacco <br>(Dont use with PET)"
+    "message": "Evita NPCs sotto attacco"
   },
   "circle": {
     "message": "Circola attorno"

@@ -162,7 +162,7 @@
     "message": "Huir de los Enemigos"
   },
   "avoidattackednpc": {
-    "message": "Evitar NPCs atacados por otros<br>(No usar con el PET)"
+    "message": "Evitar NPCs atacados por otros<br>"
   },
   "circle": {
     "message": "Girar en Círculos"

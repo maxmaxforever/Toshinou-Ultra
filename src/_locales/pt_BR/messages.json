@@ -156,7 +156,7 @@
     "message": "Fuja do inimigo"
   },
   "avoidattackednpc": {
-    "message": "Evite NPCs atacados <br> (não use com PET)"
+    "message": "Evite NPCs atacados"
   },
   "circle": {
     "message": "Circulo"

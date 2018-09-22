@@ -411,7 +411,7 @@ function logic() {
 		}
 	}
 	// npc killing stuck
-	if ((api.targetShip && $.now() - api.lockTime > 6000 && !api.attacking) || !api.attacking && ($.now() - api.lastAttack > 10000)){
+	if ((api.targetShip && $.now() - api.lockTime > 6000 && ($.now() - api.lastAttack > 6000)) || !api.attacking && ($.now() - api.lastAttack > 10000)){
 		api.resetTarget("enemy");
 	}
 
@@ -512,7 +512,7 @@ function logic() {
 
 		if(api.attacking){
 			api.combatMode();
-			if(window.settings.settings.useAbility && window.hero.skillName && dist <450){
+			if(window.settings.settings.useAbility && window.hero.skillName && dist < window.settings.settings.npcCircleRadius){
 				// Make hp and shield heren a user option.
 				if((window.hero.skillname == "cyborg" && api.targetShip.hp > window.globalSettings.cyborgHp)||
 					(window.hero.skillName == "venom" && api.targetShip.hp > window.globalSettings.venomHp))

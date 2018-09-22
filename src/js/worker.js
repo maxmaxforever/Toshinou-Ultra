@@ -58,6 +58,7 @@ $(document).ready(function () {
 	window.fleeingFromEnemy = false;
 	window.debug = false;
 	window.enemy = null;
+	window.pet = null;
     window.tickTime = window.globalSettings.timerTick;
     let hm = new HandlersManager(api);
 
@@ -222,7 +223,8 @@ function logic() {
 			let dist = window.hero.distanceTo(gate.gate.position);
 			if(dist > 200){
 				api.flyingMode();
-				if (window.settings.settings.useAbility && window.hero.skillName == "spectrum") {
+				// Use spectrum hability when running from enemy if not too close to gate.
+				if (window.settings.settings.useAbility && window.hero.skillName == "spectrum" && dist > 350) {
 					api.useAbility();
 				}
 				window.fleeingFromEnemy = true;
@@ -376,7 +378,9 @@ function logic() {
 	}
 
 	if (!window.settings.palladium && !window.settings.ggbot && window.settings.settings.workmap != 0 &&  window.hero.mapId != window.settings.settings.workmap) {
-		api.goToMap(window.settings.settings.workmap);
+		setTimeout(function() { 
+			api.goToMap(window.settings.settings.workmap);
+		}, MathUtils.random(1550, 2130));
 		return;
 	} else {
 		api.rute = null;
@@ -432,19 +436,6 @@ function logic() {
 				return;
 			}
 		}
-
-		/*if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 != api.lockedShip.maxShd && window.settings.settings.avoidAttackedNpcs) {
-			notrightId = api.lockedShip.id;
-			api.resetTarget("enemy");
-			return;
-		}*/
-
-		/*if (!api.attacking && api.lockedShip && api.lockedShip.shd + 1 == api.lockedShip.maxShd && window.settings.settings.avoidAttackedNpcs || !api.attacking && api.lockedShip && !window.settings.settings.avoidAttackedNpcs) {
-			api.startLaserAttack();
-			api.lastAttack = $.now();
-			api.attacking = true;
-			return;
-		}*/
 	}
 
 	if (api.targetBoxHash && $.now() - api.collectTime > 7000) {

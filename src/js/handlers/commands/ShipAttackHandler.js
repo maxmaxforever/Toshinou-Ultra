@@ -13,12 +13,12 @@ class ShipAttackHandler {
 			let ship = a.ships[attackedShipId];
 
 			try {
-				if (attackedShipId != window.hero.id && ship.isNpc && attackerId != window.hero.id && !a.isShipOnBlacklist(attackedShipId)) {
-					if(window.pet){
-						//
-					}else if(a.lockedShip){
-						//
-					}
+				if ((window.pet != null && window.pet.id != attackerId) &&
+					attackedShipId != window.hero.id && ship.isNpc &&
+					attackerId != window.hero.id &&
+					!a.isShipOnBlacklist(attackedShipId)
+				)
+				{
 					a.blackListId(attackedShipId);
 				}
 			} catch(e) {}

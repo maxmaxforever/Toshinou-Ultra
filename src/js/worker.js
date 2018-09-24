@@ -531,7 +531,7 @@ function logic() {
 			y = 302;
 		} else if ((dist > 600 && (api.lockedShip == null || api.lockedShip.id != api.targetShip.id) && $.now() - api.lastMovement > 1000)) {
 			x = api.targetShip.position.x - MathUtils.random(-50, 50);
-			y = api.targetShip.position.y - MathUtils.random(-50, 50); // test
+			y = api.targetShip.position.y - MathUtils.random(-50, 50); // testa
 			api.lastMovement = $.now();
 		} else if (api.lockedShip && window.settings.settings.dontCircleWhenHpBelow25Percent && api.lockedShip.percentOfHp < 25 && api.lockedShip.id == api.targetShip.id ) {
 			if (dist > 450) {

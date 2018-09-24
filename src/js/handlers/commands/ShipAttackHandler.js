@@ -4,7 +4,7 @@ class ShipAttackHandler {
 	}
 
 	constructor() {
-		// test 2
+		// test 2aa
 		this._handler = function (e, a) {
 			let shipAttackCmd = JSON.parse(e.detail);
 

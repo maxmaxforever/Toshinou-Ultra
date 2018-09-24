@@ -16,7 +16,8 @@ class ShipAttackHandler {
 				attackedShipId != window.hero.id && ship.isNpc &&
 				attackerId != window.hero.id &&
 				!a.isShipOnBlacklist(attackedShipId) &&
-				window.settings.settings.avoidAttackedNpcs
+				window.settings.settings.avoidAttackedNpcs &&
+				!window.settings.settings.ggbot
 			)
 			{
 				a.blackListId(attackedShipId);

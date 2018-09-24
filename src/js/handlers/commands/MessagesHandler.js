@@ -6,7 +6,8 @@ class MessagesHandler {
 
 	constructor() {
 		this._handler = (e, a) => {
-
+			// 'STM' "server_restart_n_seconds" [5] == seconds
+			// {"message":"0", "A", "STM", "server_restart_n_seconds", "30"}
 			let _events = {
 				'CRE': 'credits',
 				'BAT': 'ammo',

@@ -12,17 +12,18 @@ class ShipAttackHandler {
 			let attackedShipId = shipAttackCmd[Variables.attackedId];
 
 			let ship = a.ships[attackedShipId];
-
-			if ((window.pet != null && window.pet.id != attackerId) &&
-				attackedShipId != window.hero.id && ship.isNpc &&
-				attackerId != window.hero.id &&
-				!a.isShipOnBlacklist(attackedShipId) &&
-				window.settings.settings.avoidAttackedNpcs &&
-				!window.settings.settings.ggbot
-			)
-			{
-				a.blackListId(attackedShipId);
-			}
+			try{
+				if ((window.pet != null && window.pet.id != attackerId) &&
+					attackedShipId != window.hero.id && ship.isNpc &&
+					attackerId != window.hero.id &&
+					!a.isShipOnBlacklist(attackedShipId) &&
+					window.settings.settings.avoidAttackedNpcs &&
+					!window.settings.settings.ggbot)
+				{
+					a.blackListId(attackedShipId);
+				}
+			}catch{}
+			
 		}
 	}
 	

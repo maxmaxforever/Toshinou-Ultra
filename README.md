@@ -22,6 +22,16 @@ How to install/use?
 EN guide: https://youtu.be/sZOrfItRd2w
 ES guide: https://youtu.be/4kp8v413634
 
+TODO:
+----------
+-Palladium repair
+-React to enemy attacks on palladium
+-Palladium traveler if repairing on gate
+-Change GG repair (ship can get stuck while surrounded by npcs)
+-Improve npc Circle
+-Temporarily save box positions
+-Pet support (might be hard to implement)
+
 Issues
 ----------
 If the tool doesn't work, try to use Private mode/Incognito.

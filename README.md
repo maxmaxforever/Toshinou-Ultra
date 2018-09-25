@@ -7,7 +7,6 @@ The tool was originally created by freshek, but has been modified and updated by
 since freshek abandoned it.  
 There's a **HIGH RISK OF BAN**, and i don't recommend you using it on an account you don't want to lose.
 
-Discord Server: https://discord.gg/nQ2VWVU
 
 How to install/use?
 ----------

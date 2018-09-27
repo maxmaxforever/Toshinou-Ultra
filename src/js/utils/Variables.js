@@ -1,43 +1,43 @@
 class Variables {
 
   static get boxType() {
-    return "_-m2X"; // mod
+    return "_-s43"; // mod
   }
 
   static get attackerId() {
-    return "_-N3c"; // mod
+    return "_-z40"; // mod
   }
 
   static get attackHp() {
-    return "_-05C"; // mod
+    return "_-v2F"; // mod
   }
 
   static get attackShd() {
-    return "_-J1S"; // mod
+    return "_-u3m"; // mod
   }
 
   static get attackedId() {
-    return "_-d1v"; // mod
+    return "_-l4t"; // mod
   }
 
   static get heroAttackedId() {
-    return "_-43L"; // mod
+    return "_-y3H"; // mod
   }
 
   static get moveDuration() {
-    return "_-95Q"; // mod
+    return "_-y4X"; // mod
   }
 
   static get shipDestoyedId() {
-    return "_-r1P"; // mod
+    return "_-W4A"; // mod
   }
 
   static get heroInitMaxHp() {
-    return "_-D1a"; // mod
+    return "_-U4v"; // mod
   }
 
   static get heroInitMaxShd() {
-    return "_-317"; // mod
+    return "_-y21"; // mod
   }
 
   static get heroInitHp() {
@@ -45,63 +45,63 @@ class Variables {
   }
   
   static get heroUpdateShd(){
-    return "_-p3w"; // mod
+    return "_-vA"; // mod
   }
 
   static get hpUpdateMaxHp() {
-    return "_-j4i"; // mod
+    return "_-U4v"; // mod
   }
 
   static get hpUpdateHp() {
-    return "_-b4o"; // mod
+    return "_-Nd"; // mod
   }
 
   static get selectMaxHp() {
-    return "_-j4i"; // mod
+    return "_-U4v"; // mod
   }
 
   static get selectMaxShd() {
-    return "_-317"; // mod
+    return "_-y21"; // mod
   }
 
   static get selectHp() {
-    return "_-b4o"; // mod
+    return "_-Nd"; // mod
   }
 
   static get clanDiplomacy() {
-    return "_-t4h"; // mod
+    return "_-J1Q"; // mod
   }
 
   static get gateId() {
-    return "_-ED"; // mod
+    return "_-o4K"; // mod
   }
 
   static get gateType() {
-    return "_-d4r"; // mod
+    return "_-e2Q"; // mod
   }
 
   static get resource() {
-    return "_-04P"; // mod
+    return "_-fe"; // mod
   }
 
   static get resourceType() {
-    return "_-O1v"; // mod
+    return "_-v3v"; // mod
   }
 
   static get assetCreateX() {
-    return "_-n28"; // mod  
+    return "_-wa"; // mod
   }
 
   static get assetCreateY() {
-    return "_-C4f"; // mod
+    return "_-gN"; // mod
   }
 
   static get battlestationClanDiplomacy() {
-    return "_-vr"; // mod
+    return "_-B1H"; // mod
   }
 
   static get heroPetId() {
-    return "_-B3a"; 
+    return "_-44W"; // mod
   }
   
 }

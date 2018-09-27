@@ -5,7 +5,7 @@
 
 class HeroPetUpdateHandler {
     static get ID() {
-      return 26974;
+      return 14129;
     }
   
     constructor() {

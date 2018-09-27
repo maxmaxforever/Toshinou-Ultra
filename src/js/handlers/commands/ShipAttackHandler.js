@@ -1,10 +1,9 @@
 class ShipAttackHandler {
 	static get ID() {
-		return 8321;
+		return 30692;
 	}
 
 	constructor() {
-		// test 2aa
 		this._handler = function (e, a) {
 			let shipAttackCmd = JSON.parse(e.detail);
 

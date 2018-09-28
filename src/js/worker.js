@@ -59,6 +59,7 @@ $(document).ready(function () {
 	window.debug = false;
 	window.enemy = null;
 	window.pet = null;
+	window.invertedMovement = false;
     window.tickTime = window.globalSettings.timerTick;
     let hm = new HandlersManager(api);
 
@@ -81,6 +82,8 @@ $(document).ready(function () {
 	hm.registerCommand(QuickSlotHandler.ID, new QuickSlotHandler());
 	hm.registerCommand(HeroPetUpdateHandler.ID, new HeroPetUpdateHandler());
 	hm.registerCommand(HeroAttackHandler.ID, new HeroAttackHandler());
+	hm.registerCommand(HeroAffectedHandler.ID, new HeroAffectedHandler());
+
 
 
 
@@ -210,7 +213,7 @@ function logic() {
 			window.fleeFromEnemy = false;
 		if (api.disconnectTime && $.now() - api.disconnectTime > 5000 && (!api.reconnectTime || (api.reconnectTime && $.now() - api.reconnectTime > 15000)) && window.reviveCount < window.settings.settings.reviveLimit) 
 			api.reconnect();
-		if(api.reconnectTime && $.now() - reconnectTime > 60000 && window.settings.settings.enableRefresh)
+		if(api.reconnectTime && $.now() - api.reconnectTime > 60000 && window.settings.settings.enableRefresh)
 			window.location.reload();
 		return;
 	}
@@ -240,12 +243,13 @@ function logic() {
 				return;
 			} else if(window.settings.settings.jumpFromEnemy){
 				// LMAO
-				setTimeout(function(gate) { 
-					if (api.jumpAndGoBack(gate.gate.gateId)) {
-					api.jumped = true;
-					window.movementDone = false;
-					window.fleeingFromEnemy = false;
-				}}, 1000, gate);
+				if (api.jumpAndGoBack(gate.gate.gateId)) {
+					setTimeout(function(gate) { 
+						api.jumped = true;
+						window.movementDone = false;
+						window.fleeingFromEnemy = false;
+					}, 1500, gate);
+				}
 				return;
 				
 			}
@@ -343,30 +347,31 @@ function logic() {
 
 	if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.settings.repairWhenHpIsLowerThanPercent || api.isRepairing) {
 		if (window.settings.settings.ggbot) {
-			api.resetTarget("all");
-			let npcCount = api.ggCountNpcAround(1000);
-			if (npcCount > 0) {
-				let ship = api.findNearestShip();
-				ship.ship.update();
-				let f = Math.atan2(window.hero.position.x - ship.ship.position.x, window.hero.position.y - ship.ship.position.y) + 0.5;
-				let s = Math.PI / 180;
-				f += s;
-				let x = 10890 + 4000 * Math.sin(f);
-				let y = 6750 + 4000 * Math.cos(f);
-				//To avoid entering radiation.
-				if (x > 20800 && x < 500 && y > 12900 && y < 500) {
-					x = MathUtils.random(500, 20800);
-					y = MathUtils.random(500, 12900);
-				} else {
-					api.move(x, y);
-				}
-				api.isRepairing = true;
-				return;
-			} else {
-				return;
-			}
-		} else if(window.settings.settings.palladium){
+			let gg_half_x = 10400;
+			let gg_half_y = 6450;
+			let f = Math.atan2(window.hero.position.x - gg_half_x, window.hero.position.y - gg_half_y) + 0.5;
+			let s = Math.PI / 180;
+			f += s;
+			let x = 10400 + 6000 * Math.sin(f);
+			let y = 6450 + 6000 * Math.cos(f);
+			api.move(x,y);
+			return
+		} else if(window.settings.settings.palladium && api.targetShip){
 			// TODO	
+			let inter = api.findNearestShip();
+			if(inter && inter.name ==  "-=[ Interceptor ]=-"){
+				api.lockShip(inter.ship);
+			}
+			let fog_half_x = 21700;
+			let fog_half_y = 22250;
+			let f = Math.atan2(window.hero.position.x - fog_half_x, window.hero.position.y - fog_half_y) + 0.5;
+			let s = Math.PI / 180;
+			f += s;
+			let x = 21700 + 4000 * Math.sin(f);
+			let y = 22250 + 2000 * Math.cos(f);
+			api.move(x,y);
+			return;
+			//To avoid entering radiation.
 		} else {
 			let gate = api.findNearestGate();
 			if (gate.gate) {
@@ -385,7 +390,7 @@ function logic() {
 	if (!window.settings.palladium && !window.settings.ggbot && window.settings.settings.workmap != 0 &&  window.hero.mapId != window.settings.settings.workmap) {
 		setTimeout(function() { 
 			api.goToMap(window.settings.settings.workmap);
-		}, MathUtils.random(1550, 2130));
+		}, MathUtils.random(2550, 2930));
 		return;
 	} else {
 		api.rute = null;
@@ -531,7 +536,7 @@ function logic() {
 			y = 302;
 		} else if ((dist > 600 && (api.lockedShip == null || api.lockedShip.id != api.targetShip.id) && $.now() - api.lastMovement > 1000)) {
 			x = api.targetShip.position.x - MathUtils.random(-50, 50);
-			y = api.targetShip.position.y - MathUtils.random(-50, 50); // now it works
+			y = api.targetShip.position.y - MathUtils.random(-50, 50);
 			api.lastMovement = $.now();
 		} else if (api.lockedShip && window.settings.settings.dontCircleWhenHpBelow25Percent && api.lockedShip.percentOfHp < 25 && api.lockedShip.id == api.targetShip.id ) {
 			if (dist > 450) {
@@ -551,7 +556,6 @@ function logic() {
 				f += s;
 				x = enemy.x + window.settings.settings.npcCircleRadius * Math.sin(f);
 				y = enemy.y + window.settings.settings.npcCircleRadius * Math.cos(f);
-
 				let nearestBox = api.findNearestBox();
 				if (nearestBox && nearestBox.box && nearestBox.distance < 300) {
 					circleBox = nearestBox;

@@ -63,16 +63,6 @@ class Api {
 		}
 		return false;
 	}
-  
-	useAbility(){
-		var cooldownlist = {"cyborg":310000,"solace":140000,"diminisher":161000,"venom":180000 ,"sentinel":235000 ,"spectrum":210000};
-		if(this.abilityCoolDown && $.now() - this.abilityCoolDown > cooldownlist[window.hero.skillName]){
-			this.quickSlot(window.settings.settings.abilitySlot);
-			this.abilityCoolDown = $.now();
-			return true;
-		}
-		return false;
-	}
 
 	getShipName(fullname){
 		let namelist = /(cyborg|venom|solace|diminisher|spectrum|sentinel)/;

@@ -91,7 +91,7 @@ class ShipSettings{
         },
         {
             name: 'abilitySlot',
-            labelText: 'Ship Ability Slot: ',
+            labelText: chrome.i18n.getMessage('abilityslot'),
             type: "select",
             disabled: true && !window.settings.settings.useAbility,
             appendTo: this.shipSettingsWindow,
@@ -105,10 +105,10 @@ class ShipSettings{
         },
         {
             name: 'reviveType',
-            labelText: 'Revive type: ',
+            labelText: chrome.i18n.getMessage('reviveat'),
             type: "select",
             appendTo: this.shipSettingsWindow,
-            options: {0:"base", 1:"portal", 2:"place"},
+            options: {0:chrome.i18n.getMessage('base'), 1:chrome.i18n.getMessage('gate'), 2:chrome.i18n.getMessage('spot')},
             attrs:{
             },
             event: function () {
@@ -117,8 +117,8 @@ class ShipSettings{
         },
         {
             name: 'reviveLimit',
-            labelText: 'Revive Limit<span> (5)</span>: ',
-            type: "range",
+            labelText: chrome.i18n.getMessage('revivelimit'),
+            type: "number",
             appendTo: this.shipSettingsWindow,
             labelBefore: true,
             attrs:{

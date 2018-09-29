@@ -35,9 +35,6 @@
   "windowstotabs": {
     "message": "Abas em vez de janelas"
   },
-  "showruntime": {
-    "message": "Mostrar tempo de execução"
-  },
   "speedformat": {
     "message": "Formato de velocidade"
   },
@@ -46,12 +43,6 @@
   },
   "min": {
     "message": "minutos"
-  },
-  "deltaoptions": {
-    "message": "Ativar funções delta. Algumas podem ter erros"
-  },
-  "shipconfigs": {
-    "message": "Configurações da nave"
   },
   "attackconfig": {
     "message": "Configuração de combate:"
@@ -65,26 +56,17 @@
   "logictick": {
     "message": "Intervalo da lógica(ms)"
   },
-  "refreshsettings": {
-    "message": "Atualize as configurações das funções da página"
-  },
   "enablerefresh": {
     "message": "Ativar função de atualização"
   },
   "refreshtime": {
     "message": "Intervalo de atualização (minutos)"
   },
-  "enablenpcblocklist": {
-    "message": "Incluir lista negra do npc na função de atualização da página"
-  },
-  "refreshtoreconnect": {
-    "message": "Atualizar a página quando for disconectado."
-  },
   "clearsettings": {
     "message": "Limpar armazenamento de configurações (Função de atualização)"
   },
   "reviveat": {
-    "message": "Reviver em"
+    "message": "Reviver em: "
   },
   "base": {
     "message": "Base"
@@ -99,7 +81,7 @@
     "message": "Não reviver"
   },
   "revivelimit": {
-    "message": "Limite de reviver"
+    "message": "Limite de reviver: "
   },
   "workmap": {
     "message": "Mapa de trabalho"
@@ -130,9 +112,6 @@
   },
   "masquebooty": {
     "message": "Caixas Apocalipse"
-  },
-  "collectboxwhencircle": {
-    "message": "Collect Box When Circle"
   },
   "target": {
     "message": "Alvo: "

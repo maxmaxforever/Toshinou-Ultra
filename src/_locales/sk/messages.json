@@ -35,9 +35,6 @@
   "windowstotabs": {
     "message": "Karty namiesto okien"
   },
-  "showruntime": {
-    "message": "Zobraziť čas počas ktoreho bol bot spustený"
-  },
   "speedformat": {
     "message": "Formát rýchlosti"
   },
@@ -46,15 +43,6 @@
   },
   "min": {
     "message": "min"
-  },
-  "deltaoptions": {
-    "message": "Povoliť delta funkcie. Niektoré môžu mať chyby"
-  },
-  "palladiumlogic": {
-    "message": "Palladium logika (Funguje iba ako sú delta funkcie a Paladium bot zapnúté)"
-  },
-  "shipconfigs": {
-    "message": "Konfigurácie lodí"
   },
   "attackconfig": {
     "message": "Útočná konfigurácia:"
@@ -68,26 +56,17 @@
   "logictick": {
     "message": "Logic tick (ms)"
   },
-  "refreshsettings": {
-    "message": "Funkcia obnovovania stránky, nastavenia"
-  },
   "enablerefresh": {
     "message": "Povoliť funkciu obnovovania"
   },
   "refreshtime": {
     "message": "Interval obnovovania (min)"
   },
-  "enablenpcblocklist": {
-    "message": "Zahrnúť čierny list NPC do funkcie obnovovania"
-  },
-  "refreshtoreconnect": {
-    "message": "Refresh page when disconnected"
-  },
   "clearsettings": {
     "message": "Obnovoviť pamäť nastavení (Obnoviť nastavenia)"
   },
   "reviveat": {
-    "message": "Oživiť na"
+    "message": "Oživiť na: "
   },
   "base": {
     "message": "Základni"
@@ -102,16 +81,13 @@
     "message": "Neoživovať"
   },
   "revivelimit": {
-    "message": "Limit oživovania"
+    "message": "Limit oživovania: "
   },
   "workmap": {
     "message": "Mapa"
   },
   "any": {
     "message": "Hocijaká"
-  },
-  "onlyworkdelta": {
-    "message": "(Funguje iba ak je Delta povolená)"
   },
   "boxsettings": {
     "message": "Nastavenia Boxov"
@@ -136,9 +112,6 @@
   },
   "masquebooty": {
     "message": "Apokalyptické boxy korisťi"
-  },
-  "collectboxwhencircle": {
-    "message": "Zbierať boxy počas krúženia (Ak je delta aktívkna)"
   },
   "target": {
     "message": "Ciel: "
@@ -274,8 +247,5 @@
   },
   "abilityslot": {
     "message": "Ability slot: "
-  },
-  "refreshsettings": {
-    "message": "Refresh settings"
   }
 }

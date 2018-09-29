@@ -34,9 +34,6 @@
   "windowstotabs": {
     "message": "Linguette invece della finestra"
   },
-  "showruntime": {
-    "message": "Mostra tempo trascorso"
-  },
   "speedformat": {
     "message": "Velocità formato"
   },
@@ -45,15 +42,6 @@
   },
   "min": {
     "message": "min"
-  },
-  "deltaoptions": {
-    "message": "Abilita funzioni delta. Alcune posso funzionare male o non funzionare"
-  },
-  "palladiumlogic": {
-    "message": "Logica per Palladio (Funziona solo se delta e bot palladio sono attivi)"
-  },
-  "shipconfigs": {
-    "message": "Configurazioni nave"
   },
   "attackconfig": {
     "message": "Configurazione d'attacco:"
@@ -67,26 +55,17 @@
   "logictick": {
     "message": "Tick logici (ms)"
   },
-  "refreshsettings": {
-    "message": "Impostazioni per aggiornare la pagina"
-  },
   "enablerefresh": {
     "message": "Abilita aggiornamento della pagina"
   },
   "refreshtime": {
     "message": "Intervallo per aggiornare la pagina (min)"
   },
-  "enablenpcblocklist": {
-    "message": "Includi npc della lista nera nella funzione per aggiornare la pagina"
-  },
-  "refreshtoreconnect": {
-    "message": "Refresh page when disconnected"
-  },
   "clearsettings": {
     "message": "Azzera impostazioni salvate (aggiornamento pagina)"
   },
   "reviveat": {
-    "message": "Rivivi a"
+    "message": "Rivivi a: "
   },
   "base": {
     "message": "Base"
@@ -101,16 +80,13 @@
     "message": "Non rianimare"
   },
   "revivelimit": {
-    "message": "numero rianimazioni"
+    "message": "numero rianimazioni: "
   },
   "workmap": {
     "message": "Mappa su cui usare il bot"
   },
   "any": {
     "message": "Qualsiasi"
-  },
-  "onlyworkdelta": {
-    "message": "(Funziona solo se la funzione delta è attiva)"
   },
   "boxsettings": {
     "message": "Impostazione box"
@@ -135,9 +111,6 @@
   },
   "masquebooty": {
     "message": "Forzieri apocalittici"
-  },
-  "collectboxwhencircle": {
-    "message": "Colleziona Box quando circola (Se opzione delta attiva)"
   },
   "target": {
     "message": "Bersaglio: "
@@ -273,8 +246,5 @@
   },
   "abilityslot": {
     "message": "Ability slot: "
-  },
-  "refreshsettings": {
-    "message": "Refresh settings"
   }
 }

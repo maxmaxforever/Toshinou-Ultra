@@ -35,9 +35,6 @@
   "windowstotabs": {
     "message": "Ozellikleri pencere halinda goster"
   },
-  "showruntime": {
-    "message": "Calisma suresini goster"
-  },
   "speedformat": {
     "message": "Hiz turu"
   },
@@ -46,15 +43,6 @@
   },
   "min": {
     "message": "dakika"
-  },
-  "deltaoptions": {
-    "message": "Delta ozelliklerini aktif et. Bazilarinda bug olabilir."
-  },
-  "palladiumlogic": {
-    "message": "Palladium botu (Sadece delta ozelligi acikken calisir.)"
-  },
-  "shipconfigs": {
-    "message": "Gemi Konfileri"
   },
   "attackconfig": {
     "message": "Saldiri Konfisi:"
@@ -68,26 +56,17 @@
   "logictick": {
     "message": "Zamanlayici suresi(ms)"
   },
-  "refreshsettings": {
-    "message": "Sayfa yenileme ozellik ayarlari"
-  },
   "enablerefresh": {
     "message": "Sayfa yenileme ozelligini ayarla"
   },
   "refreshtime": {
     "message": "Yenileme araligi (dakika)"
   },
-  "enablenpcblocklist": {
-    "message": "Kestirmeyecegin npcleri tekrar ayarla"
-  },
-  "refreshtoreconnect": {
-    "message": "Refresh page when disconnected"
-  },
   "clearsettings": {
     "message": "Uygulanmis ayarlari temizle (Ozelligi yenile)"
   },
   "reviveat": {
-    "message": "Dogus yeri"
+    "message": "Dogus yeri: "
   },
   "base": {
     "message": "Ana us"
@@ -102,16 +81,13 @@
     "message": "Dogma"
   },
   "revivelimit": {
-    "message": "Canlanma limiti"
+    "message": "Canlanma limiti: "
   },
   "workmap": {
     "message": "Harita"
   },
   "any": {
     "message": "Herhangi"
-  },
-  "onlyworkdelta": {
-    "message": "(Sadece delta acikken calisir)"
   },
   "boxsettings": {
     "message": "Kutu ayarlari"
@@ -136,9 +112,6 @@
   },
   "masquebooty": {
     "message": "Apocalyptic kutusu"
-  },
-  "collectboxwhencircle": {
-    "message": "Daire cizerken kutulari topla(Sadece delta acikken)"
   },
   "target": {
     "message": "Hedef: "
@@ -274,8 +247,5 @@
   },
   "abilityslot": {
     "message": "Ability slot"
-  },
-  "refreshsettings": {
-    "message": "Refresh settings"
   }
 }

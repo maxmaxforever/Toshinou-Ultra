@@ -35,9 +35,6 @@
   "windowstotabs": {
     "message": "Tabulatory zamiast okien"
   },
-  "showruntime": {
-    "message": "pokaz czas trwania"
-  },
   "speedformat": {
     "message": "Format szybkości"
   },
@@ -46,15 +43,6 @@
   },
   "min": {
     "message": "min"
-  },
-  "deltaoptions": {
-    "message": "Włącz Funkcje Delty. (Może miec pare bugów)"
-  },
-  "palladiumlogic": {
-    "message": "Palladium logic (Dziala tylko jeśli delta i palladium bot są aktywne)"
-  },
-  "shipconfigs": {
-    "message": "konfy statku"
   },
   "attackconfig": {
     "message": "konfa do bicia"
@@ -68,26 +56,17 @@
   "logictick": {
     "message": "Reagowanie (ms)"
   },
-  "refreshsettings": {
-    "message": "Odśwież strone ustawienia Funkcji"
-  },
   "enablerefresh": {
     "message": "Włącz funkcje odświerzania"
   },
   "refreshtime": {
     "message": "Odśwież strone co (min)"
   },
-  "enablenpcblocklist": {
-    "message": "Po odświeżeniu czarna lista wciąż jest aktywna"
-  },
-  "refreshtoreconnect": {
-    "message": "Refresh page when disconnected"
-  },
   "clearsettings": {
     "message": "Wyczyść ustawienia (Ośwież strone ustawienia Funkcji)"
   },
   "reviveat": {
-    "message": "Napraw na"
+    "message": "Napraw na: "
   },
   "base": {
     "message": "Bazie"
@@ -102,16 +81,13 @@
     "message": "Nie naprawiaj"
   },
   "revivelimit": {
-    "message": "Limit naprawień"
+    "message": "Limit naprawień: "
   },
   "workmap": {
     "message": "Mapa"
   },
   "any": {
     "message": "Any"
-  },
-  "onlyworkdelta": {
-    "message": ""
   },
   "boxsettings": {
     "message": "ustawienia skrzynek"
@@ -136,9 +112,6 @@
   },
   "masquebooty": {
     "message": " Skrzynie Apokalipsy"
-  },
-  "collectboxwhencircle": {
-    "message": "Zbieraj boxy robiąc orbitki (jeśli wersja delta jest aktywna)"
   },
   "target": {
     "message": "Cel: "
@@ -274,8 +247,5 @@
   },
   "abilityslot": {
     "message": "Ability slot"
-  },
-  "refreshsettings": {
-    "message": "Refresh settings"
   }
 }

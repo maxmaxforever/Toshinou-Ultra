@@ -35,9 +35,6 @@
   "windowstotabs": {
     "message": "Tabs instead of windows"
   },
-  "showruntime": {
-    "message": "Show runtime"
-  },
   "speedformat": {
     "message": "Speed format"
   },
@@ -46,15 +43,6 @@
   },
   "min": {
     "message": "min"
-  },
-  "deltaoptions": {
-    "message": "Enable delta functions. Some may have bugs"
-  },
-  "palladiumlogic": {
-    "message": "Palladium logic (It works only if delta and palladium bot are active)"
-  },
-  "shipconfigs": {
-    "message": "Ship Configs"
   },
   "attackconfig": {
     "message": "Attack Config:"
@@ -68,23 +56,14 @@
   "logictick": {
     "message": "Logic tick (ms)"
   },
-  "refreshsettings": {
-    "message": "Refresh page function settings"
-  },
   "enablerefresh": {
     "message": "Enable refresh function"
   },
   "refreshtime": {
     "message": "Refresh interval (min)"
   },
-  "enablenpcblocklist": {
-    "message": "Include npc black list into refresh page function"
-  },
-  "refreshtoreconnect": {
-    "message": "Refresh page when disconnected"
-  },
   "reviveat": {
-    "message": "Revive at"
+    "message": "Revive at: "
   },
   "base": {
     "message": "Base"
@@ -99,16 +78,13 @@
     "message": "No revive"
   },
   "revivelimit": {
-    "message": "Revive limit"
+    "message": "Revive limit: : "
   },
   "workmap": {
     "message": "Work Map"
   },
   "any": {
     "message": "Any"
-  },
-  "onlyworkdelta": {
-    "message": "(Only works if delta active)"
   },
   "boxsettings": {
     "message": "Box settings"
@@ -133,9 +109,6 @@
   },
   "masquebooty": {
     "message": "Apocalyptic booty boxes"
-  },
-  "collectboxwhencircle": {
-    "message": "Collect Box When Circle (If delta active)"
   },
   "target": {
     "message": "Target: "
@@ -171,7 +144,7 @@
     "message": "Don't circle when HP < 25%"
   },
   "repairwhenhp": {
-    "message": "Repair when HP < <span> (30%)</span>"
+    "message": "Repair when HP <span> (30%)</span>"
   },
   "jumpandreturn": {
     "message": "Jump And Return"
@@ -271,8 +244,5 @@
   },
   "abilityslot": {
     "message": "Ability slot: "
-  },
-  "refreshsettings": {
-    "message": "Refresh settings"
   }
 }

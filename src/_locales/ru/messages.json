@@ -35,9 +35,6 @@
   "windowstotabs": {
     "message": "Вкладки вместо окон"
   },
-  "showruntime": {
-    "message": "Время выполнения"
-  },
   "speedformat": {
     "message": "Формат скорости"
   },
@@ -46,15 +43,6 @@
   },
   "min": {
     "message": "в минуту"
-  },
-  "deltaoptions": {
-    "message": "Дельта функции. Возможно ошибки"
-  },
-  "palladiumlogic": {
-    "message": "Логика палладиума. Работает при активной ДЕЛЬТЕ"
-  },
-  "shipconfigs": {
-    "message": "Конфигурации корабля"
   },
   "attackconfig": {
     "message": "Конфигурация атаки:"
@@ -68,26 +56,17 @@
   "logictick": {
     "message": "Время на логику (мс)"
   },
-  "refreshsettings": {
-    "message": "Обновление страницы"
-  },
   "enablerefresh": {
     "message": "Включить функцию обновления"
   },
   "refreshtime": {
     "message": "Интервал обновления в минутах"
   },
-  "enablenpcblocklist": {
-    "message": "Сохранить настройки ЧЕРНОГО СПИСКА при обновлении страницы"
-  },
-  "refreshtoreconnect": {
-    "message": "Refresh page when disconnected"
-  },
   "clearsettings": {
     "message": "Очистить сохраненные настройки (Функция обновления)"
   },
   "reviveat": {
-    "message": "Возрожение на"
+    "message": "Возрожение на: "
   },
   "base": {
     "message": "База"
@@ -102,16 +81,13 @@
     "message": "Не возрождаться"
   },
   "revivelimit": {
-    "message": "Лимит возрождений"
+    "message": "Лимит возрождений: "
   },
   "workmap": {
     "message": "Карта полета"
   },
   "any": {
     "message": "Любая"
-  },
-  "onlyworkdelta": {
-    "message": "Работает если ДЕЛЬТА активна"
   },
   "boxsettings": {
     "message": "Настройка сбора"
@@ -136,9 +112,6 @@
   },
   "masquebooty": {
     "message": "Апокалиптические сундуки"
-  },
-  "collectboxwhencircle": {
-    "message": "Сбор коробок во время кручения (если ДЕЛЬТА активна)"
   },
   "target": {
     "message": "Цель: "
@@ -274,8 +247,5 @@
   },
   "abilityslot": {
     "message": "Ability slot"
-  },
-  "refreshsettings": {
-    "message": "Refresh settings"
   }
 }

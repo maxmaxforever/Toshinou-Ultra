@@ -35,9 +35,6 @@
   "windowstotabs": {
     "message": "Mostrar Pestañas en lugar de Ventanas"
   },
-  "showruntime": {
-    "message": "Mostrar Tiempo Activo"
-  },
   "speedformat": {
     "message": "Formato de Velocidad"
   },
@@ -46,15 +43,6 @@
   },
   "min": {
     "message": "Minuto"
-  },
-  "deltaoptions": {
-    "message": "Activar funciones Delta. Algunas pueden contener Bugs"
-  },
-  "palladiumlogic": {
-    "message": "Función de Paladio (Solo funciona si Delta y Bot de Paladio están activos)"
-  },
-  "shipconfigs": {
-    "message": "Configuraciones de Nave"
   },
   "attackconfig": {
     "message": "Configuración de Ataque:"
@@ -68,26 +56,17 @@
   "logictick": {
     "message": "Logic tick (ms)"
   },
-  "refreshsettings": {
-    "message": "Configuración de Refresh"
-  },
   "enablerefresh": {
     "message": "Activar función Refresh"
   },
   "refreshtime": {
     "message": "Recargar la pagina cada (min)"
   },
-  "enablenpcblocklist": {
-    "message": "Incluir la lista de NPCs en la función Refresh"
-  },
-  "refreshtoreconnect": {
-    "message": "Refrescar la pagina cuando se desconecte"
-  },
   "clearsettings": {
     "message": "Limpiar configuraciones (Función Refresh)"
   },
   "reviveat": {
-    "message": "Revivir en"
+    "message": "Revivir en: "
   },
   "base": {
     "message": "Base"
@@ -102,16 +81,13 @@
     "message": "No reparar"
   },
   "revivelimit": {
-    "message": "Limite de revivir"
+    "message": "Limite de revivir: "
   },
   "workmap": {
     "message": "Mapa"
   },
   "any": {
     "message": "Cualquiera"
-  },
-  "onlyworkdelta": {
-    "message": "(Solo funciona si Delta está activo)"
   },
   "boxsettings": {
     "message": "Configuración de Recolección"
@@ -136,9 +112,6 @@
   },
   "masquebooty": {
     "message": "Cofres Apocalipsis"
-  },
-  "collectboxwhencircle": {
-    "message": "Colectar mientras gira (Solo si Delta está activo)"
   },
   "target": {
     "message": "Objetivo: "
@@ -274,8 +247,5 @@
   },
   "abilityslot": {
     "message": "Slot de la habilidad"
-  },
-  "refreshsettings": {
-    "message": "Configuración de refresh"
   }
 }

@@ -35,9 +35,6 @@
   "windowstotabs": {
     "message": "Καρτέλες αντί για παράθυρα"
   },
-  "showruntime": {
-    "message": "Εμφάνιση χρόνου εκτέλεσης"
-  },
   "speedformat": {
     "message": "Λειτουργεία ταχύτηας"
   },
@@ -46,15 +43,6 @@
   },
   "min": {
     "message": "λεπτά"
-  },
-  "deltaoptions": {
-    "message": "Ενεργοποιήσε λειτουργείες delta. Κάποιες λειτουρηείες μπορεί να έχουν προβλήματα"
-  },
-  "palladiumlogic": {
-    "message": "Λογική Palladium (Λειτουργεί μόνο αν οι λειτουργείες delta και palladium είναι ενεργοποιημένες)"
-  },
-  "shipconfigs": {
-    "message": "Σχηματισμός Πλοίου"
   },
   "attackconfig": {
     "message": "Σχηματισμός Επίθεσης:"
@@ -68,26 +56,17 @@
   "logictick": {
     "message": "Λογική Χρόνου (μιλλιδευτερόλεπτο)"
   },
-  "refreshsettings": {
-    "message": "Ρυθμίσεις λειτουργείας επαναφόρτωσης σελίδας"
-  },
   "enablerefresh": {
     "message": "Ενεργοποίησε λειτουργεία επαναφόρτωσης"
   },
   "refreshtime": {
     "message": "Διάλειμμα επαναφόρτωσης (λεπτά)"
   },
-  "enablenpcblocklist": {
-    "message": "Περιλάμβανε τα npc στην μαύρη λίστα μέσα στην λειτουργεία επαναφόρτωσης"
-  },
-  "refreshtoreconnect": {
-    "message": "Επαναφόρτωση της σελίδας όταν γίνεται αποσύνδεση"
-  },
   "clearsettings": {
     "message": "Καθάρισε την αποθήκη των ρυθμίσεων (Λειτουργεία επαναφόρτωσης)"
   },
   "reviveat": {
-    "message": "Αναζωογονήσου σε/στην "
+    "message": "Αναζωογονήσου σε/στην : "
   },
   "base": {
     "message": "Βάση"
@@ -102,16 +81,13 @@
     "message": " Να μην αναζωγονηθείς"
   },
   "revivelimit": {
-    "message": "Όριο αναζωογονισης"
+    "message": "Όριο αναζωογονισης: "
   },
   "workmap": {
     "message": "Χάρτης δουλείας"
   },
   "any": {
     "message": "Όποιο να ναι"
-  },
-  "onlyworkdelta": {
-    "message": "(Μόνο λειτουργεί αν η λειτουργεία delta είναι ενεργοποιημένη)"
   },
   "boxsettings": {
     "message": "Ρυθμίσεις κουτιών"
@@ -136,9 +112,6 @@
   },
   "masquebooty": {
     "message": "Αποκαλυπτικά κουτιά"
-  },
-  "collectboxwhencircle": {
-    "message": "Μάζεψε κουτια όταν γυρνάς γύρω-γύρω (Άν η λειτουργεία delta είναι ενεργοποιημενη)"
   },
   "target": {
     "message": "Εχθρός: "
@@ -274,8 +247,5 @@
   },
   "abilityslot": {
     "message": "Ability slot: "
-  },
-  "refreshsettings": {
-    "message": "Refresh settings"
   }
 }

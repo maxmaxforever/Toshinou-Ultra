@@ -35,9 +35,6 @@
   "windowstotabs": {
     "message": "Utiliser onglets au lieu de fenêtres"
   },
-  "showruntime": {
-    "message": "Afficher le temps d'exécution"
-  },
   "speedformat": {
     "message": "Format de vitesse"
   },
@@ -46,15 +43,6 @@
   },
   "min": {
     "message": "min"
-  },
-  "deltaoptions": {
-    "message": "Activer les fonctions Delta, certaines peuvent avoir des bugs"
-  },
-  "palladiumlogic": {
-    "message": "Palladium logic (Fonctionne uniquement si Delta et le palladium bot sont actifs)"
-  },
-  "shipconfigs": {
-    "message": "Configs du vaisseau"
   },
   "attackconfig": {
     "message": "Config d'attaque:"
@@ -68,26 +56,17 @@
   "logictick": {
     "message": "Logic tick (ms)"
   },
-  "refreshsettings": {
-    "message": "Actualiser les paramètres de la page de fonctions"
-  },
   "enablerefresh": {
     "message": "Activer la fonction de rafraîchissement"
   },
   "refreshtime": {
     "message": "Intervalle de rafraîchissement (min)"
   },
-  "enablenpcblocklist": {
-    "message": "Inclure la blacklist des NPCs dans la fonction de rafraîchissement de la page"
-  },
-  "refreshtoreconnect": {
-    "message": "Refresh page when disconnected"
-  },
   "clearsettings": {
     "message": "Effacer les paramètres de stockage (fonction de rafraîchissement)"
   },
   "reviveat": {
-    "message": "Revivre "
+    "message": "Revivre : "
   },
   "base": {
     "message": "À la base"
@@ -102,16 +81,13 @@
     "message": "Ne pas réapparaître"
   },
   "revivelimit": {
-    "message": "Limite de réapparition"
+    "message": "Limite de réapparition: "
   },
   "workmap": {
     "message": "Map active"
   },
   "any": {
     "message": "Toutes"
-  },
-  "onlyworkdelta": {
-    "message": "(Marche uniquement si Delta est activé)"
   },
   "boxsettings": {
     "message": "Paramètres de collecte des box et matériaux"
@@ -136,9 +112,6 @@
   },
   "masquebooty": {
     "message": "Boîtes de butin apocalyptique"
-  },
-  "collectboxwhencircle": {
-    "message": "Collecter les box en même temps de faire des cercles autours des NPCs (si delta actif)"
   },
   "target": {
     "message": "Cible: "
@@ -274,8 +247,5 @@
   },
   "abilityslot": {
     "message": "Ability slot: "
-  },
-  "refreshsettings": {
-    "message": "Refresh settings"
   }
 }

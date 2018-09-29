@@ -35,9 +35,6 @@
   "windowstotabs": {
     "message": "Karty m�sto oken"
   },
-  "showruntime": {
-    "message": "Zobrazit �as botov�n�"
-  },
   "speedformat": {
     "message": "Form�t ��inosti"
   },
@@ -46,15 +43,6 @@
   },
   "min": {
     "message": "minut"
-  },
-  "deltaoptions": {
-    "message": "Zp��stupnit Delta funkce. Nemus� pracovat spr�vn�."
-  },
-  "palladiumlogic": {
-    "message": "Palladium logika (Pouze pokud jsou Delta funkce a palladium bot aktivn�)"
-  },
-  "shipconfigs": {
-    "message": "Konfigurace lod�"
   },
   "attackconfig": {
     "message": "�to�n� konfigurace:"
@@ -68,26 +56,17 @@
   "logictick": {
     "message": "Nakliknut� (Thick Logic) (ms)"
   },
-  "refreshsettings": {
-    "message": "Nastaven� pro obnoven� str�nky"
-  },
   "enablerefresh": {
     "message": "Povolit obnoven� str�nky"
   },
   "refreshtime": {
     "message": "Interval obnoven� str�nky (min)"
   },
-  "enablenpcblocklist": {
-    "message": "Zahrnout seznam necht�n�ch NPC do funkce obnoven� str�nky"
-  },
-  "refreshtoreconnect": {
-    "message": "Refresh page when disconnected"
-  },
   "clearsettings": {
     "message": "Vy�istit pam� nastaven� (Funkce obnoven�)"
   },
   "reviveat": {
-    "message": "Opravit na"
+    "message": "Opravit na: "
   },
   "base": {
     "message": "Z�kladn�"
@@ -102,16 +81,13 @@
     "message": "Neopravovat"
   },
   "revivelimit": {
-    "message": "Po�et oprav"
+    "message": "Po�et oprav: "
   },
   "workmap": {
     "message": "Mapa botov�n�"
   },
   "any": {
     "message": "Jak�koliv"
-  },
-  "onlyworkdelta": {
-    "message": "(pouze, pokud jsou Delta funkce aktivn�)"
   },
   "boxsettings": {
     "message": "Nastaven� box�kovan�"
@@ -136,9 +112,6 @@
   },
   "masquebooty": {
     "message": "Apokaliptick� boxy ko�isti"
-  },
-  "collectboxwhencircle": {
-    "message": "Sb�rat boxy p�i krou�en� (Pokud jsou Delta funkce aktivn�)"
   },
   "target": {
     "message": "C�l: "
@@ -274,8 +247,5 @@
   },
   "abilityslot": {
     "message": "Ability slot: "
-  },
-  "refreshsettings": {
-    "message": "Refresh settings"
   }
 }

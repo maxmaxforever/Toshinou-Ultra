@@ -21,7 +21,7 @@ class ShipAttackHandler {
 				{
 					a.blackListId(attackedShipId);
 				}
-			}catch{console.log("shipattackhandler id check error");}
+			}catch{}
 			
 		}
 	}

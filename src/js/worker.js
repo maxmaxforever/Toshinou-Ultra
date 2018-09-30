@@ -56,6 +56,7 @@ $(document).ready(function () {
     window.saved = false;
     window.loaded = false;
 	window.fleeingFromEnemy = false;
+	window.stayInPortal = false;
 	window.debug = false;
 	window.enemy = null;
 	window.pet = null;
@@ -83,8 +84,6 @@ $(document).ready(function () {
 	hm.registerCommand(HeroPetUpdateHandler.ID, new HeroPetUpdateHandler());
 	hm.registerCommand(HeroAttackHandler.ID, new HeroAttackHandler());
 	hm.registerCommand(HeroAffectedHandler.ID, new HeroAffectedHandler());
-
-
 
 
     hm.registerEvent("updateHeroPos", new HeroPositionUpdateEventHandler());
@@ -207,7 +206,6 @@ function init() {
 
 function logic() {
 	let circleBox = null;
-
 	if (api.isDisconnected) {
 		if (window.fleeingFromEnemy) 
 			window.fleeFromEnemy = false;
@@ -225,36 +223,33 @@ function logic() {
 		return;
 	}
 
+
+	if (!window.settings.palladium && !window.settings.ggbot && window.settings.settings.workmap != 0 &&  window.hero.mapId != window.settings.settings.workmap) {
+		api.goToMap(window.settings.settings.workmap);
+		return;
+	} else {
+		api.rute = null;
+	}
+	
 	if(window.settings.settings.fleeFromEnemy && window.fleeFromEnemy && window.enemy){
-		let gate = api.findNearestGateForRunAway(window.enemy);
-		if(gate.gate){
-			let dist = window.hero.distanceTo(gate.gate.position);
-			if(dist > 200){
-				api.flyingMode();
-				// Use spectrum hability when running from enemy if not too close to gate.
-				if (window.settings.settings.useAbility && window.hero.skillName == "spectrum" && dist > 350) {
-					api.useAbility();
-				}
-				window.fleeingFromEnemy = true;
-				let x = gate.gate.position.x + MathUtils.random(-100, 100);
-				let y = gate.gate.position.y + MathUtils.random(-100, 100);
-				api.resetTarget("all");
-				api.move(x, y);
-				return;
-			} else if(window.settings.settings.jumpFromEnemy){
-				// LMAO
-				if (api.jumpAndGoBack(gate.gate.gateId)) {
-					setTimeout(function(gate) { 
-						api.jumped = true;
-						window.movementDone = false;
-						window.fleeingFromEnemy = false;
-					}, 1500, gate);
-				}
-				return;
-				
-			}
+		api.flyingMode();
+		// Use spectrum hability when running from enemy if not too close to gate.
+		window.fleeingFromEnemy = true;
+		api.fleeFromEnemy();
+		return;
+	}else{
+		window.fleeFromEnemy = false;
+		window.stayInPortal = false;
+	}
+
+	if (window.settings.settings.fleeFromEnemy && !window.settings.settings.palladium) {
+		let enemyResult = api.checkForEnemy();
+		if (enemyResult.run) {
+			window.enemy = enemyResult.enemy;
+			window.fleeFromEnemy = true;
+			return;
 		}else{
-			window.fleeFromEnemy = false;
+			window.enemy = null;
 		}
 	}
 
@@ -334,17 +329,6 @@ function logic() {
 		}
 	}
 
-	if (window.settings.settings.fleeFromEnemy && !window.settings.settings.palladium) {
-		let enemyResult = api.checkForEnemy();
-		if (enemyResult.run) {
-			window.enemy = enemyResult.enemy;
-			window.fleeFromEnemy = true;
-			return;
-		}else{
-			window.enemy = null;
-		}
-	}
-
 	if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.settings.repairWhenHpIsLowerThanPercent || api.isRepairing) {
 		if (window.settings.settings.ggbot) {
 			let gg_half_x = 10400;
@@ -386,16 +370,6 @@ function logic() {
 			}
 		}
 	}
-
-	if (!window.settings.palladium && !window.settings.ggbot && window.settings.settings.workmap != 0 &&  window.hero.mapId != window.settings.settings.workmap) {
-		setTimeout(function() { 
-			api.goToMap(window.settings.settings.workmap);
-		}, MathUtils.random(2550, 2930));
-		return;
-	} else {
-		api.rute = null;
-	}
-	
 
 	if (window.X1Map || (window.settings.settings.palladium && window.hero.mapId != 93)) {
 		return;
@@ -477,6 +451,11 @@ function logic() {
 						delete api.boxes[api.targetBoxHash];
 						api.blackListHash(api.targetBoxHash);
 						api.resetTarget("box");
+					}
+				}else if(api.targetShip){
+					if(api.targetShip.distanceTo(result.cbsPos) < 1800){
+						api.blackListId(api.targetShip.id);
+						api.resetTarget("enemy");
 					}
 				}
 				let f = Math.atan2(window.hero.position.x - result.cbsPos.x, window.hero.position.y - result.cbsPos.y) + 0.5;

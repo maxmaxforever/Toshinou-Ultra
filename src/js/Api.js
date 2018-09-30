@@ -22,6 +22,7 @@ class Api {
 		this.changeFormationTime = $.now();
 		this.lastAutoLock = $.now();
 		this.autoLocked = false;
+		this.runDelay = -1;
 		// QuickSlot stuff
 		this.abilityCoolDown = 1;
 		this.formation = -1;
@@ -236,7 +237,7 @@ class Api {
 		if (gate.gate) {
 		let x = gate.gate.position.x + MathUtils.random(-100, 100);
 		let y = gate.gate.position.y + MathUtils.random(-100, 100);
-		if (window.hero.position.distanceTo(gate.gate.position) < 200 && this.jumpTime && $.now() - this.jumpTime > 3000) {
+		if (window.hero.position.distanceTo(gate.gate.position) < 200 && this.jumpTime && $.now() - this.jumpTime > 4000) {
 			this.jumpGate();
 			this.jumpTime = $.now();
 			hasJumped = true;
@@ -249,11 +250,10 @@ class Api {
 	}
 
 	jumpAndGoBack(gateId){
-		if (window.settings.settings.workmap != null) {
+		if (window.settings.settings.workmap != null) 
 			this.workmap = window.settings.settings.workmap;
-		} else {
+		else 
 			this.workmap = window.hero.mapId;
-		}
 		let hasJumped = this.jumpInGateByID(gateId);
 		return hasJumped;
 	}
@@ -438,47 +438,61 @@ class Api {
 		};
 	}
 
-	findNearestGate() {
+	findNearestGate(enemy = null) {
 		let minDist = 100000;
-		let finalGate;
+		let finalGate = null;
+		let enemeyDistance = null;
 
-		this.gates.forEach(gate => {
-		if(gate.gateId != 150000409 && gate.gateId != 150000410 && gate.gateId != 150000411){
-			let dist = window.hero.distanceTo(gate.position);
-			if (dist < minDist) {
-				finalGate = gate;
-				minDist = dist;
-			}
-		}
-		});
-
-		return {
-		gate: finalGate,
-		distance: minDist
-		};
-	}
-
-	findNearestGateForRunAway(enemy) {
-		let minDist = 100000;
-		let finalGate;
-		this.gates.forEach(gate => {
+		for(let gate of this.gates){
 			if(gate.gateId != 150000409 && gate.gateId != 150000410 && gate.gateId != 150000411){
-				let enemeyDistance = enemy.distanceTo(gate.position);
 				let dist = window.hero.distanceTo(gate.position);
-				if (enemeyDistance < dist) {
-					return;
-				}
 				if (dist < minDist) {
 					finalGate = gate;
 					minDist = dist;
 				}
+				if(enemy){
+					if(dist < 200)
+						break;
+					enemeyDistance = enemy.distanceTo(gate.position);
+					if(enemeyDistance && enemeyDistance < dist){
+						minDist = dist;
+						break;
+					}
+				}
 			}
-		});
+		}
 
 		return {
 			gate: finalGate,
 			distance: minDist
 		};
+	}
+
+	fleeFromEnemy(enemy) {
+		let gate = this.findNearestGate(enemy);
+		if(gate.gate){
+			let dist = window.hero.distanceTo(gate.gate.position);
+			if (window.settings.settings.useAbility && window.hero.skillName == "spectrum" && dist > 350) 
+				api.useAbility();
+			if(window.settings.settings.jumpFromEnemy && !window.stayInPortal){
+				if (this.jumpAndGoBack(gate.gate.gateId)) {
+					this.runDelay = $.now();
+					window.stayInPortal = true;
+					window.movementDone = false;
+					window.fleeingFromEnemy = false;
+					return;
+				}
+			}
+			this.resetTarget("all");
+			if(dist > 200){
+				let x = gate.gate.position.x + MathUtils.random(-100, 100);
+				let y = gate.gate.position.y + MathUtils.random(-100, 100);
+				this.move(x, y);
+			}else if($.now() - this.runDelay > 30000){
+				this.runDelay = $.now();
+				window.fleeFromEnemy = false;
+			}
+		}
 	}
 
 	findNearestGatebyGateType(gateId) {

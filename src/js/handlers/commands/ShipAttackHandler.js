@@ -14,12 +14,18 @@ class ShipAttackHandler {
 			try{
 				if (
 					attackedShipId != window.hero.id && ship.isNpc &&
-					attackerId != window.hero.id || (window.pet != null && window.pet.id != attackerId) &&
+					attackerId != window.hero.id &&
 					!a.isShipOnBlacklist(attackedShipId) &&
 					window.settings.settings.avoidAttackedNpcs &&
 					!window.settings.settings.ggbot)
 				{
-					a.blackListId(attackedShipId);
+					if(window.pet != null){
+						if(window.pet.id != attackerId){
+							a.blackListId(attackedShipId);
+						}
+					}else{
+						a.blackListId(attackedShipId);
+					}
 				}
 			}catch{}
 			

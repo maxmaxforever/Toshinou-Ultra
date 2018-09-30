@@ -12,16 +12,16 @@ class ShipAttackHandler {
 
 			let ship = a.ships[attackedShipId];
 			try{
-				if ((window.pet != null && window.pet.id != attackerId) &&
+				if (
 					attackedShipId != window.hero.id && ship.isNpc &&
-					attackerId != window.hero.id &&
+					attackerId != window.hero.id || (window.pet != null && window.pet.id != attackerId) &&
 					!a.isShipOnBlacklist(attackedShipId) &&
 					window.settings.settings.avoidAttackedNpcs &&
 					!window.settings.settings.ggbot)
 				{
 					a.blackListId(attackedShipId);
 				}
-			}catch{}
+			}catch{console.log("shipattackhandler id check error");}
 			
 		}
 	}

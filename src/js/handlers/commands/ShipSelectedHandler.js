@@ -14,7 +14,6 @@ class ShipSelectedHandler {
 				ship.hp = parsedJson[Variables.selectHp];
 				ship.shd = parsedJson.shield;
 
-				console.log(ship);
 				window.attackWindow.hp(ship.hp);
 				window.attackWindow.shd(ship.shd);
 				window.attackWindow.targetName(ship.name);

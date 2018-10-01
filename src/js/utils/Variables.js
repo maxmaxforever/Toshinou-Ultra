@@ -1,107 +1,107 @@
 class Variables {
 
   static get boxType() {
-    return "_-41y";
+    return "_-Pg";
   }
 
   static get attackerId() {
-    return "_-NZ";
+    return "_-m23";
   }
 
   static get attackHp() {
-    return "_-6n";
+    return "_-m3F";
   }
 
   static get attackShd() {
-    return "_-G2S";
+    return "_-r1H";
   }
 
   static get attackedId() {
-    return "_-D1c";
+    return "_-43S";
   }
 
   static get heroAttackedId() {
-    return "_-d4P";
+    return "_-E2I";
   }
 
   static get moveDuration() {
-    return "_-VN";
+    return "_-Z2l";
   }
 
   static get shipDestoyedId() {
-    return "_-65s";
+    return "_-N4j";
   }
 
   static get heroInitMaxHp() {
-    return "_-q21";
+    return "_-b1E";
   }
 
   static get heroInitMaxShd() {
-    return "_-qW";
+    return "_-c4z";
   }
 
   static get heroInitHp() {
-    return "_-m1u";
+    return "_-c4z";
   }
   
   static get heroUpdateShd(){
-    return "_-83K";
+    return "_-r2D";
   }
 
   static get hpUpdateMaxHp() {
-    return "_-15x";
+    return "_-z1x";
   }
 
   static get hpUpdateHp() {
-    return "_-63C";
+    return "_-Nn";
   }
 
   static get selectMaxHp() {
-    return "_-15x";
+    return "_-z1x";
   }
 
   static get selectMaxShd() {
-    return "_-qW";
+    return "_-c4z";
   }
 
   static get selectHp() {
-    return "_-63C";
+    return "_-Nn";
   }
 
   static get clanDiplomacy() {
-    return "_-Q1X";
+    return "_-k2M";
   }
 
   static get gateId() {
-    return "_-Q2V";
+    return "_-y3Z";
   }
 
   static get gateType() {
-    return "_-u49";
+    return "_-DD";
   }
 
   static get resource() {
-    return "_-R3h";
+    return "_-y4N";
   }
 
   static get resourceType() {
-    return "_-S27";
+    return "_-52U";
   }
 
   static get assetCreateX() {
-    return "_-U18";
+    return "_-14L";
   }
 
   static get assetCreateY() {
-    return "_-b3H";
+    return "_-O4e";
   }
 
   static get battlestationClanDiplomacy() {
-    return "_-51z";
+    return "_-j1e";
   }
 
   static get heroPetId() {
-    return "_-p3k";
+    return "_-y2m";
   }
   
 }

@@ -69,7 +69,7 @@ class Variables {
   }
 
   static get clanDiplomacy() {
-    return "_-k2M";
+    return "_-87";
   }
 
   static get gateId() {

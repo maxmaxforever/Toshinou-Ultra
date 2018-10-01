@@ -84,7 +84,6 @@
         "js/handlers/commands/HeroUpdateHitpointsHandler.js",
         "js/handlers/commands/AssetCreatedHandler.js",
         "js/handlers/commands/HeroUpdateShieldHandler.js",
-        "js/handlers/commands/QuickSlotHandler.js",
         "js/handlers/commands/HeroPetUpdateHandler.js",
         "js/handlers/commands/HeroAttackHandler.js",
         "js/handlers/commands/HeroAffectedHandler.js",

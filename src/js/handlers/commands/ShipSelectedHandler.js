@@ -13,6 +13,13 @@ class ShipSelectedHandler {
 				ship.maxShd = parsedJson[Variables.selectMaxShd];
 				ship.hp = parsedJson[Variables.selectHp];
 				ship.shd = parsedJson.shield;
+
+				console.log(ship);
+				window.attackWindow.hp(ship.hp);
+				window.attackWindow.shd(ship.shd);
+				window.attackWindow.targetName(ship.name);
+				window.attackWindow.ship(ship.ship);
+
 				
 				a.lockedShip = ship;
 				if (!api.attacking && !a.isShipOnBlacklist(parsedJson.userId) &&(window.settings.settings.killNpcs && ship.isNpc && !window.settings.settings.pause) || (window.settings.settings.autoAttack && ship.isEnemy && !ship.isNpc) || (window.settings.settings.autoAttackNpcs && ship.isNpc)) {

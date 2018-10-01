@@ -80,7 +80,6 @@ $(document).ready(function () {
     hm.registerCommand(HeroDiedHandler.ID, new HeroDiedHandler());
     hm.registerCommand(HeroUpdateHitpointsHandler.ID, new HeroUpdateHitpointsHandler());
     hm.registerCommand(HeroUpdateShieldHandler.ID, new HeroUpdateShieldHandler());
-	hm.registerCommand(QuickSlotHandler.ID, new QuickSlotHandler());
 	hm.registerCommand(HeroPetUpdateHandler.ID, new HeroPetUpdateHandler());
 	hm.registerCommand(HeroAttackHandler.ID, new HeroAttackHandler());
 	hm.registerCommand(HeroAffectedHandler.ID, new HeroAffectedHandler());

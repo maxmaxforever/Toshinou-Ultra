@@ -4,7 +4,6 @@ class Api {
 		this._blackListedNpcs = [];
 		this.gates = [];
 		this.boxes = {};
-		this.boxBuffer = [];
 		this.ships = {};
 		this.battlestation = null;
 		this.startTime = null;
@@ -56,7 +55,7 @@ class Api {
 	}
 
 	useAbility(){
-		var cooldownlist = {"cyborg":310000,"solace":140000,"diminisher":161000,"venom":180000 ,"sentinel":235000 ,"spectrum":210000};
+		var cooldownlist = {"cyborg":310000,"solace":130000,"diminisher":161000,"venom":180000 ,"sentinel":235000 ,"spectrum":210000};
 		if(this.abilityCoolDown && $.now() - this.abilityCoolDown > cooldownlist[window.hero.skillName]){
 			this.quickSlot(window.settings.settings.abilitySlot);
 			this.abilityCoolDown = $.now();
@@ -66,10 +65,10 @@ class Api {
 	}
 
 	getShipName(fullname){
-		let namelist = /(cyborg|venom|solace|diminisher|spectrum|sentinel)/;
+		let namelist = /ship_(.*?)(_|$)/g;
 		let rname = namelist.exec(fullname);
 		if(rname != null){
-			return rname[0]
+			return rname[1]
 		}else{
 			return false;
 		}

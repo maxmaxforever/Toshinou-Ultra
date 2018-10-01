@@ -120,6 +120,8 @@ class ControlFactory {
       }
     }else if(type == "range" || type == "number"){
       input.attr('value',window.settings.settings[name]);
+      if(labelText.indexOf('<span>') != -1)
+        labelText = labelText.replace(/[0-9]{1,3}/, window.settings.settings[name]);
     }
 
     let label = jQuery("<label>");

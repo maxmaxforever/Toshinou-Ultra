@@ -41,7 +41,7 @@ class Variables {
   }
 
   static get heroInitHp() {
-    return "_-c4z";
+    return "_-Ut";
   }
   
   static get heroUpdateShd(){

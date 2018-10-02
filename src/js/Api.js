@@ -233,7 +233,7 @@ class Api {
 	jumpInGateByID(gateId){
 		let hasJumped = false;
 		let gate = this.findGatebyID(gateId);
-		if (gate.gate && this.jumpTime && $.now() - this.jumpTime > 4000) {
+		if (gate.gate && this.jumpTime && $.now() - this.jumpTime > 5500) {
 			let x = gate.gate.position.x + MathUtils.random(-100, 100);
 			let y = gate.gate.position.y + MathUtils.random(-100, 100);
 			if (window.hero.position.distanceTo(gate.gate.position) < 200) {
@@ -483,7 +483,7 @@ class Api {
 				}
 			}
 			this.resetTarget("all");
-			if(dist > 200  && this.jumpTime && $.now() - this.jumpTime > 4000){
+			if(dist > 200 ){
 				let x = gate.gate.position.x + MathUtils.random(-100, 100);
 				let y = gate.gate.position.y + MathUtils.random(-100, 100);
 				this.move(x, y);

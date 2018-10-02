@@ -284,15 +284,57 @@ function logic() {
 	}
 
 	if(api.isRepairing){
-		if (window.hero.hp !== window.hero.maxHp && !window.settings.settings.ggbot && !window.settings.settings.palladium) {
-			return;
-		}else if (window.hero.hp === window.hero.maxHp) {
-			api.isRepairing = false;
-			if (window.settings.settings.autoChangeConfig){
-				if (window.settings.settings.attackConfig != window.hero.shipconfig) {
-					api.changeConfig();
+		if (window.hero.hp !== window.hero.maxHp) {
+			if (window.settings.settings.ggbot) {
+				let gg_half_x = 10400;
+				let gg_half_y = 6450;
+				let f = Math.atan2(window.hero.position.x - gg_half_x, window.hero.position.y - gg_half_y) + 0.5;
+				let s = Math.PI / 180;
+				f += s;
+				let x = 10400 + 6000 * Math.sin(f);
+				let y = 6450 + 6000 * Math.cos(f);
+				api.move(x,y);
+				return
+			} else if(window.settings.settings.palladium){
+				let inter = api.findNearestShip();
+				// Check for interceptors
+				if(api.lockedShip)
+					if(api.lockedShip.name != "-=[ Interceptor ]=-")
+						api.resetTarget("all");
+				if(inter && inter.name ==  "-=[ Interceptor ]=-"){
+					api.lockShip(inter.ship);
+					api.startLaserAttack();
+				}
+				// TO br improved
+				api.flyingMode();	
+				let fog_half_x = 21700;
+				let fog_half_y = 22250;
+				let f = Math.atan2(window.hero.position.x - fog_half_x, window.hero.position.y - fog_half_y) + 0.5;
+				let s = Math.PI / 180;
+				f += s;
+				let x = 21700 + 4000 * Math.sin(f);
+				let y = 22250 + 2000 * Math.cos(f);
+				api.move(x,y);
+				return;
+			} else {
+				let gate = api.findNearestGate();
+				if (gate.gate) {
+					// This check is to to avoid unecessary movement spam while in gate.
+					if(window.hero.position.distanceTo(gate.gate.position) > 200){
+						api.resetTarget("all");
+						let x = gate.gate.position.x + MathUtils.random(-100, 100);
+						let y = gate.gate.position.y + MathUtils.random(-100, 100);
+						api.move(x, y);
+						window.movementDone = false;
+						api.flyingMode();
+						api.isRepairing = true;
+					}
+					return;
 				}
 			}
+		}else if (window.hero.hp === window.hero.maxHp) {
+			api.isRepairing = false;
+			api.combatMode();
 		}
 	}
 
@@ -329,45 +371,8 @@ function logic() {
 	}
 
 	if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.settings.repairWhenHpIsLowerThanPercent || api.isRepairing) {
-		if (window.settings.settings.ggbot) {
-			let gg_half_x = 10400;
-			let gg_half_y = 6450;
-			let f = Math.atan2(window.hero.position.x - gg_half_x, window.hero.position.y - gg_half_y) + 0.5;
-			let s = Math.PI / 180;
-			f += s;
-			let x = 10400 + 6000 * Math.sin(f);
-			let y = 6450 + 6000 * Math.cos(f);
-			api.move(x,y);
-			return
-		} else if(window.settings.settings.palladium && api.targetShip){
-			// TODO	
-			let inter = api.findNearestShip();
-			if(inter && inter.name ==  "-=[ Interceptor ]=-"){
-				api.lockShip(inter.ship);
-			}
-			let fog_half_x = 21700;
-			let fog_half_y = 22250;
-			let f = Math.atan2(window.hero.position.x - fog_half_x, window.hero.position.y - fog_half_y) + 0.5;
-			let s = Math.PI / 180;
-			f += s;
-			let x = 21700 + 4000 * Math.sin(f);
-			let y = 22250 + 2000 * Math.cos(f);
-			api.move(x,y);
-			return;
-			//To avoid entering radiation.
-		} else {
-			let gate = api.findNearestGate();
-			if (gate.gate) {
-				api.resetTarget("all");
-				let x = gate.gate.position.x + MathUtils.random(-100, 100);
-				let y = gate.gate.position.y + MathUtils.random(-100, 100);
-				api.move(x, y);
-				window.movementDone = false;
-				api.flyingMode();
-				api.isRepairing = true;
-				return;
-			}
-		}
+		api.isRepairing = true;
+		return;
 	}
 
 	if (window.X1Map || (window.settings.settings.palladium && window.hero.mapId != 93)) {

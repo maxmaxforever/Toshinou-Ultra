@@ -437,38 +437,52 @@ class Api {
 		};
 	}
 
-	findNearestGate(enemy = null) {
+	findNearestGate() {
 		let minDist = 100000;
-		let finalGate = null;
-		let enemeyDistance = null;
+		let finalGate;
 
-		for(let gate of this.gates){
+		this.gates.forEach(gate => {
 			if(gate.gateId != 150000409 && gate.gateId != 150000410 && gate.gateId != 150000411){
 				let dist = window.hero.distanceTo(gate.position);
 				if (dist < minDist) {
 					finalGate = gate;
 					minDist = dist;
 				}
-				if(enemy){
-					if(dist < 200)
-						break;
-					enemeyDistance = enemy.distanceTo(gate.position);
-					if(enemeyDistance && enemeyDistance < dist){
-						minDist = dist;
-						break;
-					}
-				}
 			}
-		}
+		});
 
 		return {
 			gate: finalGate,
 			distance: minDist
 		};
 	}
+	
+	  findNearestGateForRunAway(enemy) {
+		let minDist = 100000;
+		let finalGate;
+		this.gates.forEach(gate => {
+			if(gate.gateId != 150000409 && gate.gateId != 150000410 && gate.gateId != 150000411){
+				let enemeyDistance = enemy.distanceTo(gate.position);
+				let dist = window.hero.distanceTo(gate.position);
+				if (enemeyDistance < dist) {
+					return;
+				}
+			
+				if (dist < minDist) {
+					finalGate = gate;
+					minDist = dist;
+				}
+			}
+		});
+	
+		return {
+		  gate: finalGate,
+		  distance: minDist
+		};
+	}
 
 	fleeFromEnemy(enemy) {
-		let gate = this.findNearestGate(enemy);
+		let gate = this.findNearestGateForRunAway(enemy);
 		if(gate.gate){
 			let dist = window.hero.distanceTo(gate.gate.position);
 			if (window.settings.settings.useAbility && window.hero.skillName == "spectrum" && dist > 350) 

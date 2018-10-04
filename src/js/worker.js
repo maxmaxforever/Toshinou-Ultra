@@ -234,7 +234,7 @@ function logic() {
 		api.flyingMode();
 		// Use spectrum hability when running from enemy if not too close to gate.
 		window.fleeingFromEnemy = true;
-		api.fleeFromEnemy();
+		api.fleeFromEnemy(window.enemy);
 		return;
 	}else{
 		window.fleeFromEnemy = false;

@@ -223,7 +223,7 @@ function logic() {
 	}
 
 
-	if (!window.settings.palladium && !window.settings.ggbot && window.settings.settings.workmap != 0 &&  window.hero.mapId != window.settings.settings.workmap) {
+	if (!window.settings.palladium && !window.settings.settings.ggbot && window.settings.settings.workmap != 0 &&  window.hero.mapId != window.settings.settings.workmap) {
 		api.goToMap(window.settings.settings.workmap);
 		return;
 	} else {

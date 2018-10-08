@@ -55,7 +55,7 @@ class Api {
 	}
 
 	useAbility(){
-		var cooldownlist = {"cyborg":310000,"solace":130000,"diminisher":161000,"venom":180000 ,"sentinel":235000 ,"spectrum":210000};
+		var cooldownlist = {"cyborg":310000,"solace":140000,"diminisher":161000,"venom":180000 ,"sentinel":235000 ,"spectrum":210000};
 		if(this.abilityCoolDown && $.now() - this.abilityCoolDown > cooldownlist[window.hero.skillName]){
 			this.quickSlot(window.settings.settings.abilitySlot);
 			this.abilityCoolDown = $.now();
@@ -598,7 +598,8 @@ class Api {
 			let map = this.rute[0];
 			let portal = map.portals[0];
 			if(window.hero.mapId == map.mapId){
-			this.jumpInGateByID(portal.gateId);
+				if(!this.jumpInGateByID(portal.gateId))
+					this.rute = null;
 			}
 			if(window.hero.mapId == portal.idLinkedMap){
 				this.rute.shift();

@@ -1,106 +1,106 @@
 class Variables {
   static get boxType() {
-    return "_-15Y";
+    return "_-841"; 
   }
 
   static get attackerId() {
-    return "_-b4k";
+    return "_-k3H"; 
   }
 
   static get attackHp() {
-    return "_-l3K";
+    return "_-T22"; 
   }
 
   static get attackShd() {
-    return "_-11c";
+    return "_-g3N"; 
   }
 
   static get attackedId() {
-    return "_-32B";
+    return "_-Po"; 
   }
 
   static get heroAttackedId() {
-    return "_-42K";
+    return "_-A3x"; 
   }
 
   static get moveDuration() {
-    return "_-c2e";
+    return "_-m2U"; 
   }
 
   static get shipDestoyedId() {
-    return "_-t1u";
+    return "_-Y3F"; 
   }
 
   static get heroInitMaxHp() {
-    return "_-E13";
+    return "_-we"; 
   }
 
   static get heroInitMaxShd() {
-    return "_-N4G";
+    return "_-u33"; 
   }
 
   static get heroInitHp() {
-    return "_-S15";
+    return "_-d0"; 
   }
   
   static get heroUpdateShd(){
-    return "_-Fq";
+    return "_-fh"; 
   }
 
   static get hpUpdateMaxHp() {
-    return "_-l1I";
+    return "_-f3r"; 
   }
 
   static get hpUpdateHp() {
-    return "_-hr";
+    return "_-611"; 
   }
 
   static get selectMaxHp() {
-    return "_-l1I";
+    return "_-f3r"; 
   }
 
   static get selectMaxShd() {
-    return "_-N4G";
+    return "_-u33"; 
   }
 
   static get selectHp() {
-    return "_-hr";
+    return "_-611"; 
   }
 
   static get clanDiplomacy() {
-    return "_-K4i"; //mod
+    return "_-G1n"; 
   }
 
   static get gateId() {
-    return "_-u15";
+    return "_-Jh"; 
   }
 
   static get gateType() {
-    return "_-G2s";
+    return "_-q23"; 
   }
 
   static get resource() {
-    return "_-v1v";
+    return "_-P2D"; 
   }
 
   static get resourceType() {
-    return "_-75g";
+    return "_-k3s"; 
   }
 
   static get assetCreateX() {
-    return "_-s3g";
+    return "_-85y"; 
   }
 
   static get assetCreateY() {
-    return "_-q4m";
+    return "_-71I"; 
   }
 
   static get battlestationClanDiplomacy() {
-    return "_-63c";
+    return "_-r3o"; 
   }
 
   static get heroPetId() {
-    return "_-85N";
+    return "_-81A"; 
   }
   
 }

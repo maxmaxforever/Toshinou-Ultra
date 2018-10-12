@@ -1,106 +1,106 @@
 class Variables {
   static get boxType() {
-    return "_-841"; 
+    return "_-M2G";
   }
 
   static get attackerId() {
-    return "_-k3H"; 
+    return "_-a4I";
   }
 
   static get attackHp() {
-    return "_-T22"; 
+    return "_-s3X";
   }
 
   static get attackShd() {
-    return "_-g3N"; 
+    return "_-h4I";
   }
 
   static get attackedId() {
-    return "_-Po"; 
+    return "_-X2F";
   }
 
   static get heroAttackedId() {
-    return "_-A3x"; 
+    return "_-a2A";
   }
 
   static get moveDuration() {
-    return "_-m2U"; 
+    return "_-1w";
   }
 
   static get shipDestoyedId() {
-    return "_-Y3F"; 
+    return "_-O3d";
   }
 
   static get heroInitMaxHp() {
-    return "_-we"; 
+    return "_-Q4F";
   }
 
   static get heroInitMaxShd() {
-    return "_-u33"; 
+    return "_-5F";
   }
 
   static get heroInitHp() {
-    return "_-d0"; 
+    return "_-Z4t";
   }
   
   static get heroUpdateShd(){
-    return "_-fh"; 
+    return "_-B3o";
   }
 
   static get hpUpdateMaxHp() {
-    return "_-f3r"; 
+    return "_-Z3u";
   }
 
   static get hpUpdateHp() {
-    return "_-611"; 
+    return "_-h4S";
   }
 
   static get selectMaxHp() {
-    return "_-f3r"; 
+    return "_-Z3u";
   }
 
   static get selectMaxShd() {
-    return "_-u33"; 
+    return "_-5F";
   }
 
   static get selectHp() {
-    return "_-611"; 
+    return "_-h4S";
   }
 
   static get clanDiplomacy() {
-    return "_-G1n"; 
+    return "_-E1C";
   }
 
   static get gateId() {
-    return "_-Jh"; 
+    return "_-A1U";
   }
 
   static get gateType() {
-    return "_-q23"; 
+    return "_-210";
   }
 
   static get resource() {
-    return "_-P2D"; 
+    return "_-Y2W";
   }
 
   static get resourceType() {
-    return "_-k3s"; 
+    return "_-D1A";
   }
 
   static get assetCreateX() {
-    return "_-85y"; 
+    return "_-p40";
   }
 
   static get assetCreateY() {
-    return "_-71I"; 
+    return "_-Z1J";
   }
 
   static get battlestationClanDiplomacy() {
-    return "_-r3o"; 
+    return "_-mg";
   }
 
   static get heroPetId() {
-    return "_-81A"; 
+    return "_-f1p";
   }
   
 }

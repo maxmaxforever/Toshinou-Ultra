@@ -87,6 +87,7 @@
         "js/handlers/commands/HeroPetUpdateHandler.js",
         "js/handlers/commands/HeroAttackHandler.js",
         "js/handlers/commands/HeroAffectedHandler.js",
+        "js/handlers/commands/HeroJumpedHandler.js",
         "js/Api.js",
         "js/ControlFactory.js",
         "js/worker.js"

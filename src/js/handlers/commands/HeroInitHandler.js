@@ -16,6 +16,11 @@ class HeroInitHandler {
 
 			let heroJson = JSON.parse(e.detail);
 
+			// this handler is called after you have jumped to another map
+			// so i'm using it to confirm we successfully jumped to the map
+			a.jumped = false;
+			a.jumpTime = $.now();
+
 			if (window.hero == null) {
 				window.hero = new Hero(heroJson.x, heroJson.y, heroJson.factionId, heroJson.userId, heroJson.mapId);
 			}

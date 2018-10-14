@@ -83,6 +83,8 @@ $(document).ready(function () {
 	hm.registerCommand(HeroPetUpdateHandler.ID, new HeroPetUpdateHandler());
 	hm.registerCommand(HeroAttackHandler.ID, new HeroAttackHandler());
 	hm.registerCommand(HeroAffectedHandler.ID, new HeroAffectedHandler());
+	hm.registerCommand(HeroJumpedHandler.ID, new HeroJumpedHandler());
+
 
 
     hm.registerEvent("updateHeroPos", new HeroPositionUpdateEventHandler());

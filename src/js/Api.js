@@ -17,6 +17,7 @@ class Api {
 		this.rute = null;
 		this.starSystem = [];
 		this.workmap = null;
+		this.jumped = false;
 		this.changeConfigTime = $.now();
 		this.changeFormationTime = $.now();
 		this.lastAutoLock = $.now();
@@ -233,12 +234,11 @@ class Api {
 	jumpInGateByID(gateId){
 		let hasJumped = false;
 		let gate = this.findGatebyID(gateId);
-		if (gate.gate && this.jumpTime && $.now() - this.jumpTime > 5500) {
+		if (!this.jumped && gate.gate && this.jumpTime && $.now() - this.jumpTime > 5500) {
 			let x = gate.gate.position.x + MathUtils.random(-100, 100);
 			let y = gate.gate.position.y + MathUtils.random(-100, 100);
 			if (window.hero.position.distanceTo(gate.gate.position) < 200) {
 				this.jumpGate();
-				this.jumpTime = $.now();
 				hasJumped = true;
 			}
 			this.resetTarget("all");

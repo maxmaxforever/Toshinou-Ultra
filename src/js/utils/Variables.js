@@ -1,106 +1,106 @@
 class Variables {
   static get boxType() {
-    return "_-M2G";
+    return "_-P4M";
   }
 
   static get attackerId() {
-    return "_-a4I";
+    return "_-x1X";
   }
 
   static get attackHp() {
-    return "_-s3X";
+    return "_-V3D";
   }
 
   static get attackShd() {
-    return "_-h4I";
+    return "_-A19";
   }
 
   static get attackedId() {
-    return "_-X2F";
+    return "_-44p";
   }
 
   static get heroAttackedId() {
-    return "_-a2A";
+    return "_-u3L";
   }
 
   static get moveDuration() {
-    return "_-1w";
+    return "_-bt";e
   }
 
   static get shipDestoyedId() {
-    return "_-O3d";
+    return "_-Fv";
   }
 
   static get heroInitMaxHp() {
-    return "_-Q4F";
+    return "_-13d";
   }
 
   static get heroInitMaxShd() {
-    return "_-5F";
+    return "_-O1w";
   }
 
   static get heroInitHp() {
-    return "_-Z4t";
+    return "_-L1P";
   }
   
   static get heroUpdateShd(){
-    return "_-B3o";
+    return "_-DW";
   }
 
   static get hpUpdateMaxHp() {
-    return "_-Z3u";
+    return "_-O2R";
   }
 
   static get hpUpdateHp() {
-    return "_-h4S";
+    return "_-a1Z";
   }
 
   static get selectMaxHp() {
-    return "_-Z3u";
+    return "_-O2R";
   }
 
   static get selectMaxShd() {
-    return "_-5F";
+    return "_-O1w";
   }
 
   static get selectHp() {
-    return "_-h4S";
+    return "_-a1Z";
   }
 
   static get clanDiplomacy() {
-    return "_-E1C";
+    return "_-T1P";
   }
 
   static get gateId() {
-    return "_-A1U";
+    return "_-r11";  
   }
 
   static get gateType() {
-    return "_-210";
+    return "_-H2b";
   }
 
   static get resource() {
-    return "_-Y2W";
+    return "_-F4o";
   }
 
   static get resourceType() {
-    return "_-D1A";
+    return "_-x40";
   }
 
   static get assetCreateX() {
-    return "_-p40";
+    return "_-s1e";
   }
 
   static get assetCreateY() {
-    return "_-Z1J";
+    return "_-S3x";
   }
 
   static get battlestationClanDiplomacy() {
-    return "_-mg";
+    return "_-521";
   }
 
   static get heroPetId() {
-    return "_-f1p";
+    return "_-h2k";
   }
   
 }

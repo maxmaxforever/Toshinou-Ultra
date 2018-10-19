@@ -44,7 +44,7 @@ class Minimap {
 		for (var property in this._api.boxes) {
 			var box = this._api.boxes[property];
 			if (box == null || box.isResource())
-			continue;
+				continue;
 
 			ct.fillStyle = BoxType.getColor(box.type);
 			this._fillCircle(ct, box.position.x / window.b1, box.position.y / window.b2, 1.3);

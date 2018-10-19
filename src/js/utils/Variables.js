@@ -1,106 +1,106 @@
 class Variables {
   static get boxType() {
-    return "_-P4M";
+    return "_-QR";
   }
 
   static get attackerId() {
-    return "_-x1X";
+    return "_-A4C";
   }
 
   static get attackHp() {
-    return "_-V3D";
+    return "_-r2k";
   }
 
   static get attackShd() {
-    return "_-A19";
+    return "_-M3y";
   }
 
   static get attackedId() {
-    return "_-44p";
+    return "_-81Y";
   }
 
   static get heroAttackedId() {
-    return "_-u3L";
+    return "_-O4H";
   }
 
   static get moveDuration() {
-    return "_-bt";e
+    return "_-C4l";
   }
 
   static get shipDestoyedId() {
-    return "_-Fv";
+    return "_-xR";
   }
 
   static get heroInitMaxHp() {
-    return "_-13d";
+    return "_-h49";
   }
 
   static get heroInitMaxShd() {
-    return "_-O1w";
+    return "_-V12";
   }
 
   static get heroInitHp() {
-    return "_-L1P";
+    return "_-h4o";
   }
   
   static get heroUpdateShd(){
-    return "_-DW";
+    return "_-43P";
   }
 
   static get hpUpdateMaxHp() {
-    return "_-O2R";
+    return "_-nt";
   }
 
   static get hpUpdateHp() {
-    return "_-a1Z";
+    return "_-g3K";
   }
 
   static get selectMaxHp() {
-    return "_-O2R";
+    return "_-nt";
   }
 
   static get selectMaxShd() {
-    return "_-O1w";
+    return "_-V12";
   }
 
   static get selectHp() {
-    return "_-a1Z";
+    return "_-g3K";
   }
 
   static get clanDiplomacy() {
-    return "_-T1P";
+    return "_-B4m";
   }
 
   static get gateId() {
-    return "_-r11";  
+    return "_-FG";
   }
 
   static get gateType() {
-    return "_-H2b";
+    return "_-f1Q";
   }
 
   static get resource() {
-    return "_-F4o";
+    return "_-H1T";
   }
 
   static get resourceType() {
-    return "_-x40";
+    return "_-Z4s";
   }
 
   static get assetCreateX() {
-    return "_-s1e";
+    return "_-J2v";
   }
 
   static get assetCreateY() {
-    return "_-S3x";
+    return "_-P1v";
   }
 
   static get battlestationClanDiplomacy() {
-    return "_-521";
+    return "_-F4d";
   }
 
   static get heroPetId() {
-    return "_-h2k";
+    return "_-n26";
   }
   
 }

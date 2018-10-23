@@ -31,7 +31,7 @@ TODO:
 -Change GG repair (ship can get stuck while surrounded by npcs)  
 -Improve npc Circle  
 -Temporarily save box positions  
--Pet support (might be hard to implement)  
+-Pet support (coming soon!)  
 
 Issues
 ----------

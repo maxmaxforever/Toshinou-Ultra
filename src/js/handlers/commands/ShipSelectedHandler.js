@@ -22,9 +22,11 @@ class ShipSelectedHandler {
 				
 				a.lockedShip = ship;
 				if (!api.attacking && !a.isShipOnBlacklist(parsedJson.userId) &&(window.settings.settings.killNpcs && ship.isNpc && !window.settings.settings.pause) || (window.settings.settings.autoAttack && ship.isEnemy && !ship.isNpc) || (window.settings.settings.autoAttackNpcs && ship.isNpc)) {
-					api.startLaserAttack();
-					a.lastAttack = $.now();
-					api.attacking = true;
+					setTimeout(() => {
+						api.startLaserAttack();
+						a.lastAttack = $.now();
+						api.attacking = true;
+					}, 250);
 				}
 			}
 		}

@@ -21,6 +21,8 @@ class HeroInitHandler {
 			a.jumped = false;
 			a.jumpTime = $.now();
 
+			window.pet = null;
+
 			if (window.hero == null) {
 				window.hero = new Hero(heroJson.x, heroJson.y, heroJson.factionId, heroJson.userId, heroJson.mapId);
 			}

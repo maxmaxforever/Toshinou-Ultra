@@ -34,6 +34,15 @@ class ShipSettings{
             }
         },
         {
+            name: 'autoCamouflage',
+            labelText: "Auto camo",
+            appendTo: this.shipSettingsWindow,
+            event: function () {
+                $(".camo").prop("disabled", !this.checked );
+                window.settings.settings.autoCamo = this.checked;
+            }
+        },
+        {
             name: 'attackConfig',
             labelText: chrome.i18n.getMessage('attackconfig'),
             type: "select",
@@ -104,6 +113,20 @@ class ShipSettings{
             }
         },
         {
+            name: 'camouflageSlot',
+            labelText: chrome.i18n.getMessage('camouflageslot'),
+            type: "select",
+            disabled: true && !window.settings.settings.autoCamo,
+            appendTo: this.shipSettingsWindow,
+            options: {"0":0, "1":1, "2":2, "3":3, "4":4, "5":5, "6":6, "7":7, "8":8, "9":9},
+            attrs:{
+                class: "camo"
+            },
+            event: function () {
+                window.settings.settings.camouflageSlot = this.value;
+            }
+        },
+        {
             name: 'reviveType',
             labelText: chrome.i18n.getMessage('reviveat'),
             type: "select",
@@ -131,7 +154,49 @@ class ShipSettings{
                 window.settings.settings.reviveLimit = this.value;
                 $('span:last-child', this.label).text(' (' + this.value + ')');
             }
-        }
+        },
+        {
+            name: 'enablePet',
+            labelText: chrome.i18n.getMessage('enablepet'),
+            appendTo: this.shipSettingsWindow,
+            attrs:{},
+            event: function () {
+                window.settings.settings.enablePet = this.checked;
+                $(".petstuff").prop("disabled", !this.checked);
+            }
+        },
+        {
+            name: "petModule",
+            labelText: chrome.i18n.getMessage('petmodule'),
+            type: "select",
+            disabled: true && !window.settings.settings.enablePet,
+            appendTo: this.shipSettingsWindow,
+            labelBefore: true,
+            options: {2:"Guard Mode", 10:"Kamikaze", 4:"Auto loot", 5:"Collect Resource", 6:"Enemy locator"},
+            attrs:{
+                class: "petstuff"
+            },
+            event: function() {
+                window.settings.settings.petModule = this.value;
+            }
+        },
+        {
+            name: 'petReviveLimit',
+            labelText: chrome.i18n.getMessage('petrevivelimit'),
+            type: "range",
+            appendTo: this.shipSettingsWindow,
+            labelBefore: true,
+            attrs:{
+                min: 0,
+                max: 100,
+                step: 1,
+                value: 5
+            },
+            event: function () {
+                window.settings.settings.petReviveLimit = this.value;
+                $('span:last-child', this.label).text(' (' + this.value + ')');
+            }
+        },
 
         ];
 

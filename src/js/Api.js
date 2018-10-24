@@ -23,11 +23,38 @@ class Api {
 		this.lastAutoLock = $.now();
 		this.autoLocked = false;
 		this.runDelay = -1;
+		// pet stuff
+		this.currentModule = null;
+		this.petDead = false;
+		this.petActivateTimer = -1;
+		this.moduleCooldown = -1;
+		this.petHasFuel = true;
 		// QuickSlot stuff
 		this.abilityCoolDown = 1;
 		this.formation = -1;
 		this.pauseTime = null;
 		this.pauseStop = null;
+	}
+
+	changePetModule(module_id){
+		if(this.currentModule != module_id){
+			Injector.injectScript('document.getElementById("preloader").petModule(parseInt('+module_id+'), "");');
+			this.currentModule = module_id;
+		}
+	}
+
+	callPet(n){
+		// 0 = activate
+		// 1 = deactivate
+		// 4 = repair
+		// because petCall is only defined when pet is activated, we have to use pressKey to call the pet
+		if(n == 0){
+			api.petActivateTimer = $.now();
+			Injector.injectScript('document.getElementById("preloader").pressKey('+69+');');
+		}else{
+			Injector.injectScript('document.getElementById("preloader").petCall('+parseInt(n)+');');
+			this.currentModule = -1;
+		}
 	}
 
 	pause(t){

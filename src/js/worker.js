@@ -49,7 +49,8 @@ $(document).ready(function () {
 
     window.settings = new Settings();
     window.initialized = false;
-    window.reviveCount = 0;
+	window.reviveCount = 0;
+	window.petReviveCount = 0;
     window.count = 0;
     window.movementDone = true;
     window.statusPlayBot = false;
@@ -84,6 +85,7 @@ $(document).ready(function () {
 	hm.registerCommand(HeroAttackHandler.ID, new HeroAttackHandler());
 	hm.registerCommand(HeroAffectedHandler.ID, new HeroAffectedHandler());
 	hm.registerCommand(HeroJumpedHandler.ID, new HeroJumpedHandler());
+	hm.registerCommand(PetUpdateFuel.ID, new PetUpdateFuel());
 
 
 
@@ -307,7 +309,7 @@ function logic() {
 					api.lockShip(inter.ship);
 					api.startLaserAttack();
 				}
-				// TO br improved
+				// To be improved
 				api.flyingMode();	
 				let fog_half_x = 21700;
 				let fog_half_y = 22250;
@@ -372,6 +374,33 @@ function logic() {
 		}
 	}
 
+	if(window.settings.settings.enablePet && window.petReviveCount < window.settings.settings.petReviveLimit && api.petHasFuel){
+		// We wait 5 seconds to give time for the repair function to execute
+		if(api.petDead){
+			setTimeout(() => {
+				api.callPet(4);
+				api.petDead = false;
+			}, 1000);
+		}else if(window.pet == null && $.now() - api.petActivateTimer > 5000){
+			api.callPet(0);
+			return;
+		}else if(window.settings.settings.enablePet && window.settings.settings.petModule != 0 && $.now() - api.petActivateTimer > 2000){
+			// If using kamikaze module
+			if(window.settings.settings.petModule == 10){
+				// check for the 30s cooldown
+				// extra 5s because of the repair process
+				if($.now() - api.moduleCooldown > 35000){
+					api.changePetModule(window.settings.settings.petModule);
+				}else{
+					// if kamikaze on cooldown, change to guard mode
+					api.changePetModule(2);
+				}
+			}else{
+				api.changePetModule(window.settings.settings.petModule);
+			}
+		}
+	}
+
 	if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.settings.repairWhenHpIsLowerThanPercent || api.isRepairing) {
 		api.isRepairing = true;
 		return;
@@ -405,7 +434,7 @@ function logic() {
 		}
 	}
 	// npc killing stuck
-	if ((api.targetShip && $.now() - api.lockTime > 6000 && ($.now() - api.lastAttack > 6000)) || !api.attacking && ($.now() - api.lastAttack > 10000)){
+	if ((api.targetShip && $.now() - api.lockTime > 5000 && ($.now() - api.lastAttack > 5000)) || !api.attacking && ($.now() - api.lastAttack > 8000)){
 		api.resetTarget("enemy");
 	}
 
@@ -478,6 +507,9 @@ function logic() {
 	}
 
 	if(api.targetBoxHash == null && api.targetShip == null && window.movementDone && window.settings.settings.moveRandomly){
+		if(window.settings.settings.autoCamo){
+			api.quickSlot(window.settings.settings.camouflageSlot);
+		}
 		if ( !window.settings.settings.palladium && !window.bigMap) {
 			x = MathUtils.random(200, 20800);
 			y = MathUtils.random(200, 12900);

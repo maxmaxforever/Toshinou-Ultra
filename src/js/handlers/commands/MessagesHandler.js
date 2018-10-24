@@ -35,6 +35,7 @@ class MessagesHandler {
 						// pet out of fuel
 						a.petHasFuel = false;
 						window.pet = null;
+						a.currentModule = -1;
 					}
 				}
 				this.connection({

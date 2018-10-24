@@ -7,7 +7,6 @@ class PetUpdateFuel {
 		this._handler = (e, a) => {
             let command = e.wholeMessage.split("|");
             a.petHasFuel = true;
-            a.currentModule = -1;
         }
     }
 

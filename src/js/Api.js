@@ -47,14 +47,9 @@ class Api {
 		// 0 = activate
 		// 1 = deactivate
 		// 4 = repair
-		// because petCall is only defined when pet is activated, we have to use pressKey to call the pet
-		if(n == 0){
-			api.petActivateTimer = $.now();
-			Injector.injectScript('document.getElementById("preloader").pressKey('+69+');');
-		}else{
-			Injector.injectScript('document.getElementById("preloader").petCall('+parseInt(n)+');');
-			this.currentModule = -1;
-		}
+		api.petActivateTimer = $.now();
+		Injector.injectScript('document.getElementById("preloader").petCall('+parseInt(n)+');');
+		this.currentModule = -1;
 	}
 
 	pause(t){

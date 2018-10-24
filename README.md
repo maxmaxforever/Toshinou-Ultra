@@ -24,13 +24,12 @@ ES guide: https://youtu.be/4kp8v413634<br />
 
 TODO:
 ----------
--Palladium repair  
+-Improve Palladium repair 
 -React to enemy attacks on palladium  
 -Palladium traveler if repairing on gate  
--Change GG repair (ship can get stuck while surrounded by npcs)  
+-Improve gg repair(ship can run onto npcs and die)
 -Improve npc Circle  
--Temporarily save box positions  
--Pet support (coming soon!)  
+-Temporarily save box positions
 
 Issues
 ----------

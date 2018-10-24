@@ -41,7 +41,7 @@ class Box extends Movable {
 
 	isCargoBox() {
 		let type = this.type;
-		return (type == "FROM_SHIP");
+		return (type == "FROM_SHIP" || type == "CANDY_CARGO");
 	}
 
 	isDropRes() {

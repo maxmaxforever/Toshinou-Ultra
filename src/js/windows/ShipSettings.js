@@ -172,7 +172,7 @@ class ShipSettings{
             disabled: true && !window.settings.settings.enablePet,
             appendTo: this.shipSettingsWindow,
             labelBefore: true,
-            options: {2:"Guard Mode", 10:"Kamikaze", 4:"Auto loot", 5:"Collect Resource", 6:"Enemy locator"},
+            options: {2:"Guard Mode", 10:"Kamikaze", 4:"Auto loot", 5:"Collect Resource"}, // , 6:"Enemy locator"
             attrs:{
                 class: "petstuff"
             },

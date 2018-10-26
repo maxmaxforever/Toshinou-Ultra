@@ -78,7 +78,7 @@ class Api {
 	}
 
 	useAbility(){
-		var cooldownlist = {"cyborg":310000,"solace":140000,"diminisher":161000,"venom":180000 ,"sentinel":235000 ,"spectrum":210000};
+		var cooldownlist = {"cyborg":310000,"solace":140000,"diminisher":161000,"venom":180000,"sentinel":215000,"spectrum":195000,"v-lightning":185000};
 		if(this.abilityCoolDown && $.now() - this.abilityCoolDown > cooldownlist[window.hero.skillName]){
 			this.quickSlot(window.settings.settings.abilitySlot);
 			this.abilityCoolDown = $.now();
@@ -507,8 +507,19 @@ class Api {
 		let gate = this.findNearestGateForRunAway(enemy);
 		if(gate.gate){
 			let dist = window.hero.distanceTo(gate.gate.position);
-			if (window.settings.settings.useAbility && window.hero.skillName == "spectrum" && dist > 350) 
-				api.useAbility();
+            if (window.settings.settings.useAbility && dist > 350 &&
+                (window.hero.skillName == "spectrum" ||
+                    window.hero.skillName == "sentinel" ||
+                    window.hero.skillName == "v-lightning" )) {
+
+                let hpPercent = MathUtils.percentFrom(window.hero.hp, window.hero.maxHp);
+                let shdPercent = MathUtils.percentFrom(window.hero.shd, window.hero.maxShd);
+                // Excludes shield factor if there's no shield on the configuration
+                if (isNaN(shdPercent))
+                    shdPercent = 100;
+                if (Math.min(hpPercent, shdPercent) < window.settings.settings.repairWhenHpIsLowerThanPercent)
+                    api.useAbility();
+            }
 			if(window.settings.settings.jumpFromEnemy && !window.stayInPortal){
 				if (this.jumpAndGoBack(gate.gate.gateId)) {
 					this.runDelay = $.now();
@@ -528,6 +539,24 @@ class Api {
 				window.fleeFromEnemy = false;
 			}
 		}
+	}
+
+	findNearestGatebyGateType(gateId) {
+		let minDist = 100000;
+		let finalGate;
+
+		this.gates.forEach(gate => {
+			let dist = window.hero.distanceTo(gate.position);
+			if (dist < minDist && gate.gateType == gateId) {
+				finalGate = gate;
+				minDist = dist;
+			}
+		});
+
+		return {
+		gate: finalGate,
+		distance: minDist
+		};
 	}
 
 	findNearestGatebyGateType(gateId) {

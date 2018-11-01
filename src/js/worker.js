@@ -214,7 +214,7 @@ function logic() {
 			window.fleeFromEnemy = false;
 		if (api.disconnectTime && $.now() - api.disconnectTime > 5000 && (!api.reconnectTime || (api.reconnectTime && $.now() - api.reconnectTime > 15000)) && window.reviveCount < window.settings.settings.reviveLimit) 
 			api.reconnect();
-		if(api.reconnectTime && $.now() - api.reconnectTime > 60000 && window.settings.settings.enableRefresh)
+		if(api.disconnectTime && $.now() - api.disconnectTime > 120000 && window.settings.settings.enableRefresh)
 			window.location.reload();
 		return;
 	}

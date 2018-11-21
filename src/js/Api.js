@@ -350,18 +350,6 @@ class Api {
 		return shipsAround;
 	}
 
-	ggCountNpcAround(distance){
-		let shipsCount = Object.keys(this.ships).length;
-		let shipsAround = 0;
-		for (let property in this.ships) {
-			let ship = this.ships[property];
-			if (ship && ship.distanceTo(window.hero.position) < distance) {
-				shipsAround++;
-			}
-		}
-		return shipsAround;
-	}
-
 	allNPCInCorner(){
 		let shipsCount = Object.keys(this.ships).length;
 		let shipsInCorner = 0;
@@ -416,18 +404,6 @@ class Api {
 		};
 	}
 	
-	refresh(){
-		chrome.storage.local.set({"refreshed" :true});
-	}
-
-	refreshed(){
-		let refreshed = false;
-		chrome.storage.local.get({"refreshed" :false}, function(v){
-			refreshed = v;
-		}
-		);
-		return refreshed;
-	}
 
 	findNearestShip() {
 		let minDist = window.settings.settings.palladium ? window.settings.settings.npcCircleRadius : 100000;

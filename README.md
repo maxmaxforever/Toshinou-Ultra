@@ -1,5 +1,5 @@
 
-STATUS:**OFFLINE** 
+STATUS:**BUGGED** 
 
 Discord: https://discord.gg/qdBegY
 

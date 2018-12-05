@@ -29,6 +29,7 @@ class NpcSettingsWindow {
 
   get knownNpcList() {
     return [
+      " \\ Purpose XXI //",
       "-=[ Streuner ]=-",
       "-=[ Aider Streuner ]=-",
       "-=[ Recruit Streuner ]=-",

@@ -54,7 +54,7 @@ class Minimap {
 			var ship = this._api.ships[property];
 
 			if (ship == null)
-			continue;
+				continue;
 
 			ship.update();
 			var pos = ship.position;

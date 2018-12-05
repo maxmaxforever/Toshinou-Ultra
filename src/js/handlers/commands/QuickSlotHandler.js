@@ -2,7 +2,7 @@ class QuickSlotHandler {
 	static get ID() {
 		return 8521;
 	}
-	// Useless for now...
+	// Useless for now... git test bot
 	// It is supposed to activate everytime something on the quickslot changes state 
 	constructor(f) {
 		this._handler = function (e, a) {

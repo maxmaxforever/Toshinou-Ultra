@@ -743,9 +743,9 @@ class Api {
 		portals18.push(new Portal(150000307,19)); //1-8 | 1-7
 		this.starSystem.push(new Map(20, portals18));
 		let portals25 = [];
-		portals25.push(new Portal(150000312,16)); //2-5 | 4-4
-		portals25.push(new Portal(150000312,29)); //2-5 | 4-5
-		portals25.push(new Portal(150000309,22)); //2-5 | 2-6
+		portals25.push(new Portal(150000330,16)); //2-5 | 4-4
+		portals25.push(new Portal(150000309,29)); //2-5 | 4-5
+		portals25.push(new Portal(150000310,22)); //2-5 | 2-6
 		portals25.push(new Portal(150000312,23)); //2-5 | 2-7
 		this.starSystem.push(new Map(21, portals25));
 		let portals26 = [];

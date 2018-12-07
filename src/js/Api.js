@@ -459,7 +459,7 @@ class Api {
 		let minDist = 100000;
 		let finalGate;
 		this.gates.forEach(gate => {
-			if(gate.gateId != 150000409 && gate.gateId != 150000410 && gate.gateId != 150000411){
+			if(gate.gateId != 150000409 && gate.gateId != 150000410 && gate.gateId != 150000411 && gate.gateType == 1){
 				let enemeyDistance = enemy.distanceTo(gate.position);
 				let dist = window.hero.distanceTo(gate.position);
 				if (enemeyDistance < dist) {

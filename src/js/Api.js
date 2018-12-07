@@ -459,7 +459,10 @@ class Api {
 		let minDist = 100000;
 		let finalGate;
 		this.gates.forEach(gate => {
-			if(gate.gateId != 150000409 && gate.gateId != 150000410 && gate.gateId != 150000411 && gate.gateType == 1){
+			// Avoid pvp gates if Jump and Return is enabled
+			// 1-5->4-4 | 3-5->4-4 | 2-5->4-4 | 1-4->4-1 | 2-4->4-2 | 3-4->4-3 respectively
+			let pvpgates = [150000299, 150000319,150000330, 150000191, 150000192, 150000193];
+			if(gate.gateType == 1 && !(window.settings.settings.jumpFromEnemy && pvpgates.indexOf(gate.gateId) != -1)){
 				let enemeyDistance = enemy.distanceTo(gate.position);
 				let dist = window.hero.distanceTo(gate.position);
 				if (enemeyDistance < dist) {

@@ -1,5 +1,5 @@
 
-STATUS:**BUGGED** 
+STATUS:**ONLINE** 
 
 Discord: https://discord.gg/qdBegY
 
@@ -29,9 +29,9 @@ TODO:
 -Improve Palladium repair 
 -React to enemy attacks on palladium  
 -Palladium traveler if repairing on gate  
--Improve gg repair(ship can run onto npcs and die)
+-Improve gg repair(ship can run onto npcs and die)  
 -Improve npc Circle  
--Temporarily save box positions
+-Temporarily save box positions  
 
 Issues
 ----------

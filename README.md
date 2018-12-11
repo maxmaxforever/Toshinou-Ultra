@@ -1,7 +1,7 @@
 
 STATUS:**ONLINE** 
 
-Discord: https://discord.gg/qdBegY
+Discord: https://discord.gg/pXAjVQE
 
 Toshinou Ultra
 ==========

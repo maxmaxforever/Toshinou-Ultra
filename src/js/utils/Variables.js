@@ -103,7 +103,7 @@ class Variables {
 	
 			
 	static get resourceType() {
-		return "_-w1f";
+		return "_-e3n";
 	}
 
 	static get battlestationClanDiplomacy() {

@@ -107,6 +107,6 @@ class Variables {
 	}
 
 	static get battlestationClanDiplomacy() {
-		return "_-mA"; 
+		return "_-G2i"; 
 	}
 }

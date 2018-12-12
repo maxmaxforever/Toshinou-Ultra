@@ -94,8 +94,7 @@ class Variables {
 	static get selectHp() {
 		return "_-24e";
 	}
-		
-	
+			
 	static get resourceType() {
 		return "_-w1f";
 	}

@@ -1,7 +1,7 @@
 class Variables {
 
 	static get boxType() {
-		return "_-PH";
+		return "_-O3e";
 	}
 	
 	static get assetCreateX() {

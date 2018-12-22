@@ -39,6 +39,6 @@ chrome.webRequest.onBeforeRequest.addListener(
 			cancel: result
 		};
 	}, {
-		urls: ["https://*.bigpoint.net/*", "https://darkorbit-22.bpsecure.com/spacemap/main*"]
+		urls: ["https://*.bigpoint.net/*", "https://darkorbit-22.bpsecure.com/spacemap/main.swf*"]
 	}, ["blocking"]
 );

@@ -34,6 +34,18 @@ class Api {
 		this.formation = -1;
 		this.pauseTime = null;
 		this.pauseStop = null;
+		// sleep
+		this.sleepTime = 0;
+	}
+
+	sleeping(){
+		if($.now() >= this.sleepTime)
+			return false;
+		return true;
+	}
+
+	sleep(delay){
+		sleepTime = $.now() + delay;
 	}
 
 	changePetModule(module_id){
@@ -399,8 +411,8 @@ class Api {
 			}
 		}
 		return {
-		box: finalBox,
-		distance: minDist
+			box: finalBox,
+			distance: minDist
 		};
 	}
 	

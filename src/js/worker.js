@@ -544,7 +544,7 @@ function logic() {
 			api.combatMode();
 			if(window.settings.settings.useAbility && window.hero.skillName && dist < window.settings.settings.npcCircleRadius){
 				// Make hp and shield heren a user option.
-				if((window.hero.skillname == "cyborg" && api.targetShip.hp > window.globalSettings.cyborgHp)||
+				if((window.hero.skillName == "cyborg" && api.targetShip.hp > window.globalSettings.cyborgHp)||
 					(window.hero.skillName == "venom" && api.targetShip.hp > window.globalSettings.venomHp))
 				{
 					api.useAbility();

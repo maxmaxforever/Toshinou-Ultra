@@ -472,8 +472,8 @@ class Api {
 		let finalGate;
 		this.gates.forEach(gate => {
 			// Avoid pvp gates if Jump and Return is enabled
-			// 1-5->4-4 | 3-5->4-4 | 2-5->4-4 | 1-4->4-1 | 2-4->4-2 | 3-4->4-3 respectively
-			let pvpgates = [150000299, 150000319,150000330, 150000191, 150000192, 150000193];
+			// 1-5->4-4 | 3-5->4-4 | 2-5->4-4 | 1-4->4-1 | 2-4->4-2 | 3-4->4-3 | x-8->x-BL respectively
+			let pvpgates = [150000299, 150000319,150000330, 150000191, 150000192, 150000193, 150000209, 150000205, 150000201];
 			if(gate.gateType == 1 && !(window.settings.settings.jumpFromEnemy && pvpgates.indexOf(gate.gateId) != -1)){
 				let enemeyDistance = enemy.distanceTo(gate.position);
 				let dist = window.hero.distanceTo(gate.position);
@@ -652,23 +652,23 @@ class Api {
 	fillStarSystem(){
 		this.starSystem = [];
 		let portals11 = [];
-		portals11.push(new Portal(150000159,2)); // 1-1
+		portals11.push(new Portal(150000159,2)); // 1-1 | 1-2
 		this.starSystem.push(new Map(1, portals11));
 		let portals12 = [];
-		portals12.push(new Portal(150000160,1)); // 1-
-		portals12.push(new Portal(150000161,3)); // 1-
-		portals12.push(new Portal(150000163,4)); // 1-
+		portals12.push(new Portal(150000160,1)); // 1-2 | 1-1
+		portals12.push(new Portal(150000161,3)); // 1-2 | 1-3
+		portals12.push(new Portal(150000163,4)); // 1-2 | 1-4
 		this.starSystem.push(new Map(2, portals12));
 		let portals13 = [];
 		portals13.push(new Portal(150000162,2)); // 1-3 | 2-3
-		portals13.push(new Portal(150000185,4)); // 1-3 | 
+		portals13.push(new Portal(150000185,4)); // 1-3 | 1-4
 		portals13.push(new Portal(150000165,7)); // 1-3 | 1-2
 		this.starSystem.push(new Map(3, portals13));
 		let portals14 = [];
-		portals14.push(new Portal(150000164,2)); // 1-2 mod
-		portals14.push(new Portal(150000186,3)); // 1-3
-		portals14.push(new Portal(150000189,13)); // 4-1
-		portals14.push(new Portal(150000169,12)); // 3-4
+		portals14.push(new Portal(150000164,2));  // 1-4 | 1-2 
+		portals14.push(new Portal(150000186,3));  // 1-4 | 1-3
+		portals14.push(new Portal(150000189,13)); // 1-4 | 4-1
+		portals14.push(new Portal(150000169,12)); // 1-4 | 3-4
 		this.starSystem.push(new Map(4, portals14));
 		let portals21 = [];
 		portals21.push(new Portal(150000174,6)); //2-1 | 2-2
@@ -684,9 +684,9 @@ class Api {
 		portals23.push(new Portal(150000167,6)); //2-3 | 2-2
 		this.starSystem.push(new Map(7, portals23));
 		let portals24 = [];
-		portals24.push(new Portal(150000184,7)); //2-4 | 2-3
+		portals24.push(new Portal(150000184,7));  //2-4 | 2-3
 		portals24.push(new Portal(150000191,14)); //2-4 | 4-2
-		portals24.push(new Portal(150000176,6)); //2-4 | 2-2
+		portals24.push(new Portal(150000176,6));  //2-4 | 2-2
 		portals24.push(new Portal(150000177,11)); //2-4 | 3-3
 		this.starSystem.push(new Map(8, portals24));
 		let portals31 = [];
@@ -695,7 +695,7 @@ class Api {
 		let portals32 = [];
 		portals32.push(new Portal(150000180,11)); //3-2 | 3-3
 		portals32.push(new Portal(150000172,12)); //3-2 | 3-4
-		portals32.push(new Portal(150000181,9)); //3-2 | 3-1
+		portals32.push(new Portal(150000181,9));  //3-2 | 3-1
 		this.starSystem.push(new Map(10, portals32));
 		let portals33 = [];
 		portals33.push(new Portal(150000178,8)); //3-3 | 2-4
@@ -706,7 +706,7 @@ class Api {
 		portals34.push(new Portal(150000170,4)); //3-4 | 1-3
 		portals34.push(new Portal(150000193,15)); //3-4 | 4-3
 		portals34.push(new Portal(150000187,11)); //3-4 | 3-3
-		portals34.push(new Portal(150000171,10)); //3-4 | 
+		portals34.push(new Portal(150000171,10)); //3-4 | 3-2
 		this.starSystem.push(new Map(12, portals34));
 		let portals43 = [];
 		portals43.push(new Portal(150000194,12)); //4-3 | 3-4

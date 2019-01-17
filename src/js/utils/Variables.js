@@ -1,110 +1,110 @@
 class Variables {
-
 	static get assetCreateX() {
-		return "_-GX";
+		return "_-Ye";
 	}
 	
 	static get assetCreateY() {
-		return "_-XE";
+		return "_-45e";
 	}
 	
 	static get boxType() {
-		return "_-E3P";
+		return "_-s1X";
 	}
 	
 	static get gateId() {
-		return "_-I4b";
+		return "_-K2c";
 	}
 	
 	static get gateType() {
-		return "_-B43";
+		return "_-S17";
 	}
 	
 	static get attackerId() {
-		return "_-42Z";
+		return "_-Q2X";
 	}
 	
 	static get heroAttackedId() {
-		return "_-a1G";
+		return "_-N38";
 	}
 	
 	static get attackHp() {
-		return "_-uT";
+		return "_-nq";
 	}
 	
 	static get attackShd() {
-		return "_-b3O";
+		return "_-W4I";
 	}
 	
 	static get heroInitMaxHp() {
-		return "_-P4u";
+		return "_-H49";
 	}
 	
 	static get heroInitMaxShd() {
-		return "_-74w";
+		return "_-d21";
 	}
 	
 	static get heroInitHp() {
-		return "_-V2v";
+		return "_-N2v";
 	}
 	
 	static get heroPetId() {
-		return "_-643";
+		return "_-f4u";
 	}
 	
 	static get hpUpdateMaxHp() {
-		return "_-C4l";
+		return "_-F4d";
 	}
 	
 	static get hpUpdateHp() {
-		return "_-65u";
+		return "_-h1w";
 	}
 	
 	static get heroUpdateShd() {
-		return "_-l30";
+		return "_-J4n";
 	}
 	
 	static get resource() {
-		return "_-22G";
+		return "_-M4T";
 	}
 	
 	static get attackerId() {
-		return "_-42Z";
+		return "_-Q2X";
 	}
 	
 	static get attackedId() {
-		return "_-O27";
+		return "_-g2J";
 	}
 	
 	static get clanDiplomacy() {
-		return "_-5w";
+		return "_-Y4B";
 	}
 	
 	static get shipDestroyedId() {
-		return "_-h24";
+		return "_-71";
 	}
 	
 	static get moveDuration() {
-		return "_-E3O";
+		return "_-h1z";
 	}
 	
 	static get selectMaxHp() {
-		return "_-C4l";
+		return "_-F4d";
 	}
 	
 	static get selectMaxShd() {
-		return "_-74w";
+		return "_-d21";
 	}
 	
 	static get selectHp() {
-		return "_-65u";
+		return "_-h1w";
 	}	
-			
+	
 	static get resourceType() {
-		return "_-O3f";
+		return "_-hw";
 	}
 
 	static get battlestationClanDiplomacy() {
-		return "_-Y2D"; 
+		return "_-N41"; 
 	}
+	
 }

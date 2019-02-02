@@ -435,8 +435,10 @@ class Api {
 
 			if (dist < minDist) {
 				if (ship.isNpc && window.settings.getNpc(ship.name) && !this.isShipOnBlacklist(ship.id) && !ship.isAttacked) {
-					finalShip = ship;
-					minDist = dist;
+					if(ship.firstAttacker == null || (ship.firstAttacker != null && ship.firstAttacker == window.hero.id)){
+						finalShip = ship;
+						minDist = dist;
+					}
 				}
 			}
 		}

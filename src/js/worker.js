@@ -427,7 +427,7 @@ function logic() {
 			api.collectBox(box.box);
 			api.targetBoxHash = box.box.hash;
 			return;
-		} else if (ship.ship && ship.distance < 1000 && window.settings.settings.killNpcs) {
+		} else if (!api.lockedShip &&ship.ship && ship.distance < 1000 && window.settings.settings.killNpcs) {
 			api.lockShip(ship.ship);
 			api.triedToLock = true;
 			api.targetShip = ship.ship;
@@ -445,6 +445,13 @@ function logic() {
 			api.flyingMode();
 		}
 	}
+
+
+	// firstAttacker is null if npc is not attacked or was attacked by hero/pet
+	if(api.targetShip != null && api.targetShip.firstAttacker != window.hero.id && api.targetShip.firstAttacker != null){
+		api.resetTarget("enemy");
+	}
+
 	// npc killing stuck
 	if ((api.targetShip && $.now() - api.lockTime > 5000 && ($.now() - api.lastAttack > 5000)) || !api.attacking && ($.now() - api.lastAttack > 8000)){
 		api.resetTarget("enemy");

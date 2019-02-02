@@ -446,8 +446,18 @@ function logic() {
 		}
 	}
 
+	if (!api.attacking && api.lockedShip &&
+		!api.isShipOnBlacklist(api.lockedShip.id) &&
+		(window.settings.settings.killNpcs && api.lockedShip.isNpc && !window.settings.settings.pause) ||
+		(window.settings.settings.autoAttack && api.lockedShip.isEnemy && !api.lockedShip.isNpc) ||
+		(window.settings.settings.autoAttackNpcs && api.lockedShip.isNpc)) {
+			api.startLaserAttack();
+			api.lastAttack = $.now();
+			api.attacking = true;
+	}
 
-	// firstAttacker is null if npc is not attacked or was attacked by hero/pet
+
+	// firstAttacker is null if npc is not attacked 
 	if(api.targetShip != null && api.targetShip.firstAttacker != window.hero.id && api.targetShip.firstAttacker != null){
 		api.resetTarget("enemy");
 	}

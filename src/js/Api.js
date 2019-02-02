@@ -495,7 +495,7 @@ class Api {
 		// If no good gate found, just run away to the closest
 		if(finalGate == null){
 			finalGate = bestGate;
-			bestDist = dist;
+			minDist = bestDist;
 		}
 	
 		return {

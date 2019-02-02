@@ -442,7 +442,16 @@ function logic() {
 			// It doesn't change while collecting because the ship might get stuck for a few seconds
 			// after changing config.
 			// I don't know how this would work on palladium, so we don't do it while there
-			api.flyingMode();
+			if (window.settings.settings.autoChangeConfig && window.settings.settings.flyingConfig != window.hero.shipconfig) {
+				api.changeConfig();
+				return;
+			}
+			if (window.settings.settings.changeFormation && api.formation != window.settings.settings.flyingFormation) {
+				api.changeFormation(window.settings.settings.flyingFormation);
+				return;
+			}
+			// Not calling the function from api because i want to return after changing formation/config
+			// so the game doesn't lag
 		}
 	}
 

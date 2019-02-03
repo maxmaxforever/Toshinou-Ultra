@@ -93,7 +93,11 @@ class Variables {
 	
 	static get selectHp() {
 		return "_-V2H";
-	}	
+	}
+	
+	static get heroUpdateShield(){
+		return "_-34F";
+	}
 	
 	static get resourceType() {
 		return "_-p1M";

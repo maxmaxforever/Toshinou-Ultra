@@ -1,6 +1,6 @@
 class HeroUpdateShieldHandler {
 	static get ID() {
-		return 19185; 
+		return 21645; 
 	}
   
 	constructor() {

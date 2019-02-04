@@ -21,7 +21,11 @@ class Minimap {
 
 		this.canvas.click(function (e) {
 			var pos = self.minimap.position();
-			var movable = e.target.parentNode.parentNode.parentNode.style;
+			if(window.globalSettings.windowsToTabs){
+				var movable = e.target.parentNode.parentNode.parentNode.style;
+			}else{
+				var movable = e.target.parentNode.parentNode.style;
+			}
 			var movable_x = parseInt(movable.left) || 0;
 			var movable_y = parseInt(movable.top) || 0;
 			var x = ((e.clientX - pos.left) - movable_x) * (window.b1)-window.b3;

@@ -579,24 +579,31 @@ function logic() {
 				}
 			}
 		}
-		if (window.settings.settings.ggbot && api.targetShip.position.x == 20999 && api.targetShip.position.y == 13499) {
-			//GG bottom right corner
+		if (window.settings.settings.ggbot && 
+			api.targetShip.percentOfHp <= 25 &&
+			api.targetShip.position.distanceTo(new Vector2D(20990, 13490)) < 80) {
+			console.log("GG bottom right corner");
 			x = 20495;
 			y = 13363;
-		} else if (window.settings.settings.ggbot && api.targetShip.position.x == 0 && api.targetShip.position.y == 0) {
-			//GG top left corner
+		} else if(window.settings.settings.ggbot && 
+			api.targetShip.percentOfHp <= 25 &&
+			api.targetShip.position.distanceTo(new Vector2D(0, 0)) < 80) {
+			console.log("GG top left corner");
 			x = 450;
 			y = 302;
 		} else if ((dist > 600 && (api.lockedShip == null || api.lockedShip.id != api.targetShip.id) && $.now() - api.lastMovement > 1000)) {
+			console.log("Moving straight");
 			x = api.targetShip.position.x - MathUtils.random(-50, 50);
 			y = api.targetShip.position.y - MathUtils.random(-50, 50);
 			api.lastMovement = $.now();
 		} else if (api.lockedShip && window.settings.settings.dontCircleWhenHpBelow25Percent && api.lockedShip.percentOfHp < 25 && api.lockedShip.id == api.targetShip.id ) {
+			console.log("Don't circle when hp low");
 			if (dist > 450) {
 				x = api.targetShip.position.x + MathUtils.random(-30, 30);
 				y = api.targetShip.position.y + MathUtils.random(-30, 30);
 			}
-		} else if (window.settings.settings.ggbot && window.settings.settings.resetTargetWhenHpBelow25Percent && api.lockedShip && api.lockedShip.percentOfHp < 25 && api.lockedShip.id == api.targetShip.id ) {
+		} else if (window.settings.settings.ggbot && Object.keys(api.ships).length > 1 && window.settings.settings.resetTargetWhenHpBelow25Percent && api.lockedShip && api.lockedShip.percentOfHp < 25 && api.lockedShip.id == api.targetShip.id) {
+			console.log("Resetting target");
 			api.resetTarget("enemy");
 		} else if (dist > 300 && api.lockedShip && api.lockedShip.id == api.targetShip.id & !window.settings.settings.circleNpc) {
 			x = api.targetShip.position.x + MathUtils.random(-200, 200);

@@ -197,13 +197,18 @@ function init() {
 	clearBtn.on('click', (e) => {
 		chrome.storage.local.set(window.settings.defaults);
 	});
-	// LUL
+	
+	/* Start the bot again after auto-refresh */
 	chrome.storage.local.get({"refreshed" :false}, function(v){
-		if(v && window.settings.settings.enableRefresh){
-			cntBtnPlay.click();
-			chrome.storage.local.set({"refreshed" :false});
+		if(v.refreshed && window.settings.settings.enableRefresh){
+			let cntBtnPlay = $('.cnt_btn_play .btn_play');
+
+			cntBtnPlay.html("Stop");
+			cntBtnPlay.removeClass('in_play').addClass('in_stop');
+			window.settings.settings.pause = false;
 		}
 	});
+	chrome.storage.local.set({"refreshed" :false});
 }
 
 
@@ -257,8 +262,6 @@ function logic() {
 	}
 
 	if(api.sleeping()){
-		// i forgot what i was going to use this for :|
-		// call api.sleep(ms) and the bot will only execute the functions above this check
 		return;
 	}
 
@@ -439,9 +442,6 @@ function logic() {
 			return;
 		} else if(!window.settings.settings.palladium && window.settings.settings.changeMode){
 			// Change to flying mode while looking for npcs/boxes.
-			// It doesn't change while collecting because the ship might get stuck for a few seconds
-			// after changing config.
-			// I don't know how this would work on palladium, so we don't do it while there
 			if (window.settings.settings.autoChangeConfig && window.settings.settings.flyingConfig != window.hero.shipconfig) {
 				api.changeConfig();
 				return;

@@ -100,4 +100,9 @@ class Variables {
 		return "_-049"; 
 	}
 	
+
+    static get attackedId() {
+        return "_-VO";
+    }
+	
 }

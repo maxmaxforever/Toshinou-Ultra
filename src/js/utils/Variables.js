@@ -86,6 +86,10 @@ class Variables {
 	static get selectHp() {
 		return "_-y1o";
 	}
+
+	static get moveDuration() {
+		return "_-T4N";
+	}
 		
 	
 	static get resourceType() {

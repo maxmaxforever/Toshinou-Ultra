@@ -89,8 +89,7 @@ class Variables {
 
 	static get moveDuration() {
 		return "_-T4N";
-	}
-		
+	}	
 	
 	static get resourceType() {
 		return "_-9A";
@@ -99,7 +98,6 @@ class Variables {
 	static get battlestationClanDiplomacy() {
 		return "_-049"; 
 	}
-	
 
     static get attackedId() {
         return "_-VO";

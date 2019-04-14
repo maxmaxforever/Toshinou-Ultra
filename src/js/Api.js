@@ -36,6 +36,9 @@ class Api {
 		this.pauseStop = null;
 		// sleep
 		this.sleepTime = 0;
+
+		this.enemyLastSight = 0;
+
 	}
 
 	sleeping(){
@@ -69,6 +72,7 @@ class Api {
 		this.pauseTime = $.now();
 		this.pauseStop = t;
 	}
+	
 	combatMode(){
 		if (window.settings.settings.autoChangeConfig && window.settings.settings.attackConfig != window.hero.shipconfig){
 			api.changeConfig();
@@ -137,9 +141,13 @@ class Api {
 
 	blackListId(id) {
 		this._blackListedNpcs.push(id);
-		setTimeout(() => {
-			this._blackListedNpcs.shift();
-		}, 120000);
+	}
+
+	whitelistId(id){
+		if(this.isShipOnBlacklist(id)){
+			var index = this._blackListedNpcs.indexOf(id);
+			this._blackListedNpcs.splice(index, 1);
+		}
 	}
 
 	lockShip(ship) {
@@ -317,15 +325,15 @@ class Api {
 		let shipsCount = Object.keys(this.ships).length;
 		for (let property in this.ships) {
 			let ship = this.ships[property];
-			if (ship && (ship.name == "-=[ Devourer ]=- ζ25" || ship.name == "-=[ Devourer ]=- ζ27")) {
-				window.settings.settings.resetTargetWhenHpBelow25Percent=false;
+			if (ship && ship.name.indexOf("-=[ Devourer ]=-") != -1) {
+				window.settings.settings.resetTargetWhenHpBelow25Percent = false;
 				if (shipsCount > 1) {
-					window.settings.setNpc(ship.name, true);
+					this.blackListId(ship.id);
 					if (this.targetShip == ship) {
 						this.resetTarget("enemy");
 					}
 				} else {
-					window.settings.setNpc(ship.name, false);
+					this.whitelistId(ship.id);
 					this.targetShip = ship;
 				}
 			}
@@ -420,6 +428,7 @@ class Api {
 	findNearestShip() {
 		let minDist = window.settings.settings.palladium ? window.settings.settings.npcCircleRadius : 100000;
 		let finalShip;
+		let highestPriority = -1;
 
 		if (!window.settings.settings.killNpcs) {
 			return {
@@ -431,21 +440,29 @@ class Api {
 		for (let property in this.ships) {
 			let ship = this.ships[property];
 			ship.update();
-			let dist = ship.distanceTo(window.hero.position);
 
-			if (dist < minDist) {
-				if (ship.isNpc && window.settings.getNpc(ship.name) && !this.isShipOnBlacklist(ship.id) && !ship.isAttacked) {
-					if(ship.firstAttacker == null || (ship.firstAttacker != null && ship.firstAttacker == window.hero.id)){
+			let dist = ship.distanceTo(window.hero.position);
+			let priority = window.settings.getNpc(ship.name).priority;
+
+			if (ship.isNpc && !window.settings.getNpc(ship.name).blocked && !this.isShipOnBlacklist(ship.id) && !ship.isAttacked) {
+				if((ship.firstAttacker == null || (ship.firstAttacker != null && ship.firstAttacker == window.hero.id) ||
+					!window.settings.settings.avoidAttackedNpcs)) {
+					if(priority > highestPriority){	
 						finalShip = ship;
 						minDist = dist;
+						highestPriority = priority;
+					}else if(priority == highestPriority && minDist > dist){
+						finalShip = ship;
+						minDist = dist;
+						highestPriority = priority;
 					}
 				}
 			}
 		}
 
 		return {
-		ship: finalShip,
-		distance: minDist
+			ship: finalShip,
+			distance: minDist
 		};
 	}
 
@@ -520,7 +537,7 @@ class Api {
                 // Excludes shield factor if there's no shield on the configuration
                 if (isNaN(shdPercent))
                     shdPercent = 100;
-                if (Math.min(hpPercent, shdPercent) < window.settings.settings.repairWhenHpIsLowerThanPercent)
+                if (Math.min(hpPercent, shdPercent) < window.settings.settings.repairStartPercent)
                     api.useAbility();
             }
 			if(window.settings.settings.jumpFromEnemy && !window.stayInPortal){

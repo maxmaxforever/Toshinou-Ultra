@@ -85,6 +85,14 @@ class Minimap {
 			this._fillCircle(ct, pos.x / window.b1, pos.y / window.b2, 2);
 		}
 
+		// Draw target info.
+		if(this._api.lockedShip){
+			ct.fillStyle = "Green";
+			ct.fillRect(this.canvas.width()/2 - 65, 2, api.lockedShip.hp/(this._api.lockedShip.maxHp/60), 8);
+			ct.fillStyle = "Blue";
+			ct.fillRect(this.canvas.width()/2 + 5, 2, api.lockedShip.shd/(this._api.lockedShip.maxShd/60), 8);
+		}
+
 		if (this._api.battlestation) {
 			let bs = this._api.battlestation;
 			if (bs.isEnemy && bs.factionId != 0) {

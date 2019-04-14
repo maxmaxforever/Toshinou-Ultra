@@ -28,6 +28,7 @@ class GeneralSettingsWindow {
 	},
 	{
 		name: 'moveRandomly',
+		type: 'checkbox',
 		labelText: chrome.i18n.getMessage("moverandomly"),
 		appendTo: this.botSettingsWindow,
 		event: function () {
@@ -36,6 +37,7 @@ class GeneralSettingsWindow {
 	},
 	{
 		name: 'killNpcs',
+		type: 'checkbox',
 		labelText: chrome.i18n.getMessage("killnpcs"),
 		appendTo: this.botSettingsWindow,
 		event: function () {
@@ -44,6 +46,7 @@ class GeneralSettingsWindow {
 	},
 	{
 		name: 'fleeFromEnemy',
+		type: 'checkbox',
 		labelText: chrome.i18n.getMessage("fleefromenemy"),
 		appendTo: this.botSettingsWindow,
 		event: function () {
@@ -52,6 +55,7 @@ class GeneralSettingsWindow {
 	},
 	{
 		name: 'jumpFromEnemy',
+		type: 'checkbox',
 		labelText: chrome.i18n.getMessage("jumpandreturn"),
 		appendTo: this.botSettingsWindow,
 		event: function () {
@@ -60,6 +64,7 @@ class GeneralSettingsWindow {
 	},
 	{
 		name: 'dodgeTheCbs',
+		type: 'checkbox',
 		labelText: chrome.i18n.getMessage("dodgethecbs"),
 		appendTo: this.botSettingsWindow,
 		event: function () {
@@ -68,6 +73,7 @@ class GeneralSettingsWindow {
 	},
 	{
 		name: 'avoidAttackedNpcs',
+		type: 'checkbox',
 		labelText: chrome.i18n.getMessage("avoidattackednpc"),
 		appendTo: this.botSettingsWindow,
 		event: function () {
@@ -76,6 +82,7 @@ class GeneralSettingsWindow {
 	},
 	{
 		name: 'circleNpc',
+		type: "label",
 		labelText: chrome.i18n.getMessage("circle"),
 		appendTo: this.botSettingsWindow,
 		event: function () {
@@ -101,6 +108,7 @@ class GeneralSettingsWindow {
 	},
 	{
 		name: 'dontCircleWhenHpBelow25Percent',
+		type: 'checkbox',
 		labelText: chrome.i18n.getMessage("dontcirclewhenhp"),
 		appendTo: this.botSettingsWindow,
 		event: function () {
@@ -109,6 +117,7 @@ class GeneralSettingsWindow {
 	},
 	{
 		name: 'resetTargetWhenHpBelow25Percent',
+		type: 'checkbox',
 		labelText: chrome.i18n.getMessage("resettarget"),
 		appendTo: this.botSettingsWindow,
 		event: function () {
@@ -146,6 +155,7 @@ class GeneralSettingsWindow {
 	},
 	{
 		name: 'enableRefresh',
+		type: 'checkbox',
 		labelText: chrome.i18n.getMessage("enablerefresh"),
 		appendTo: this.botSettingsWindow,
 		event: function () {

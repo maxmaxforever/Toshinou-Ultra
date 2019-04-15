@@ -82,7 +82,6 @@ class GeneralSettingsWindow {
 	},
 	{
 		name: 'circleNpc',
-		type: "label",
 		labelText: chrome.i18n.getMessage("circle"),
 		appendTo: this.botSettingsWindow,
 		event: function () {

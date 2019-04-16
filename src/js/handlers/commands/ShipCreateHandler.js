@@ -10,7 +10,7 @@ class ShipCreateHandler {
 			let shipCreateCmd = JSON.parse(e.detail);
 			let ship = new Ship(shipCreateCmd.x, shipCreateCmd.y, shipCreateCmd.userId, shipCreateCmd.npc, shipCreateCmd.userName, shipCreateCmd.factionId, shipCreateCmd.modifier, shipCreateCmd[Variables.clanDiplomacy].type, shipCreateCmd.cloaked, a.getShipName(shipCreateCmd.typeId));
 			a.ships[shipCreateCmd.userId] = ship;
-			if(!ship.npc && ship.isEnemy && !window.enemy){
+			if(!ship.isNpc && ship.isEnemy && !window.enemy){
 				window.enemy = ship;
 				a.enemyLastSight = $.now();
 			}

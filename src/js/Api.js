@@ -534,7 +534,7 @@ class Api {
 		let gate = this.findNearestGateForRunAway(enemy);
 		if(gate.gate){
 			let dist = window.hero.distanceTo(gate.gate.position);
-			if(!window.fleeingFromEnemy() && dist < 500){
+			if(!window.fleeingFromEnemy && dist < 500){
 				window.stayInPortal = true;
 			}
             if (window.settings.settings.useAbility && dist > 350 &&

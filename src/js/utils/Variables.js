@@ -104,7 +104,7 @@ class Variables {
 	}
 
     static get attackedId() {
-        return "_-VO";
+        return "_-k3C";
 	}
 	
 	static get resourceType(){

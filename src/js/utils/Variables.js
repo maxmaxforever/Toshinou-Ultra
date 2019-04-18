@@ -102,10 +102,13 @@ class Variables {
 	static get battlestationClanDiplomacy() {
 		return "_-qr"; 
 	}
+<<<<<<< HEAD
 
     static get attackedId() {
         return "_-k3C";
 	}
+=======
+>>>>>>> test
 	
 	static get resourceType(){
 		return "_-LD";

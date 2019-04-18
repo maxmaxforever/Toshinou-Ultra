@@ -116,11 +116,8 @@ class GeneralSettingsWindow {
 	},
 	{
 		name: 'circleNpc',
-<<<<<<< HEAD
-=======
-		type: 'checkbox',
->>>>>>> test
 		labelText: chrome.i18n.getMessage("circle"),
+		type: "checkbox",
 		appendTo: this.botSettingsWindow,
 		attrs: {
 			checked : window.settings.settings.circleNpc

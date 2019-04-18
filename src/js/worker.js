@@ -546,7 +546,10 @@ function logic() {
 		if(window.settings.settings.autoCamo){
 			api.quickSlot(window.settings.settings.camouflageSlot);
 		}
-		if ( !window.settings.settings.palladium && !window.bigMap) {
+		if(window.settings.WorkArea){
+			x = MathUtils.random(window.settings.WorkArea.x, window.settings.WorkArea.x + window.settings.WorkArea.w);
+			y = MathUtils.random(window.settings.WorkArea.y, window.settings.WorkArea.y + window.settings.WorkArea.h);
+		} else if ( !window.settings.settings.palladium && !window.bigMap) {
 			x = MathUtils.random(200, 20800);
 			y = MathUtils.random(200, 12900);
 		} else if (!window.settings.settings.palladium && window.bigMap) {

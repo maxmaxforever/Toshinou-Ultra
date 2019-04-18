@@ -64,7 +64,8 @@ class Settings {
 			changeMode: false,
 			sabSwitcher: false,
 			sabSlot: -1,
-			mainAmmoSlot: -1
+			mainAmmoSlot: -1,
+			workArea : null
 		};
 		chrome.storage.local.get(this.defaults, items => {
 			this.settings = items;
@@ -102,5 +103,18 @@ class Settings {
 			priority: !this.settings.npcs[name] ? 1: this.settings.npcs[name].priority,
 			range: !this.settings.npcs[name] ? this.settings.npcCircleRadius: this.settings.npcs[name].range,
 		}
+	}
+
+	get WorkArea(){
+		return this.settings.workArea;
+	}
+
+	set WorkArea({x, y, w, h}){
+		if((w-x) == 0 || (h - y) == 0){
+			this.settings.workArea = null;
+		}else{
+			this.settings.workArea = {x, y, w, h};
+		}
+		
 	}
 }

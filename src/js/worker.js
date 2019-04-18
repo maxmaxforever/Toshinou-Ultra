@@ -248,8 +248,9 @@ function logic() {
 		}
 
 		api.flyingMode();
-		window.fleeingFromEnemy = true;
 		api.fleeFromEnemy(window.enemy);
+
+		window.fleeingFromEnemy = true;
 
 		return;
 	}else{

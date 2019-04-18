@@ -486,12 +486,13 @@ class Api {
 		};
 	}
 	
-	  	  findNearestGateForRunAway(enemy) {
+	findNearestGateForRunAway(enemy) {
 		let minDist = 100000;
 		let finalGate;
 		let bestGate = 0;
 		let bestDist = 0;
-		this.gates.forEach(gate => {
+		for(var g = 0; g < this.gates.length; g++){
+			let gate = this.gates[g];
 			// Avoid pvp gates if Jump and Return is enabled
 			// 1-5->4-4 | 3-5->4-4 | 2-5->4-4 | 1-4->4-1 | 2-4->4-2 | 3-4->4-3 | x-8->x-BL respectively
 			let pvpgates = [150000299, 150000319,150000330, 150000191, 150000192, 150000193, 150000209, 150000205, 150000201];
@@ -499,6 +500,11 @@ class Api {
 				let enemeyDistance = enemy.distanceTo(gate.position);
 				let dist = window.hero.distanceTo(gate.position);
 
+				if(dist < 600){
+					bestGate = gate;
+					bestDist = dist;
+					break;
+				}
 				if (enemeyDistance < dist) {
 					bestGate = gate;
 					bestDist = dist;
@@ -509,7 +515,7 @@ class Api {
 					}
 				}
 			}
-		});
+		}
 
 		// If no good gate found, just run away to the closest
 		if(finalGate == null){
@@ -523,10 +529,14 @@ class Api {
 		};
 	}
 
+
 	fleeFromEnemy(enemy) {
 		let gate = this.findNearestGateForRunAway(enemy);
 		if(gate.gate){
 			let dist = window.hero.distanceTo(gate.gate.position);
+			if(!window.fleeingFromEnemy() && dist < 500){
+				window.stayInPortal = true;
+			}
             if (window.settings.settings.useAbility && dist > 350 &&
                 (window.hero.skillName == "spectrum" ||
                     window.hero.skillName == "sentinel" ||

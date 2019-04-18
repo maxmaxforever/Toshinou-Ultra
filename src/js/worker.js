@@ -546,7 +546,12 @@ function logic() {
 		if(window.settings.settings.autoCamo){
 			api.quickSlot(window.settings.settings.camouflageSlot);
 		}
-		if(window.settings.WorkArea){
+
+		if (window.settings.settings.palladium) {
+			// Palladium fog.
+			x = MathUtils.random(13000, 30400);
+			y = MathUtils.random(19000, 25500);
+		} else if(window.settings.WorkArea){
 			x = MathUtils.random(window.settings.WorkArea.x, window.settings.WorkArea.x + window.settings.WorkArea.w);
 			y = MathUtils.random(window.settings.WorkArea.y, window.settings.WorkArea.y + window.settings.WorkArea.h);
 		} else if ( !window.settings.settings.palladium && !window.bigMap) {
@@ -555,10 +560,6 @@ function logic() {
 		} else if (!window.settings.settings.palladium && window.bigMap) {
 			x = MathUtils.random(500, 41500);
 			y = MathUtils.random(500, 25700);
-		} else if (window.settings.settings.palladium) {
-			// Palladium fog.
-			x = MathUtils.random(13000, 30400);
-			y = MathUtils.random(19000, 25500);
 		}
 	}
 
@@ -617,7 +618,7 @@ function logic() {
 		} else if (window.settings.settings.ggbot && Object.keys(api.ships).length > 1 && window.settings.settings.resetTargetWhenHpBelow25Percent && api.lockedShip && api.lockedShip.percentOfHp < 25 && api.lockedShip.id == api.targetShip.id) {
 			console.log("Resetting target");
 			api.resetTarget("enemy");
-		} else if (dist > 300 && api.lockedShip && api.lockedShip.id == api.targetShip.id & !window.settings.settings.circleNpc) {
+		} else if ((api.lockedShip && !api.attacking) || dist > 300 && api.lockedShip && api.lockedShip.id == api.targetShip.id & !window.settings.settings.circleNpc) {
 			x = api.targetShip.position.x + MathUtils.random(-200, 200);
 			y = api.targetShip.position.y + MathUtils.random(-200, 200);
 		} else if (window.settings.settings.ggbot || (api.lockedShip && api.lockedShip.id == api.targetShip.id)) {

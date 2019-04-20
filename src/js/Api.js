@@ -31,7 +31,8 @@ class Api {
 		this.moduleCooldown = -1;
 		this.petHasFuel = true;
 		// QuickSlot stuff
-		this.abilityCoolDown = 1;
+		this.abilityReady = true;
+		this.abilityDelay = $.now();
 		this.formation = -1;
 		this.pauseTime = null;
 		this.pauseStop = null;
@@ -95,10 +96,10 @@ class Api {
 	}
 
 	useAbility(){
-		var cooldownlist = {"cyborg":310000,"solace":140000,"diminisher":161000,"venom":180000,"sentinel":215000,"spectrum":195000,"v-lightning":185000};
-		if(this.abilityCoolDown && $.now() - this.abilityCoolDown > cooldownlist[window.hero.skillName]){
+		// Delay to avoid key press spam
+		if(this.abilityReady && $.now() - this.abilityDelay > 2000){
 			this.quickSlot(window.settings.settings.abilitySlot);
-			this.abilityCoolDown = $.now();
+			this.abilityDelay = $.now();
 			return true;
 		}
 		return false;

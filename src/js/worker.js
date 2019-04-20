@@ -86,6 +86,7 @@ $(document).ready(function () {
 	hm.registerCommand(HeroAffectedHandler.ID, new HeroAffectedHandler());
 	hm.registerCommand(HeroJumpedHandler.ID, new HeroJumpedHandler());
 	hm.registerCommand(PetUpdateFuel.ID, new PetUpdateFuel());
+	hm.registerCommand(QuickslotHandler.ID, new QuickslotHandler());
 
 
 

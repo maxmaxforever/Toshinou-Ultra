@@ -466,6 +466,7 @@ function logic() {
 		(window.settings.settings.killNpcs && api.lockedShip.isNpc)) {
 			api.startLaserAttack();
 			api.lastAttack = $.now();
+			api.attacking = true;
 	}
 
 

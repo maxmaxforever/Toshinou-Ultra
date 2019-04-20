@@ -514,8 +514,8 @@ class Api {
 				let dist = window.hero.distanceTo(gate.position);
 
 				if(dist < 600){
-					bestGate = gate;
-					bestDist = dist;
+					finalGate = gate;
+					minDist = dist;
 					break;
 				}
 				if (enemeyDistance < dist) {

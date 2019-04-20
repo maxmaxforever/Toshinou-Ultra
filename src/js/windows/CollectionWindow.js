@@ -24,6 +24,18 @@ class CollectionWindow {
 				}
 			},
 			{
+				name: 'eventBox',
+				type: 'checkbox',
+				labelText: 'Collect Event Boxes',
+				appendTo: this.collectionWindow,
+				attrs: {
+					checked : window.settings.settings.eventBox
+				},
+				event: function () {
+					window.settings.settings.eventBox = this.checked;
+				}
+			},
+			{
 				name: 'materials',
 				type: 'checkbox',
 				labelText: 'Collect materials',

@@ -35,6 +35,7 @@ class Settings {
 			npcCircleRadius : 500,
 			npcs: {},
 			bonusBox: false,
+			eventBox: false,
 			materials: false,
 			cargoBox: false,
 			greenOrGoldBooty: false,

@@ -18,6 +18,7 @@ class Api {
 		this.starSystem = [];
 		this.workmap = null;
 		this.jumped = false;
+		this.isRepairing = false;
 		this.changeConfigTime = $.now();
 		this.changeFormationTime = $.now();
 		this.lastAutoLock = $.now();
@@ -62,7 +63,7 @@ class Api {
 		// 0 = activate
 		// 1 = deactivate
 		// 4 = repair
-		api.petActivateTimer = $.now();
+		this.petActivateTimer = $.now();
 		Injector.injectScript('document.getElementById("preloader").petCall('+parseInt(n)+');');
 		this.currentModule = -1;
 	}
@@ -75,21 +76,21 @@ class Api {
 	
 	combatMode(){
 		if (window.settings.settings.autoChangeConfig && window.settings.settings.attackConfig != window.hero.shipconfig){
-			api.changeConfig();
+			this.changeConfig();
 		}
-		if (window.settings.settings.changeFormation && !api.isRepairing){
-			if (window.settings.settings.attackFormation != api.formation) {
-				api.changeFormation(window.settings.settings.attackFormation);
+		if (window.settings.settings.changeFormation && !this.isRepairing){
+			if (window.settings.settings.attackFormation != this.formation) {
+				this.changeFormation(window.settings.settings.attackFormation);
 			}
 		}
 	}
 
 	flyingMode(){
 		if (window.settings.settings.autoChangeConfig && window.settings.settings.flyingConfig != window.hero.shipconfig) {
-			api.changeConfig();
+			this.changeConfig();
 		}
-		if (window.settings.settings.changeFormation && api.formation != window.settings.settings.flyingFormation) {
-			api.changeFormation(window.settings.settings.flyingFormation);
+		if (window.settings.settings.changeFormation && this.formation != window.settings.settings.flyingFormation) {
+			this.changeFormation(window.settings.settings.flyingFormation);
 		}
 	}
 
@@ -325,7 +326,7 @@ class Api {
 		let shipsCount = Object.keys(this.ships).length;
 		for (let property in this.ships) {
 			let ship = this.ships[property];
-			if (ship && ship.name.indexOf("-=[ Devourer ]=-") != -1) {
+			if (ship && ship.name.indexOf("Devourer") != -1) {
 				window.settings.settings.resetTargetWhenHpBelow25Percent = false;
 				if (shipsCount > 1) {
 					this.blackListId(ship.id);
@@ -406,6 +407,7 @@ class Api {
 			let dist = box.distanceTo(window.hero.position);
 			if (dist < minDist) {
 				if (!box.isResource() && ((box.isCollectable() && window.settings.settings.bonusBox) ||
+					(box.isEvent() && window.settings.settings.eventBox) || 
 					((box.isMaterial() || box.isDropRes()) && window.settings.settings.materials) ||
 					(box.isPalladium() && window.settings.settings.palladium) ||
 					(box.isCargoBox() && window.settings.settings.cargoBox) ||
@@ -548,7 +550,7 @@ class Api {
                 if (isNaN(shdPercent))
                     shdPercent = 100;
                 if (Math.min(hpPercent, shdPercent) < window.settings.settings.repairStartPercent)
-                    api.useAbility();
+					this.useAbility();
             }
 			if(window.settings.settings.jumpFromEnemy && !window.stayInPortal){
 				if (this.jumpAndGoBack(gate.gate.gateId)) {

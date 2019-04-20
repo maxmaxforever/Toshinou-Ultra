@@ -226,7 +226,7 @@ function logic() {
 
 	window.minimap.draw();
 
-	if(window.settings.settings.pause) return;
+	if(window.settings.settings.pause || api.jumped) return;
 
 	if (api.heroDied) {
 		api.resetTarget("all");
@@ -243,6 +243,11 @@ function logic() {
 	
 	if(window.settings.settings.fleeFromEnemy  && window.enemy){
 		if(window.settings.settings.stopFleeing && $.now() - api.enemyLastSight > 2500){
+			let enemy = api.findEnemy();
+			if(enemy){
+				window.enemy = enemy;
+				return;
+			}
 			window.enemy = null;
 			return;
 		}
@@ -294,7 +299,7 @@ function logic() {
 	}
 
 	if(api.isRepairing){
-		if (window.hero.hp !== window.hero.maxHp) {
+		if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) <= window.settings.settings.repairEndPercent) {
 			if (window.settings.settings.ggbot) {
 				let gg_half_x = 10400;
 				let gg_half_y = 6450;
@@ -342,7 +347,7 @@ function logic() {
 					return;
 				}
 			}
-		}else if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) >= window.settings.settings.repairEndPercent) {
+		}else {
 			api.isRepairing = false;
 		}
 	}
@@ -618,9 +623,13 @@ function logic() {
 		} else if (window.settings.settings.ggbot && Object.keys(api.ships).length > 1 && window.settings.settings.resetTargetWhenHpBelow25Percent && api.lockedShip && api.lockedShip.percentOfHp < 25 && api.lockedShip.id == api.targetShip.id) {
 			console.log("Resetting target");
 			api.resetTarget("enemy");
-		} else if ((api.lockedShip && !api.attacking) || dist > 300 && api.lockedShip && api.lockedShip.id == api.targetShip.id & !window.settings.settings.circleNpc) {
-			x = api.targetShip.position.x + MathUtils.random(-200, 200);
-			y = api.targetShip.position.y + MathUtils.random(-200, 200);
+		} else if ((!window.settings.settings.ggbot && !api.attacking) ||
+					(dist > 300 && api.lockedShip && 
+					api.lockedShip.id == api.targetShip.id &&
+					!window.settings.settings.circleNpc)) 
+		{
+			x = api.targetShip.position.x + MathUtils.random(-100, 100);
+			y = api.targetShip.position.y + MathUtils.random(-100, 100);
 		} else if (window.settings.settings.ggbot || (api.lockedShip && api.lockedShip.id == api.targetShip.id)) {
 			if (window.settings.settings.circleNpc) {
 				let enemy = api.targetShip.position;

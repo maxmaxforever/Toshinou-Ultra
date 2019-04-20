@@ -468,6 +468,17 @@ class Api {
 		};
 	}
 
+	findEnemy(){
+		for (let property in this.ships) {
+			let ship = this.ships[property];
+
+			if(ship.isEnemy && !ship.isNpc){
+				return ship;
+			}
+		}
+		return null;
+	}
+
 	findNearestGate() {
 		let minDist = 100000;
 		let finalGate;

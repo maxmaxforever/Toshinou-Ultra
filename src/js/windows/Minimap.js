@@ -19,7 +19,7 @@ class Minimap {
 			height: 10,
 			style: "background-color: rgb(22, 38, 47);"
 		})
-
+		this.trail = [];
 		this.ctx = this.canvas.get(0).getContext("2d");
 
 		this.canvas.appendTo(this.minimap);
@@ -88,6 +88,22 @@ class Minimap {
 
 		ct.fillStyle = 'green';
 		this._fillCircle(ct, window.hero.position.x / window.b1, window.hero.position.y / window.b2, 2);
+
+		if(this.trail.length > 30){
+			this.trail.splice(0, 1);
+		}
+		this.trail.push({x:window.hero.position.x/window.b1, y: window.hero.position.y/window.b2});
+		if(this.trail.length > 1){
+			var inc = 1/this.trail.length;
+			for(var i = 1; i < this.trail.length; i++){
+				ct.beginPath();
+				ct.moveTo(this.trail[i-1].x, this.trail[i-1].y);
+				ct.lineTo(this.trail[i].x, this.trail[i].y);
+				ct.strokeStyle = "rgba(255, 255, 255, "+inc+")";
+				ct.stroke();
+				inc += (1/this.trail.length);
+			}
+		}
 
 		for (var property in this._api.boxes) {
 			var box = this._api.boxes[property];

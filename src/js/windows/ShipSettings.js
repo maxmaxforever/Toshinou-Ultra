@@ -123,7 +123,7 @@ class ShipSettings{
             options: {"0":0, "1":1, "2":2, "3":3, "4":4, "5":5, "6":6, "7":7, "8":8, "9":9},
             attrs:{
                 class: "formations",
-                value: window.settings.settings.changeFormation
+                value: window.settings.settings.flyingFormation
             },
             event: function () {
                 window.settings.settings.flyingFormation = this.value;

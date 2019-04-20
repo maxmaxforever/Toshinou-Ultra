@@ -300,7 +300,7 @@ function logic() {
 	}
 
 	if(api.isRepairing){
-		if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) <= window.settings.settings.repairEndPercent) {
+		if (MathUtils.percentFrom(window.hero.hp, window.hero.maxHp) < window.settings.settings.repairEndPercent) {
 			if (window.settings.settings.ggbot) {
 				let gg_half_x = 10400;
 				let gg_half_y = 6450;
@@ -466,7 +466,6 @@ function logic() {
 		(window.settings.settings.killNpcs && api.lockedShip.isNpc)) {
 			api.startLaserAttack();
 			api.lastAttack = $.now();
-			api.attacking = true;
 	}
 
 

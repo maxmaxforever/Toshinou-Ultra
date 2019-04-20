@@ -29,7 +29,7 @@ class HeroAttackHandler {
 					window.attackWindow.hp(shipAttackCmd[Variables.attackHp]);
 					window.attackWindow.shd(shipAttackCmd[Variables.attackShd]);
 					window.attackWindow.targetName(ship.name);
-					api.attacking = true;
+					a.attacking = true;
 				}
 
 				ship.hp = shipAttackCmd[Variables.attackHp];

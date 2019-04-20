@@ -635,7 +635,7 @@ function logic() {
 				let enemy = api.targetShip.position;
 				let cx = enemy.x;
 				let cy = enemy.y;
-				if(api.lockedShip.percentOfHp < 25 || dist > 700){
+				if(api.lockedShip && api.lockedShip.percentOfHp < 25 || dist > 700){
 					cx = api.targetShip.target.x;
 					cy = api.targetShip.target.y;
 				}

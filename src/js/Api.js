@@ -335,14 +335,8 @@ class Api {
 			let ship = this.ships[property];
 			if (ship && ship.name.indexOf("Devourer") != -1) {
 				window.settings.settings.resetTargetWhenHpBelow25Percent = false;
-				if (shipsCount > 1) {
-					this.blackListId(ship.id);
-					if (this.targetShip == ship) {
-						this.resetTarget("enemy");
-					}
-				} else {
-					this.whitelistId(ship.id);
-					this.targetShip = ship;
+				if(shipsCount > 1 && ship.id == this.targetShip.id){
+					this.resetTarget("enemy");
 				}
 			}
 		}

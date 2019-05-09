@@ -1,5 +1,5 @@
 
-STATUS:**DISCONTINUED** 
+STATUS:**Online** 
 
 
 Toshinou Ultra
@@ -25,12 +25,17 @@ ES guide: https://youtu.be/4kp8v413634<br />
 
 TODO:
 ----------
--Improve Palladium repair 
--React to enemy attacks on palladium  
--Palladium traveler if repairing on gate  
--Improve gg repair(ship can run onto npcs and die)  
--Improve npc Circle  
--Temporarily save box positions  
+-Improve Palladium repair.  
+-React to enemy attacks on palladium.  
+-Obstacle avoidance.  
+-Better Cbs avoidance.
+-Better movement logic for gg bot (Drag npcs)
+-Flee&Roam config.  
+-Priority levels (if priority > threshhold, change target to that npc).  
+-getStackTrace() bypass.  
+-Improve gg repair(ship can run onto npcs and die).  
+-Improve npc Circle.  
+-Temporarily save box positions.  
 
 Issues
 ----------

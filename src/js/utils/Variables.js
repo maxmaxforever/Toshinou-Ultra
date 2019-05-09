@@ -67,10 +67,6 @@ class Variables {
 		return "_-o29";
 	}
 	
-	static get attackerId() {
-		return "_-Fc";
-	}
-	
 	static get attackedId() {
 		return "_-Xq";
 	}

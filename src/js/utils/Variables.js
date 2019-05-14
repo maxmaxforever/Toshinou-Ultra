@@ -12,11 +12,11 @@ class Variables {
 	}
 	
 	static get gateId() {
-		return "_-v1u";
+		return "_zo";
 	}
 	
 	static get gateType() {
-		return "_-55g";
+		return "_-h2w";
 	}
 	
 	static get attackerId() {

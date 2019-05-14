@@ -12,7 +12,7 @@ class Variables {
 	}
 	
 	static get gateId() {
-		return "_zo";
+		return "_-zo";
 	}
 	
 	static get gateType() {

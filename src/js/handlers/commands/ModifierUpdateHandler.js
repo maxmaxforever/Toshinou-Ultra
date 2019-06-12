@@ -15,9 +15,19 @@ class ModifierUpdateHandler {
                 }
 
             }
+            var ship = a.ships[command.userId];
             // Update ships modifier
-            if(a.ships[command.userId])
+            if(ship){
+                // Check if ship already has the modifier
+                for(var i = 0; i < ship.modifier.length; i++){
+                    var mod = ship.modifier[i];
+                    if(mod.modifier == command.modifier){
+                        ship.modifier[i] = command;
+                        return;
+                    }
+                }
                 a.ships[command.userId].modifier.push(command);
+            }
         }
     }
 

@@ -107,15 +107,14 @@ class Settings {
 	}
 
 	get WorkArea(){
-		return this.settings.workArea;
+		return this.settings.workArea[window.hero.mapId];
 	}
 
 	set WorkArea({x, y, w, h}){
 		if((w-x) == 0 || (h - y) == 0){
-			this.settings.workArea = null;
+			this.settings.workArea[window.hero.mapId] = null;
 		}else{
-			this.settings.workArea = {x, y, w, h};
+			this.settings.workArea[window.hero.mapId] = {x, y, w, h};
 		}
-		
 	}
 }

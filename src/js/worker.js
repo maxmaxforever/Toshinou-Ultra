@@ -458,9 +458,11 @@ function logic() {
 			api.attacking = true;
 	}
 
-
+	if(api.targetShip && api.targetShip.ish){
+		api.resetTarget("enemy");
+	}
 	// firstAttacker is null if npc is not attacked 
-	if(api.targetShip != null && api.targetShip.firstAttacker != window.hero.id && api.targetShip.firstAttacker != null){
+	if(api.targetShip && api.targetShip.firstAttacker != window.hero.id && api.targetShip.firstAttacker != null){
 		api.resetTarget("enemy");
 	}
 

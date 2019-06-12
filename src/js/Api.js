@@ -384,7 +384,9 @@ class Api {
 	
 	battlerayFix(battle){
 		// If  battleray is attacking the hero in palla mode, ignore npc blocklist
-		if(window.settings.settings.palladium && battle.targetShip && battle.targetShip.id == window.hero.id){
+		if (window.settings.settings.palladium &&
+			battle.targetShip && battle.targetShip.id == window.hero.id &&
+			battle.distanceTo(window.hero.position) < 700){
 			return true;
 		}
 		return false;

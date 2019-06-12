@@ -20,6 +20,7 @@ class GeneralSettingsWindow {
 			window.settings.settings.circleNpc = this.checked;
 			window.settings.settings.killNpcs = this.checked;
 			let palladiumBlackList = [
+				"-=[ Battleray ]=-",
 				"( Uber Annihilator )", 
 				"( Uber Saboteur )", 
 				"( Uber Barracuda )",

@@ -382,6 +382,13 @@ class Api {
 		};
 	}
 	
+	battlerayFix(battle){
+		// If  battleray is attacking the hero in palla mode, ignore npc blocklist
+		if(window.settings.settings.palladium && battle.targetShip && battle.targetShip.id == window.hero.id){
+			return true;
+		}
+		return false;
+	}
 
 	findNearestShip() {
 		let minDist = window.settings.settings.palladium ? window.settings.settings.npcCircleRadius : 100000;
@@ -403,7 +410,7 @@ class Api {
 			let priority = window.settings.getNpc(ship.name).priority;
 
 			if (ship.isNpc &&
-				!window.settings.getNpc(ship.name).blocked &&
+				(!window.settings.getNpc(ship.name).blocked || this.battlerayFix(ship)) &&
 				!this.isShipOnBlacklist(ship.id) &&
 				!ship.isAttacked &&
 				!ship.ish)

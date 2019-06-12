@@ -16,6 +16,13 @@ class ShipAttackHandler {
 					ship.firstAttacker = attackerId;
 				}
 			}
+
+			// Set attacker's targetship
+			if(a.ships[attackerId]){
+				if(window.enemy && window.enemy.id == attackerId)
+					window.enemy.targetShip = attackedShipId;
+				a.ships[attackerId].targetShip = attackedShipId;
+			}
 		}
 	}
 	

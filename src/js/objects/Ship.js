@@ -12,6 +12,7 @@ class Ship extends Movable {
 		this.ship = ship;
 		this.firstAttacker = null;
 		this.heroAttacked = false;
+		this.targetShip = null;
 	}
 
 	setTarget(targetX, targetY, time) {

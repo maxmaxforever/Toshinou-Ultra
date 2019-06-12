@@ -83,7 +83,7 @@ $(document).ready(function () {
     hm.registerCommand(HeroUpdateShieldHandler.ID, new HeroUpdateShieldHandler());
 	hm.registerCommand(HeroPetUpdateHandler.ID, new HeroPetUpdateHandler());
 	hm.registerCommand(HeroAttackHandler.ID, new HeroAttackHandler());
-	hm.registerCommand(HeroAffectedHandler.ID, new HeroAffectedHandler());
+	hm.registerCommand(ModifierUpdateHandler.ID, new ModifierUpdateHandler());
 	hm.registerCommand(HeroJumpedHandler.ID, new HeroJumpedHandler());
 	hm.registerCommand(PetUpdateFuel.ID, new PetUpdateFuel());
 	hm.registerCommand(QuickslotHandler.ID, new QuickslotHandler());

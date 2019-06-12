@@ -32,6 +32,16 @@ class Ship extends Movable {
 		return (this.hp && this.maxHp) ? MathUtils.percentFrom(this.hp, this.maxHp) : 100;
 	}
 
+	get ish(){
+		for(var i = 0; i < this.modifier.length; i++){
+			var mod = this.modifier[i];
+			if(mod.modifier == 32 && mod.activated){
+				return true;
+			}
+		}
+		return false;
+	}
+
 	update() {
 		if (this.target == null)
 			return;

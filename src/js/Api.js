@@ -289,58 +289,6 @@ class Api {
 		return hasJumped;
 	}
 
-	ggDeltaFix() {
-		let shipsCount = Object.keys(this.ships).length;
-		for (let property in this.ships) {
-			let ship = this.ships[property];
-			if (ship && (ship.name == "-=[ StreuneR ]=- δ4" || 
-				ship.name == "-=[ Lordakium ]=- δ9" || 
-				ship.name == "-=[ Sibelon ]=- δ14" || 
-				ship.name == "-=[ Kristallon ]=- δ19")) {
-				window.settings.settings.resetTargetWhenHpBelow25Percent=false;
-				if (shipsCount > 1) {
-					window.settings.setNpc(ship.name, true);
-					if (this.targetShip == ship){
-						this.resetTarget("enemy");
-					}
-				} else {
-					window.settings.setNpc(ship.name, false);
-					this.targetShip = ship;
-				}
-			}
-		}
-	}
-
-	ggZetaFix() {
-		let shipsCount = Object.keys(this.ships).length;
-		for (let property in this.ships) {
-			let ship = this.ships[property];
-			if (ship && ship.name.indexOf("Devourer") != -1) {
-				window.settings.settings.resetTargetWhenHpBelow25Percent = false;
-				if(shipsCount > 1 && this.targetShip && ship.id == this.targetShip.id){
-					this.resetTarget("enemy");
-				}
-			}
-		}
-	}
-
-	battlerayFix() {
-		for (let property in this.ships) {
-			let ship = this.ships[property];
-			if (ship && (ship.name == "-=[ Battleray ]=-") && ship.distanceTo(window.hero.position) < 700) {
-				let shipsCount = this.countNpcAroundByType("-=[ Interceptor ]=-", 600);
-				if (shipsCount > 1 && !(lockedShip && lockedShip.percentOfHp > 80 && lockedShip.name == "-=[ Battleray ]=-")) {
-					window.settings.setNpc(ship.name, true);
-					if (this.targetShip == ship){
-						this.resetTarget("enemy");
-					}
-				} else {
-					window.settings.setNpc(ship.name, false);
-					this.targetShip = ship;
-				}
-			}
-		}
-	}
 
 	countNpcAroundByType(type, distance){
 		let shipsCount = Object.keys(this.ships).length;
@@ -429,7 +377,12 @@ class Api {
 			let dist = ship.distanceTo(window.hero.position);
 			let priority = window.settings.getNpc(ship.name).priority;
 
-			if (ship.isNpc && !window.settings.getNpc(ship.name).blocked && !this.isShipOnBlacklist(ship.id) && !ship.isAttacked) {
+			if (ship.isNpc &&
+				!window.settings.getNpc(ship.name).blocked &&
+				!this.isShipOnBlacklist(ship.id) &&
+				!ship.isAttacked &&
+				!ship.ish)
+			{
 				if((ship.firstAttacker == null || (ship.firstAttacker != null && ship.firstAttacker == window.hero.id) ||
 					!window.settings.settings.avoidAttackedNpcs)) {
 					if(priority > highestPriority){	

@@ -78,23 +78,44 @@ class Api {
 	}
 	
 	combatMode(){
-		if (window.settings.settings.autoChangeConfig && window.settings.settings.attackConfig != window.hero.shipconfig){
-			this.changeConfig();
-		}
-		if (window.settings.settings.changeFormation && !this.isRepairing){
-			if (window.settings.settings.attackFormation != this.formation) {
-				this.changeFormation(window.settings.settings.attackFormation);
+		if (window.settings.settings.attackConfig != window.hero.shipconfig){
+			if(this.changeConfig()){
+				return true;
 			}
 		}
+		if (!this.isRepairing){
+			if (window.settings.settings.attackFormation != this.formation) {
+				if(this.changeFormation(window.settings.settings.attackFormation))
+					return true;
+			}
+		}
+		return false;
+	}
+
+	fleeingMode(){
+		if (window.settings.settings.fleeingConfig != window.hero.shipconfig) {
+			if(this.changeConfig()){
+				return true;
+			}
+		}
+		if (this.formation != window.settings.settings.fleeingFormation) {
+			if(this.changeFormation(window.settings.settings.fleeingFormation))
+				return true;
+		}
+		return false;
 	}
 
 	flyingMode(){
-		if (window.settings.settings.autoChangeConfig && window.settings.settings.flyingConfig != window.hero.shipconfig) {
-			this.changeConfig();
+		if (window.settings.settings.flyingConfig != window.hero.shipconfig) {
+			if(this.changeConfig()){
+				return true;
+			}
 		}
-		if (window.settings.settings.changeFormation && this.formation != window.settings.settings.flyingFormation) {
-			this.changeFormation(window.settings.settings.flyingFormation);
+		if (this.formation != window.settings.settings.flyingFormation) {
+			if(this.changeFormation(window.settings.settings.flyingFormation))
+				return true;
 		}
+		return false;
 	}
 
 	useAbility(){
@@ -122,7 +143,9 @@ class Api {
 			this.changeFormationTime = $.now();
 			this.formation = n;
 			this.quickSlot(n);
+			return true;
 		}
+		return false;
 	}
 	
 	quickSlot(n){
@@ -235,7 +258,9 @@ class Api {
 		if (this.changeConfigTime && $.now() - this.changeConfigTime > 5000) {
 			this.changeConfigTime = $.now();
 			Injector.injectScript('document.getElementById("preloader").changeConfig();');
+			return true;
 		}
+		return false;
 	}
 
 

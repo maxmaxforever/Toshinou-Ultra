@@ -1,6 +1,6 @@
 class ModifierUpdateHandler {
 	static get ID() {
-		return 24213; 
+		return 226;  
 	}
 
 	constructor() {

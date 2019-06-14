@@ -48,7 +48,7 @@ class Variables {
 	}
 	
 	static get heroPetId() {
-		return "_-k3d";
+		return "_-41m";
 	}
 	
 	static get hpUpdateMaxHp() {

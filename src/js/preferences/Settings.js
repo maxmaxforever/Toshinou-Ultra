@@ -66,7 +66,7 @@ class Settings {
 			sabSwitcher: false,
 			sabSlot: -1,
 			mainAmmoSlot: -1,
-			workArea : null
+			workArea : {}
 		};
 		chrome.storage.local.get(this.defaults, items => {
 			this.settings = items;
